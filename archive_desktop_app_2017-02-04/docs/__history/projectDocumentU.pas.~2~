@@ -1,0 +1,1309 @@
+unit projectDocumentU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ImgList, DBActns, ActnList, DB, DBClient, Provider, ADODB,
+  Menus, Grids, DBGrids, ExtCtrls, Buttons, StdCtrls, jazDBGrid, GridsEh,
+  DBGridEh, DBGridEhGrouping, AmjSetU, RzPanel, AmjStandardU,
+  AmjactionsU, JPG1U, RzTabs, EnImgScr,
+  EnPrinter,       { for TEnvisionPrinter }
+    EnScan,          { for Scanner }
+    EnBlowupForm,    { for TBlowupForm }
+    EnOverviewForm,  { for TOverviewForm }
+    EnOcrEng,        { for TOcrEngine, TOcrDriver }
+    EnDiGrph,        { for TDibGraphic }
+     ComCtrls, Mask, AmjLookUpU, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh,
+  EhLibVCL, DBAxisGridsEh        { for TImageScrollBox };
+type
+  TprojectDocumentf = class(TJPG1F)
+    CtrctEdit: TAmjAction;
+    JMainPages: TJPages;
+    BillTS: TRzTabSheet;
+    SulafTS: TRzTabSheet;
+    TaminTS: TRzTabSheet;
+    Billgrd: TJazDBGrid;
+    Sulaf_Gr: TJazDBGrid;
+    Taminat_Gr: TJazDBGrid;
+    qBill: TAmjSet;
+    DqBill: TDataSource;
+    PictsTS: TRzTabSheet;
+    BillAct: TAmjActionList;
+    AmjAction1: TAmjAction;
+    AmjAction2: TAmjAction;
+    AmjAction3: TAmjAction;
+    AmjAction4: TAmjAction;
+    AmjAction5: TAmjAction;
+    Bill_editAct: TAmjAction;
+    Bill_newAct: TAmjAction;
+    DqSUBJ_SULAF: TDataSource;
+    qSUBJ_SULAF: TAmjSet;
+    qSUBJ_SULAFAct: TAmjActionList;
+    AmjAction13: TAmjAction;
+    AmjAction14: TAmjAction;
+    AmjAction15: TAmjAction;
+    AmjAction16: TAmjAction;
+    AmjAction17: TAmjAction;
+    SulfaNew: TAmjAction;
+    SulfaEdit: TAmjAction;
+    SUBJ_TAMINAct: TAmjActionList;
+    AmjAction20: TAmjAction;
+    AmjAction21: TAmjAction;
+    AmjAction22: TAmjAction;
+    AmjAction23: TAmjAction;
+    AmjAction24: TAmjAction;
+    TaminNew: TAmjAction;
+    qSUBJ_TAMIN: TAmjSet;
+    DSUBJ_TAMIN: TDataSource;
+    TaminEdit: TAmjAction;
+    SubCtrctTS: TRzTabSheet;
+    JazDBGrid1: TJazDBGrid;
+    DqSubSubjs: TDataSource;
+    qSubSubjs: TAmjSet;
+    AmjSplitter1: TAmjSplitter;
+    OrdrGen: TAmjAction;
+    Det_Band: TPanel;
+    qtot: TAmjSet;
+    Panel1: TPanel;
+    Panel3: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    ImageScrollBox: TImageScrollBox;
+    Panel2: TPanel;
+    JPanel1: TJPanel;
+    JPanel2: TJPanel;
+    Image1: TImage;
+    JGrid2: TJazDBGrid;
+    ProgressBar: TProgressBar;
+    JazDBGrid2: TJazDBGrid;
+    ImageNew: TPopupMenu;
+    N5: TMenuItem;
+    N6: TMenuItem;
+    N7: TMenuItem;
+    N8: TMenuItem;
+    N9: TMenuItem;
+    OpenDialog1: TOpenDialog;
+    ImageOp: TPopupMenu;
+    N10: TMenuItem;
+    N11: TMenuItem;
+    N12: TMenuItem;
+    N13: TMenuItem;
+    ImageView: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N14: TMenuItem;
+    d1: TMenuItem;
+    N15: TMenuItem;
+    DataSource1: TDataSource;
+    docjq: TAmjSet;
+    AmjActionList1: TAmjActionList;
+    AmjAction6: TAmjAction;
+    AmjAction7: TAmjAction;
+    AmjAction8: TAmjAction;
+    AmjAction9: TAmjAction;
+    DqDOCFILES: TDataSource;
+    qDOCFILES: TAmjSet;
+    JRActions2: TAmjActionList;
+    AmjAction10: TAmjAction;
+    ImageOpAct: TAmjAction;
+    ImageNewact: TAmjAction;
+    ImageViewAct: TAmjAction;
+    Label3: TLabel;
+    Label4: TLabel;
+    ZTARGET: TDMZEditFind;
+    ZITEM: TDMZEditFind;
+    orders: TRzTabSheet;
+    JazDBGrid3: TJazDBGrid;
+    ordrdq: TDataSource;
+    jqorder: TAmjSet;
+    ordrActions: TAmjActionList;
+    AmjAction11: TAmjAction;
+    AmjAction12: TAmjAction;
+    AmjAction18: TAmjAction;
+    AmjAction19: TAmjAction;
+    AmjAction25: TAmjAction;
+    OrdrEdit: TAmjAction;
+    AmjAction26: TAmjAction;
+    procedure CtrctEditHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure qBillBeforeOpen(DataSet: TDataSet);
+    procedure JQAfterScroll(DataSet: TDataSet);
+    procedure Bill_editActHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure Bill_newActHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure qSUBJ_SULAFBeforeOpen(DataSet: TDataSet);
+    procedure qSUBJ_TAMINBeforeOpen(DataSet: TDataSet);
+    procedure JQBeforeOpen(DataSet: TDataSet);
+    procedure SulfaNewHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure SulfaEditHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure StopNewHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure StopEditHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure TaminEditHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure TaminNewHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure qSubSubjsBeforeOpen(DataSet: TDataSet);
+    procedure OrdrGenHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure Button1Click(Sender: TObject);
+    procedure docjqBeforeOpen(DataSet: TDataSet);
+    procedure N1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure Scanner_SelectHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure Scan_ImageHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure Scan_ImagesHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure Imp_FileHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure Exp_To_FileHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure Image_PrintHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure AmjAction18Handle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure Image_ZoomInHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure Image_ZoomOutHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure AmjAction19Handle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure ImageNewactHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure ImageOpActHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure ImageViewActHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure N10Click(Sender: TObject);
+    procedure N12Click(Sender: TObject);
+    procedure N13Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
+    procedure N7Click(Sender: TObject);
+    procedure N8Click(Sender: TObject);
+    procedure N9Click(Sender: TObject);
+    procedure d1Click(Sender: TObject);
+    procedure N15Click(Sender: TObject);
+    procedure qDOCFILESBeforeOpen(DataSet: TDataSet);
+    procedure qDOCFILESAfterScroll(DataSet: TDataSet);
+    procedure qDOCFILESAfterOpen(DataSet: TDataSet);
+    procedure qDOCFILESAfterInsert(DataSet: TDataSet);
+    procedure jqorderBeforeOpen(DataSet: TDataSet);
+    procedure OrdrEditHandle(Sender: TObject; var IsFailed: Boolean;
+      var ErrorMsg: string);
+    procedure docjqAfterInsert(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    FDirty             : Boolean;
+    FFileName          : String;
+    FMultiPageFileName : String;
+    FUndoGraphic       : TDibGraphic;
+    FBlowupForm        : TBlowupForm;
+    FOverviewForm      : TOverviewForm;
+    is_inserting : boolean;
+    Procedure FInit;  Override;
+    Procedure Set_Detail;
+    { Public declarations }
+
+    procedure CheckDirty;
+    procedure Scan_Pict(Pmulti:Boolean);
+    procedure OnAcquire( const DibHandle    : THandle;
+                               const XDpi         : Word;
+                               const YDpi         : Word;
+                               const CallBackData : LongInt );
+    procedure ZoomEditChange(Sender: TObject);
+    procedure LoadFile( const FileName : String );
+    procedure saveToDB(pNew:Boolean);
+    procedure SaveMenuClick(Sender: TObject);
+    procedure SaveAsMenuClick(Sender: TObject);
+    procedure OnProgress( const Sender          : TObject;
+                                const PercentProgress : Byte );
+     procedure Load_Doc;
+  end;
+   TpScanInfo = ^TScanInfo;
+TScanInfo = record
+    MultiPage  : Boolean;
+
+    { supplementary info when MultiPage is True }
+    { Dec 23, 2009 Graphic is not a TDibGraphic, which can be a TTiffGraphic or
+      TPdfGraphic at run time. PDF multi page saving was saving as TIFF }
+    Graphic    : TDibGraphic;
+
+    FileName   : String;
+    Stream     : TFileStream;
+    ImageCount : LongInt;
+end;
+
+implementation
+
+uses JAppMainU,  AmjBtnU,
+
+    {$ifdef __DelphiXEAndAbove}
+    System.UITypes, { for prevent inline expansion warning }
+    System.Types,   { for prevent inline expansion warning }
+    {$endif}
+
+    {$ifdef Win32}
+    EnRecoICR, {for TRecogniformICRDriver }
+    {$endif}
+
+    EnWatermark, { for TWatermarkTransform }
+    EnConvolution, { TEmbossColorTransform, ... }
+    EnRubber, { for TRubberBandMouseHandler }
+    EnAnnota, { for TAnnotationMouseHandler }
+    EnDespeckle,  { for TDespeckleTransform }
+    EnEncrypt,    { for TEncryptTransform }
+    EnTrsOcr,     { for TTransymOcrDriver }
+    EnConsoleOcr, { for TConsoleOcrDriver }
+//    NbLib,
+    EnThbnCr, { for TThumbnailCreator }
+    EnThbnFm, { for TThumbnailForm }
+    ClipBrd,  { for TClipBoard }
+    ExtDlgs,  { for TOpenPictureDialog }
+//    OcrForm,  { for ShowOcrResults }
+//    ReszForm, { for TResizeForm }
+//    FrmtForm, { for TFormatConversionForm }
+//    POptForm, { for TPrintOptionForm }
+//    CropForm, { for TCropForm }
+//    About,    { for TAboutBox }
+    Printers, { for Printer }
+    EnDcxGr,  { for TDcxGraphic }
+    EnPrint,  { for TEnvisionPrintMode, TDibGraphicPrinter }
+    EnMisc,   { for MinFloat }
+    EnTransf, { for TImageTransform }
+    EnTifGr,  { for TTifGraphic }
+    EnPdfGr,  { for TPdfGraphic }
+    EnPngGr,  { for TPngGraphic }
+    EnBmpGr,  { for TBitmapGraphic }
+    EnIcoGr,  { for TIconGraphic }
+    EnWmfGr,  { for TMetaFileGraphic }
+    EnReg;    { for image format registration }
+
+{$R *.dfm}
+
+Procedure TprojectDocumentf.FInit;
+begin
+  PCaption := '√÷«»Ì— «·⁄ﬁÊœ';
+  FUndoGraphic := TDibGraphic.Create;
+  BillAct.sqlstr := qBill.commandtext;
+  qSUBJ_SULAFAct.sqlstr := qSUBJ_SULAF.commandtext;
+  SUBJ_TAMINAct.sqlstr := qSUBJ_TAMIN.commandtext;
+  ordrActions.sqlstr := jqorder.commandtext;
+  AmjActionList1.sqlstr := docjq.commandtext;
+  JRActions2.sqlstr:=qDOCFILES.commandtext;
+//  qSubSubjs.sqlstr := jq2.commandtext;
+end;
+procedure TprojectDocumentf.ImageNewactHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+Var pt: TPoint;
+begin
+  inherited;
+  pt := TAmjNavButton(Sender).ClientToScreen(Point(0, 0));
+  ImageNew.popup(pt.x + TAmjNavButton(Sender).Width, pt.Y + TAmjNavButton(Sender).Height);
+end;
+
+procedure TprojectDocumentf.ImageOpActHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+Var pt: TPoint;
+begin
+  inherited;
+  pt := TAmjNavButton(Sender).ClientToScreen(Point(0, 0));
+  ImageOp.popup(pt.x + TAmjNavButton(Sender).Width, pt.Y + TAmjNavButton(Sender).Height);
+end;
+
+procedure TprojectDocumentf.ImageViewActHandle(Sender: TObject;
+  var IsFailed: Boolean; var ErrorMsg: string);
+Var pt: TPoint;
+begin
+  inherited;
+  pt := TAmjNavButton(Sender).ClientToScreen(Point(0, 0));
+  ImageView.popup(pt.x + TAmjNavButton(Sender).Width, pt.Y + TAmjNavButton(Sender).Height);
+end;
+procedure TprojectDocumentf.Image_PrintHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+var
+   PrintMode      : TEnvisionPrintMode;
+//    Form           : TPrintOptionForm;
+    Width          : Double;
+    Height         : Double;
+    GraphicPrinter : TDibGraphicPrinter;
+
+    procedure PrintWithManualPrintJob;
+begin
+  { if UsePrintJob is False, Printer.BeginDoc and Printer.EndDoc must be
+          called by the user. This allows printing multiple images in the
+          same job (or page). }
+        GraphicPrinter.UsePrintJob := False;
+
+        { if UsePrintJob is False, the print job name that appears in the
+          print manager must be specified in using the Title property of the
+          Printer object. Otherwise, if UsePrintJob is True, the Title
+          property of the TDibGraphicPrinter object is used to specify the
+          job name. }
+        Printer.Title := 'Envision Demo';
+
+        Printer.BeginDoc;
+
+        GraphicPrinter.Print(ImageScrollBox.Graphic);
+
+        { this shows how to print text on a page.
+        Printer.Canvas.TextOut(10,10, 'Envision Image Library');
+        }
+
+        Printer.EndDoc;
+    end;
+
+    procedure PrintWithAutoPrintJob;
+    begin
+        GraphicPrinter.UsePrintJob := True;
+        GraphicPrinter.Title       := 'Envision Demo';
+        GraphicPrinter.Print(ImageScrollBox.Graphic);
+    end;
+
+begin
+{    Form := TPrintOptionForm.Create(nil);
+    try
+        if Form.ShowModal <> mrOk then
+            Abort;
+
+        PrintMode := Form.PrintMode;
+        Width     := StrToFloat(Form.WidthFld.Text);
+        Height    := StrToFloat(Form.HeightFld.Text);
+    finally
+        Form.Free;
+    end;
+    }
+
+    PrintMode := pmFullPage;
+
+    GraphicPrinter := TDibGraphicPrinter.Create;
+    try
+        GraphicPrinter.PrintMode   := PrintMode;
+        GraphicPrinter.Width       := Width;
+        GraphicPrinter.Height      := Height;
+
+        PrintWithAutoPrintJob;
+
+    finally
+        GraphicPrinter.Free;
+    end;
+
+end;
+
+procedure TprojectDocumentf.Image_ZoomInHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+ImageScrollBox.ZoomPercent := ImageScrollBox.ZoomPercent + 10;
+end;
+
+procedure TprojectDocumentf.Image_ZoomOutHandle(Sender: TObject;
+  var IsFailed: Boolean; var ErrorMsg: string);
+begin
+  inherited;
+ImageScrollBox.ZoomPercent := ImageScrollBox.ZoomPercent - 10;
+end;
+
+procedure TprojectDocumentf.Imp_FileHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+var
+    OpenDialog   : TOpenPictureDialog;
+begin
+  inherited;
+CheckDirty;
+
+    OpenDialog := TOpenPictureDialog.Create(Self);
+    try
+        OpenDialog.Filter := GraphicFilter(TGraphic);
+        if OpenDialog.Execute then
+        begin
+            LoadFile(OpenDialog.FileName);
+            saveToDB(true);
+        end;
+    finally
+        OpenDialog.Free;
+    end;
+    ImageScrollBox.ZoomMode := zmFullPage;
+end;
+
+procedure TprojectDocumentf.Load_Doc;
+var
+    s: TMemoryStream;
+begin
+  if not is_inserting then
+    try
+      s := TMemoryStream (qDOCFILES.CreateBlobStream(qDOCFILES.FIELDBYNAME('FDATA'), bmRead));
+      if s.Size >= 0 then begin
+        ImageScrollBox.LoadFromStream(s, 'JPG', 1);
+      end;
+    finally
+    end;
+end;
+procedure TprojectDocumentf.OnProgress( const Sender          : TObject;
+                                const PercentProgress : Byte );
+begin
+   if (PercentProgress < 100) then
+    begin
+        ProgressBar.Position := PercentProgress;
+        if not ProgressBar.Visible then
+            ProgressBar.Visible := True;
+    end
+    else
+        ProgressBar.Visible := False;
+
+end;
+procedure TprojectDocumentf.SaveAsMenuClick(Sender: TObject);
+var
+    SaveDialog  : TSaveDialog;
+begin
+    SaveDialog := TSaveDialog.Create(nil);
+    try
+        SaveDialog.Filter := EnDiGrph.SaveAsGraphicFilter;
+        if SaveDialog.Execute then
+        begin
+            FFileName := SaveDialog.FileName;
+
+            if ExtractFileExt(FFileName) = '' then
+            begin
+                MessageDlg( 'An extension must be specifed to indicate'#13 +
+                            ' the file format.',  mtConfirmation, [mbOk], 0);
+                Abort;
+            end;
+
+            if FileExists(FFileName) and
+               (MessageDlg( 'File ' + FFileName + ' exists.'#13 + ' Overwrite ?',
+                             mtConfirmation, [mbYes, mbNo], 0) <> mrYes) then
+                Abort;
+
+            SaveMenuClick(Sender);
+            Caption := FFileName;
+        end;
+    finally
+        SaveDialog.Free;
+    end;
+end;
+procedure TprojectDocumentf.SaveMenuClick(Sender: TObject);
+begin
+    if ImageScrollBox.Graphic = nil then
+        Exit;
+
+    if FFileName = '' then
+        SaveAsMenuClick(Sender)
+    else
+    begin
+        ImageScrollBox.SaveToFile(FFileName);
+        FDirty := False;
+    end;
+end;
+procedure TprojectDocumentf.saveToDB(pNew:Boolean);
+var
+    FromStream: TStream;
+    jadoset : TADODataSet;
+begin
+    try
+      is_inserting := true;
+      if pNew then begin
+      qDOCFILES.open;
+        qDOCFILES.Insert;
+        qDOCFILES.post;
+      end;
+      FromStream := TMemoryStream.Create();
+      ImageScrollBox.SaveToStream(FromStream, 'JPG');
+
+      jadoset := TADODataSet.Create(self);
+      jadoset.Connection := jq.AmjServerDB;
+      jadoset.CommandText := 'select * from jfiles.DOCFILES where id = ' + qDOCFILES.fieldbyname('id').asstring;
+      jadoset.open;
+      jadoset.edit;
+      TBlobField(jadoset.FIELDBYNAME('FDATA')).LoadFromStream(FromStream);
+      jadoset.post;
+
+      finally
+        is_inserting := false;
+        jadoset.Free;
+        FromStream.free;
+      end;
+end;
+procedure TprojectDocumentf.LoadFile( const FileName : String );
+var
+    MultiLoad : Boolean;
+
+begin
+    Caption   := FileName;
+
+    BeginHourglass;
+    try
+
+{        if PageUpDown.Max > 1 then
+        begin
+            MultiLoad := MessageDlg( 'The file contains ' +
+                                     IntToStr(PageUpDown.Max) + ' images.'#13 +
+                                     'Note that for animations, all images'#13 +
+                                     'must be loaded in memory.'#13 +
+                                     'Load all images in memory?'#13,
+                                     mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+        end
+        else
+}            MultiLoad := False;
+
+        if MultiLoad then
+            ImageScrollBox.LoadFromFile(FileName, 0)
+        else
+            ImageScrollBox.LoadFromFile(FileName, 1);
+
+ //       if PageUpDown.Max = 1 then
+        begin
+            FFileName          := FileName;
+            FMultiPageFileName := '';
+        end
+;
+//        else
+        begin
+            { clear FFileName for multi-image files, to ensure if the
+              Save operation is invoked, the multiimage file is not
+              overwritten. Multi-image files are manipulated using the
+              Append To File operation }
+//            FFileName          := '';
+//            FMultiPageFileName := FileName;
+        end;
+
+    finally
+        EndHourglass;
+    end;
+
+    FDirty    := False;
+
+    ZoomEditChange(Self);
+end;
+
+procedure TprojectDocumentf.ZoomEditChange(Sender: TObject);
+begin
+    try
+        ImageScrollBox.ZoomPercent := 100; //StrToInt(ZoomEdit.Text);
+    except
+        { trap exception in StrToIn }
+        ImageScrollBox.ZoomPercent := 100;
+    end;
+end;
+procedure TprojectDocumentf.CheckDirty;
+begin
+    { don't check if dirty with multi image files, as multi images files
+      are not saved as a single entity, ie, "append" is used. }
+    if FDirty and (FMultiPageFileName = '') then
+    begin
+        case MessageDlg( 'Image is not saved. Save it?',
+                         mtConfirmation, [mbYes, mbNo, mbCancel], 0) of
+            mrYes    : SaveMenuClick(Self);
+            mrCancel : Abort;
+        end;
+    end;
+end;
+procedure TprojectDocumentf.Scanner_SelectHandle(Sender: TObject;
+  var IsFailed: Boolean; var ErrorMsg: string);
+begin
+  inherited;
+   if not Scanner.IsConfigured then
+    begin
+        ShowMessage('A scanner is not configured on your computer');
+        Exit;
+    end;
+
+    Scanner.SelectScanner;
+end;
+
+procedure TprojectDocumentf.Scan_ImageHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+Scan_Pict(false);
+end;
+
+procedure TprojectDocumentf.Scan_ImagesHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+Scan_Pict(true);
+end;
+
+procedure TprojectDocumentf.Scan_Pict(Pmulti:Boolean);
+var
+    SaveDialog  : TSaveDialog;
+    ScanInfo    : TScanInfo;
+    FileName    : String;
+
+begin
+    CheckDirty;
+
+    if not Scanner.IsConfigured then
+    begin
+        ShowMessage('A scanner is not configured on your computer');
+        Exit;
+    end;
+
+    FillChar(ScanInfo, SizeOf(ScanInfo), 0);
+{    case MessageDlg( 'Multi-page scan ?',
+                      mtConfirmation, [mbYes, mbNo, mbCancel], 0) of
+        mrYes    : ScanInfo.MultiPage := True;
+        mrNo     : ScanInfo.MultiPage := False;
+        mrCancel : Exit;
+    end; }
+
+    ScanInfo.MultiPage := Pmulti;
+
+    if ScanInfo.MultiPage then
+    begin
+        SaveDialog := TSaveDialog.Create(nil);
+        try
+            SaveDialog.DefaultExt := GraphicExtension(TTiffGraphic);
+            SaveDialog.Filter     := GraphicFilter(TPdfGraphic) + '|' + GraphicFilter(TTiffGraphic);
+            SaveDialog.Title      := 'Output file name';
+            if SaveDialog.Execute then
+                FileName        := SaveDialog.FileName
+            else
+                Exit;
+        finally
+            SaveDialog.Free;
+        end;
+
+        ScanInfo.FileName := FileName;
+        ScanInfo.Stream   := TFileStream.Create(FileName, fmCreate);
+
+        ScanInfo.Graphic := NewDibGraphic(FileName);
+    end;
+
+    Self.Enabled := False;
+    try
+        { to hide the user interface and set parameters
+        Scanner.ShowUI := False;
+        Scanner.RequestedXDpi := 200;
+        Scanner.RequestedYDpi := 200;
+        Scanner.RequestedImageFormat := ifBlackWhite;
+        }
+
+        Scanner.OpenSource;
+        try
+
+            {$Warnings off}
+            Scanner.AcquireWithSourceOpen( OnAcquire, LongInt(@ScanInfo));
+            {$Warnings on}
+
+        finally
+
+            Scanner.CloseSource;
+
+        end;
+
+        { Other method of scanner, without using OpenSource, CloseSource
+        Scanner.Acquire(OnAcquire, LongInt(@ScanInfo));
+        }
+    finally
+        Self.Enabled := True;
+
+        if ScanInfo.MultiPage then
+        begin
+            ScanInfo.Graphic.Free;
+            ScanInfo.Stream.Free;
+
+            if ScanInfo.ImageCount > 0 then
+                LoadFile(FileName);
+        end;
+        saveToDB(true);
+    end;
+end;
+procedure TprojectDocumentf.OnAcquire( const DibHandle    : THandle;
+                               const XDpi         : Word;
+                               const YDpi         : Word;
+                               const CallBackData : LongInt );
+var
+    Graphic    : TDibGraphic;
+    pScanInfo  : TpScanInfo;
+
+begin
+    {$WARNINGS OFF}
+    pScanInfo := TpScanInfo(CallBackData);
+
+    if pScanInfo^.MultiPage then
+    begin
+        pScanInfo^.Graphic.AssignFromDibHandle(DibHandle);
+        pScanInfo^.Graphic.XDotsPerInch := XDpi;
+        pScanInfo^.Graphic.YDotsPerInch := YDpi;
+
+        if pScanInfo^.Graphic is TTiffGraphic then
+        begin
+            if pScanInfo^.Graphic.ImageFormat = ifBlackWhite then
+                TTiffGraphic(pScanInfo^.Graphic).Compression := tcGroup4
+            else if pScanInfo^.Graphic.ImageFormat = ifTrueColor then
+                TTiffGraphic(pScanInfo^.Graphic).Compression := tcJpeg
+            else
+                TTiffGraphic(pScanInfo^.Graphic).Compression := tcPackBits;
+        end;
+
+        //pScanInfo^.Stream.Seek(0, soFromBeginning);
+        if pScanInfo^.ImageCount = 0 then
+            pScanInfo^.Graphic.SaveToStream(pScanInfo^.Stream)
+        else
+        begin
+            if pScanInfo^.Graphic is TPdfGraphic then
+            begin
+                { with TPdfGraphic, file stream needs to be recreated.
+                  Note that with PDF, AppendToStream is not efficient.
+                  MultiSaveToStream is much more efficient when creating
+                  PDF files with many pages }
+                pScanInfo^.Stream.Free;
+                pScanInfo^.Stream := TFileStream.Create(pScanInfo^.FileName, fmOpenReadWrite );
+            end;
+
+            pScanInfo^.Graphic.AppendToStream(pScanInfo^.Stream);
+        end;
+
+        { display some visual feedback by displaying each image
+          scanned one by one. }
+        ImageScrollBox.Graphic := pScanInfo^.Graphic;
+        Self.FDirty    := False;
+        Self.FFileName := '';
+        Self.ZoomEditChange(self);
+
+        Application.ProcessMessages;
+
+        Inc(pScanInfo^.ImageCount);
+    end
+    else
+    begin
+        Graphic := TDibGraphic.Create;
+        try
+            Graphic.AssignFromDIBHandle(DibHandle);
+            Graphic.XDotsPerInch := XDpi;
+            Graphic.YDotsPerInch := YDpi;
+
+            ImageScrollBox.Graphic := Graphic;
+        finally
+            Graphic.Free;
+        end;
+
+        Self.FDirty    := True;
+        Self.FFileName := '';
+
+        Self.ZoomEditChange(self);
+    end;
+    {$WARNINGS ON}
+end;
+Procedure TprojectDocumentf.Set_Detail;
+Var str : string;
+Begin
+  if jq.recordcount > 0 then
+    if jq.fieldbyname('typ').asstring = '⁄ﬁœ' then begin
+      str := '—ﬁ„ «·⁄ﬁœ: ' + jq.fieldbyname('CTRCT_NO').asstring;
+      str := str + '   «—ÌŒ «·⁄ﬁœ: ' + jq.fieldbyname('CTRCT_SDAT').asstring;
+      str := str + '  ﬁÌ„… «·⁄ﬁœ: ' + jq.fieldbyname('VALTOT').asstring;
+      str := str + '  „œ… «·⁄ﬁœ: ' + jq.fieldbyname('PERIODTOT').asstring;
+      if JMainPages.activePage = BillTS then begin
+        qtot.close;
+        qtot.sql.text := 'select sum(val) val, count(*) co from (' + qBill.sql.text + ')';
+        qtot.Params.ParamByName('psubj').AsString := JQ.FieldByName('ID').AsString;
+        qtot.open;
+
+        str := str + '  ﬁÌ„… ««·ﬂ‘Ê›: ' + qtot.fieldbyname('VAL').asstring;
+      end
+      else if JMainPages.activePage = SulafTS then begin
+
+      end
+      else if JMainPages.activePage = TaminTS then begin
+
+      end
+      else if JMainPages.activePage = PictsTS then begin
+
+      end
+      else if JMainPages.activePage = SubCtrctTS then begin
+
+      end;
+
+    end
+    else begin
+      str := '—ﬁ„ «·ÿ·»: ' + jq.fieldbyname('CTRCT_NO').asstring;
+//      str := str + '   «—ÌŒ «·ÿ·»: ' + jq.fieldbyname('REQ_DAT').asstring;
+//      str := str + '  ﬁÌ„… «·⁄ﬁœ: ' + jq.fieldbyname('VALTOT').asstring;
+//      str := str + '  „œ… «·⁄ﬁœ: ' + jq.fieldbyname('PERIODTOT').asstring;
+      if JMainPages.activePage = BillTS then begin
+{        qtot.close;
+        qtot.sql.text := 'select sum(val) val, count(*) co from (' + qBill.sql.text + ')';
+        qtot.Prepare;
+        qtot.Params.ParamByName('psubj').AsString := JQ.FieldByName('ID').AsString;
+        qtot.open;
+        }
+
+     //   str := str + '  ﬁÌ„… «·›Ê« Ì—: ' + qtot.fieldbyname('VAL').asstring;
+      end
+      else if JMainPages.activePage = SulafTS then begin
+
+      end
+      else if JMainPages.activePage = TaminTS then begin
+
+      end
+      else if JMainPages.activePage = PictsTS then begin
+
+      end
+      else if JMainPages.activePage = SubCtrctTS then begin
+
+      end;
+    end;
+
+  Det_Band.caption := str;
+End;
+
+procedure TprojectDocumentf.SulfaNewHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+  if jq.fieldbyname('typ').asstring = '⁄ﬁœ' then
+    Japp.AppAct.PageOpenPages('TSulaNewF', 'CTRCT_'+jq.FieldByName('ID').AsString, 100)
+  else
+    Japp.AppAct.PageOpenPages('TSulaNewF', 'CTRCT_'+jq.FieldByName('ID').AsString, 100)
+end;
+
+procedure TprojectDocumentf.TaminEditHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+  if jq.fieldbyname('typ').asstring = '⁄ﬁœ' then
+    Japp.AppAct.PageOpenPages('TTaminNewF', 'CTRCT_'+jq.FieldByName('ID').AsString, 100)
+  else
+    Japp.AppAct.PageOpenPages('TTaminNewF', 'CTRCT_'+jq.FieldByName('ID').AsString, 100)
+end;
+
+procedure TprojectDocumentf.TaminNewHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+  if jq.fieldbyname('typ').asstring = '⁄ﬁœ' then
+    Japp.AppAct.PageOpenPages('TTaminNewF', qBill.FieldByName('ID').AsString, 100)
+  else
+    Japp.AppAct.PageOpenPages('TTaminNewF', qBill.FieldByName('ID').AsString, 100)
+end;
+
+procedure TprojectDocumentf.StopEditHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+  if jq.fieldbyname('typ').asstring = '⁄ﬁœ' then
+    Japp.AppAct.PageOpenPages('TStopNewF', 'CTRCT_'+jq.FieldByName('ID').AsString, 100)
+  else
+    Japp.AppAct.PageOpenPages('TStopNewF', 'CTRCT_'+jq.FieldByName('ID').AsString, 100)
+end;
+
+procedure TprojectDocumentf.StopNewHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+  if jq.fieldbyname('typ').asstring = '⁄ﬁœ' then
+    Japp.AppAct.PageOpenPages('TStopNewF', qBill.FieldByName('ID').AsString, 100)
+  else
+    Japp.AppAct.PageOpenPages('TStopNewF', qBill.FieldByName('ID').AsString, 100)
+end;
+
+procedure TprojectDocumentf.SulfaEditHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+  if jq.fieldbyname('typ').asstring = '⁄ﬁœ' then
+    Japp.AppAct.PageOpenPages('TSulaNewF', qBill.FieldByName('ID').AsString, 100)
+  else
+    Japp.AppAct.PageOpenPages('TSulaNewF', qBill.FieldByName('ID').AsString, 100)
+end;
+
+procedure TprojectDocumentf.AmjAction18Handle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+var
+    Transform : TRotateTransform;
+begin
+    FUndoGraphic.Assign(ImageScrollBox.Graphic);
+    Transform := TRotateTransform.Create;
+    try
+        Transform.OnProgress      := Self.OnProgress;
+        Transform.Angle           := 90;
+
+        Transform.ApplyOnDest(FUndoGraphic, ImageScrollBox.Graphic);
+    finally
+        Transform.Free;
+    end;
+
+    FDirty := True;
+    ImageScrollBox.Redraw(True);
+    saveToDB(false);
+end;
+
+procedure TprojectDocumentf.AmjAction19Handle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+Var pt: TPoint;
+begin
+  inherited;
+  pt := TAmjNavButton(Sender).ClientToScreen(Point(0, 0));
+  ImageView.popup(pt.x + TAmjNavButton(Sender).Width, pt.Y + TAmjNavButton(Sender).Height);
+end;
+
+
+procedure TprojectDocumentf.Bill_editActHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+  if jq.fieldbyname('typ').asstring = '⁄ﬁœ' then
+    Japp.AppAct.PageOpenPages('TBianNewF', qBill.FieldByName('ID').AsString, 100)
+  else
+    Japp.AppAct.PageOpenPages('TBillNewF', qBill.FieldByName('ID').AsString, 100)
+end;
+
+procedure TprojectDocumentf.Bill_newActHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+  if jq.fieldbyname('typ').asstring = '⁄ﬁœ' then
+    Japp.AppAct.PageOpenPages('TBianNewF', 'CTRCT_'+jq.FieldByName('ID').AsString, 100)
+  else
+    Japp.AppAct.PageOpenPages('TBillNewF', 'CTRCT_'+jq.FieldByName('ID').AsString, 100)
+end;
+
+procedure TprojectDocumentf.Button1Click(Sender: TObject);
+begin
+  inherited;
+  jq.first;
+  while not jq.eof do begin
+    japp.db.runsql(' begin update jbudget.aa set aa = ' + jq.FieldByName('ID').AsString + '; commit; end;');
+    jq.next;
+  end;
+end;
+
+procedure TprojectDocumentf.CtrctEditHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+  if jq.fieldbyname('typ').asstring = '⁄ﬁœ' then
+    Japp.AppAct.PageOpenPages('TCntrctNewF', JQ.FieldByName('ID').AsString, 100)
+  else
+    Japp.AppAct.PageOpenPages('TBuyNewF', JQ.FieldByName('ID').AsString, 100)
+end;
+
+procedure TprojectDocumentf.d1Click(Sender: TObject);
+begin
+  inherited;
+ImageScrollBox.ZoomPercent := ImageScrollBox.ZoomPercent + 10;
+end;
+
+procedure TprojectDocumentf.docjqAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+docjq.FieldByName('id').asstring := japp.db.Get_Seq;
+  docjq.FieldByName('MASTERID').asstring := jq.Fieldbyname('ID').asstring;
+  docjq.FieldByName('TBL_NAME').asstring := jq.AmjTblName;
+end;
+
+procedure TprojectDocumentf.docjqBeforeOpen(DataSet: TDataSet);
+begin
+  inherited;
+  docjq.Params.ParamByName('pid').AsString := JQ.FieldByName('ID').AsString;
+end;
+
+procedure TprojectDocumentf.Exp_To_FileHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+SaveAsMenuClick(sender);
+end;
+
+procedure TprojectDocumentf.qBillBeforeOpen(DataSet: TDataSet);
+begin
+  inherited;
+  qbill.Params.ParamByName('psubj').AsString := JQ.FieldByName('ID').AsString;
+end;
+
+procedure TprojectDocumentf.qDOCFILESAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  qDOCFILES.edit;
+qDOCFILES.FieldByName('id').asstring := japp.db.Get_Seq;
+  qDOCFILES.FieldByName('DOCid').asstring := jq.Fieldbyname('ID').asstring;
+end;
+
+procedure TprojectDocumentf.qDOCFILESAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+Load_Doc;
+end;
+
+procedure TprojectDocumentf.qDOCFILESAfterScroll(DataSet: TDataSet);
+begin
+  inherited;
+Load_Doc;
+end;
+
+procedure TprojectDocumentf.qDOCFILESBeforeOpen(DataSet: TDataSet);
+begin
+  inherited;
+qDOCFILES.params.parambyname('pid').asstring := docjq.fieldbyname('id').asstring;
+end;
+
+procedure TprojectDocumentf.qSUBJ_SULAFBeforeOpen(DataSet: TDataSet);
+begin
+  inherited;
+  qSUBJ_SULAF.Params.ParamByName('psubj').AsString := JQ.FieldByName('ID').AsString;
+end;
+
+procedure TprojectDocumentf.qSUBJ_TAMINBeforeOpen(DataSet: TDataSet);
+begin
+  inherited;
+  qSUBJ_TAMIN.Params.ParamByName('psubj').AsString := JQ.FieldByName('ID').AsString;
+end;
+
+procedure TprojectDocumentf.qSubSubjsBeforeOpen(DataSet: TDataSet);
+begin
+  inherited;
+  qSubSubjs.Params.ParamByName('psubj').AsString := JQ.FieldByName('ID').AsString;
+end;
+
+procedure TprojectDocumentf.JQAfterScroll(DataSet: TDataSet);
+begin
+  inherited;
+ { qbill.close;
+  qbill.open;
+  qSUBJ_SULAF.close;
+  qSUBJ_SULAF.open;
+  qSUBJ_TAMIN.close;
+  qSUBJ_TAMIN.open;
+  qSubSubjs.close;
+  qSubSubjs.open;
+
+  docjq.close;
+  docjq.open;
+
+
+  //Set_Detail;   }
+
+end;
+
+procedure TprojectDocumentf.JQBeforeOpen(DataSet: TDataSet);
+begin
+  inherited;
+//  JQ.Params.ParamByName('pYY').Asinteger := japp.Ses_yy;
+  JQ.Params.ParamByName('nom').asstring := Edit1.text;
+  JQ.Params.ParamByName('rno').asstring := Edit2.text;
+  if ZTARGET.text <> '' then
+  JQ.Params.ParamByName('targid').asstring := ZTARGET.idvalue
+  else
+  JQ.Params.ParamByName('targid').asstring :='';
+  if(zitem.text <> '') then
+  JQ.Params.ParamByName('pitem').asstring := zitem.idvalue
+  else
+    JQ.Params.ParamByName('pitem').asstring :='' ;
+end;
+
+procedure TprojectDocumentf.jqorderBeforeOpen(DataSet: TDataSet);
+begin
+  inherited;
+  jqorder.Params.ParamByName('pid').asstring := jq.Fieldbyname('ID').asstring;
+end;
+
+procedure TprojectDocumentf.N10Click(Sender: TObject);
+begin
+  inherited;
+SaveAsMenuClick(sender);
+end;
+
+procedure TprojectDocumentf.N12Click(Sender: TObject);
+var
+    PrintMode      : TEnvisionPrintMode;
+//    Form           : TPrintOptionForm;
+    Width          : Double;
+    Height         : Double;
+    GraphicPrinter : TDibGraphicPrinter;
+
+    procedure PrintWithManualPrintJob;
+    begin
+        { if UsePrintJob is False, Printer.BeginDoc and Printer.EndDoc must be
+          called by the user. This allows printing multiple images in the
+          same job (or page). }
+        GraphicPrinter.UsePrintJob := False;
+
+        { if UsePrintJob is False, the print job name that appears in the
+          print manager must be specified in using the Title property of the
+          Printer object. Otherwise, if UsePrintJob is True, the Title
+          property of the TDibGraphicPrinter object is used to specify the
+          job name. }
+        Printer.Title := 'Envision Demo';
+
+        Printer.BeginDoc;
+
+        GraphicPrinter.Print(ImageScrollBox.Graphic);
+
+        { this shows how to print text on a page.
+        Printer.Canvas.TextOut(10,10, 'Envision Image Library');
+        }
+
+        Printer.EndDoc;
+    end;
+
+    procedure PrintWithAutoPrintJob;
+    begin
+        GraphicPrinter.UsePrintJob := True;
+        GraphicPrinter.Title       := 'Envision Demo';
+        GraphicPrinter.Print(ImageScrollBox.Graphic);
+    end;
+
+begin
+{    Form := TPrintOptionForm.Create(nil);
+    try
+        if Form.ShowModal <> mrOk then
+            Abort;
+
+        PrintMode := Form.PrintMode;
+        Width     := StrToFloat(Form.WidthFld.Text);
+        Height    := StrToFloat(Form.HeightFld.Text);
+    finally
+        Form.Free;
+    end;
+    }
+
+    PrintMode := pmFullPage;
+
+    GraphicPrinter := TDibGraphicPrinter.Create;
+    try
+        GraphicPrinter.PrintMode   := PrintMode;
+        GraphicPrinter.Width       := Width;
+        GraphicPrinter.Height      := Height;
+
+        PrintWithAutoPrintJob;
+
+    finally
+        GraphicPrinter.Free;
+    end;
+end;
+
+
+procedure TprojectDocumentf.N13Click(Sender: TObject);
+var
+    Transform : TRotateTransform;
+begin
+    FUndoGraphic.Assign(ImageScrollBox.Graphic);
+    Transform := TRotateTransform.Create;
+    try
+        Transform.OnProgress      := Self.OnProgress;
+        Transform.Angle           := 90;
+
+        Transform.ApplyOnDest(FUndoGraphic, ImageScrollBox.Graphic);
+    finally
+        Transform.Free;
+    end;
+
+    FDirty := false;
+    ImageScrollBox.Redraw(True);
+    saveToDB(false);
+end;
+
+procedure TprojectDocumentf.N15Click(Sender: TObject);
+begin
+  inherited;
+ImageScrollBox.ZoomPercent := ImageScrollBox.ZoomPercent - 10;
+end;
+
+procedure TprojectDocumentf.N1Click(Sender: TObject);
+begin
+  inherited;
+   ImageScrollBox.ZoomMode := zmOriginalSize;
+end;
+
+procedure TprojectDocumentf.N2Click(Sender: TObject);
+begin
+  inherited;
+   ImageScrollBox.ZoomMode := zmFullPage;
+end;
+
+procedure TprojectDocumentf.N3Click(Sender: TObject);
+begin
+  inherited;
+   ImageScrollBox.ZoomMode := zmFitWidth;
+end;
+
+procedure TprojectDocumentf.N4Click(Sender: TObject);
+begin
+  inherited;
+  ImageScrollBox.ZoomMode := zmFitHeight;
+end;
+
+procedure TprojectDocumentf.N5Click(Sender: TObject);
+begin
+  inherited;
+ if not Scanner.IsConfigured then
+    begin
+        ShowMessage('A scanner is not configured on your computer');
+        Exit;
+    end;
+
+    Scanner.SelectScanner;
+end;
+
+procedure TprojectDocumentf.N7Click(Sender: TObject);
+begin
+  inherited;
+Scan_Pict(false);
+end;
+
+procedure TprojectDocumentf.N8Click(Sender: TObject);
+begin
+  inherited;
+ Scan_Pict(true);
+end;
+
+procedure TprojectDocumentf.N9Click(Sender: TObject);
+var
+    OpenDialog   : TOpenPictureDialog;
+begin
+    CheckDirty;
+
+    OpenDialog := TOpenPictureDialog.Create(Self);
+    try
+        OpenDialog.Filter := GraphicFilter(TGraphic);
+        if OpenDialog.Execute then
+        begin
+            LoadFile(OpenDialog.FileName);
+            saveToDB(true);
+        end;
+    finally
+        OpenDialog.Free;
+    end;
+    ImageScrollBox.ZoomMode := zmFullPage;
+end;
+
+procedure TprojectDocumentf.OrdrEditHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+if jqorder.FieldByName('closed').AsString <> '‰⁄„' then
+    Japp.AppAct.PageOpenPages('TORDRF', jqorder.FieldByName('ID').AsString, 100)
+  else begin
+    IsFailed := true;
+    ErrorMsg := Errmsg_Ordrclosed;
+  end;
+end;
+
+procedure TprojectDocumentf.OrdrGenHandle(Sender: TObject; var IsFailed: Boolean;
+  var ErrorMsg: string);
+begin
+  inherited;
+  if qBill.fieldbyname('ORDRID').asstring = '' then
+    Japp.AppAct.PageOpenPages('TORDRGenF', qBill.FieldByName('ID').AsString, 100)
+  else
+    Japp.AppAct.PageOpenPages('TORDRF', qBill.FieldByName('ORDRID').AsString, 100)
+end;
+
+end.

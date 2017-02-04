@@ -1,0 +1,149 @@
+var
+    MultiLoad : Boolean;
+    InBmp, CroppedBmp, SizedBmp : TBitmap;////22/03/2016
+    FromStream: TStream; ////22/03/2016
+    ///
+    Transform : TCropTransform;
+    Graphic   : TDibGraphic;  ////22/03/2016
+    Left      : LongInt;   ////22/03/2016
+    Top       : LongInt;   ////22/03/2016
+    Right     : LongInt;  ////22/03/2016
+    Bottom    : LongInt;  ////22/03/2016
+begin
+    Caption   := FileName;
+
+    BeginHourglass;
+    try
+      {  PageUpDown.Min := 1;
+        PageUpDown.Max := ImageScrollBox.ImageCountFromFile(FileName);
+
+        PageEdit.Text  := '1';
+
+        if PageUpDown.Max > 1 then
+        begin
+            MultiLoad := MessageDlg( 'The file contains ' +
+                                     IntToStr(PageUpDown.Max) + ' images.'#13 +
+                                     'Note that for animations, all images'#13 +
+                                     'must be loaded in memory.'#13 +
+                                     'Load all images in memory?'#13,
+                                     mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+        end
+        else  //}
+            MultiLoad := False;
+
+        if MultiLoad then
+            ImageScrollBox.LoadFromFile(FileName, 0)
+        else
+            ImageScrollBox.LoadFromFile(FileName, 1);
+
+       { if PageUpDown.Max = 1 then
+        begin
+            FFileName          := FileName;
+            FMultiPageFileName := '';
+        end
+        else //}
+        begin
+            { clear FFileName for multi-image files, to ensure if the
+              Save operation is invoked, the multiimage file is not
+              overwritten. Multi-image files are manipulated using the
+              Append To File operation }
+            FFileName          := '';
+            FMultiPageFileName := FileName;
+        end;
+
+    finally
+        EndHourglass;
+    end;
+
+    FDirty    := False;
+
+    ZoomEditChange(Self);
+    {  this code was added on 22/03/2016 to test corping an image }
+{
+ InBmp := TBitmap.Create;
+  CroppedBmp := TBitmap.Create;
+  SizedBmp := TBitmap.Create;
+ // InBmp.LoadFromFile(BmpFile);
+FromStream := TMemoryStream.Create();
+ImageScrollBox.SaveToStream(FromStream, 'jpg');
+// InBmp := ImageScrollBox.image;
+InBmp.loadfromstream(FromStream);
+  // crop the image by takin only the upper left hand corner
+  // and put it in the output bitmap
+  CroppedBmp.Width := 10;
+  CroppedBmp.Height := 10;
+  CroppedBmp.Canvas.Copyrect(Rect(0,0,10,10),InBmp.Canvas,Rect(0,0,10,10));
+  // compress the entire image to a smaller area
+  SizedBmp.Width := 100;
+  SizedBmp.Height := 100;
+  SizedBmp.Canvas.Copyrect(Rect(0,0,100,100),
+    InBmp.Canvas,Rect(0,0,200,200));
+  CroppedBmp.savetostream(FromStream);
+  FromStream.Seek(0, soFromBeginning) ;
+  ImageScrollBox.loadfromStream(FromStream,'jpg',1);
+   FromStream.free;
+   InBmp.free;
+  CroppedBmp.free;
+  SizedBmp.free;
+
+     //}
+     {
+     procedure TMainForm.CropMenuClick(Sender: TObject);
+var
+
+
+begin
+    { prevent compiler warning }
+    Left      := 10;
+    Top       := 10;
+    Right     := 10;
+    Bottom    := 10;
+
+
+
+
+    Left      := trunc(ImageScrollBox.Graphic.width/4);
+    Top       := trunc(ImageScrollBox.Graphic.height/4);
+    Right     := left;
+    Bottom    := top;
+
+  {  CropForm := TCropForm.Create(nil);
+    try
+        if CropForm.ShowModal = mrOk then
+        begin
+            Left   := StrToInt(CropForm.LeftFld.Text);
+            Top    := StrToInt(CropForm.TopFld.Text);
+            Right  := StrToInt(CropForm.RightFld.Text);
+            Bottom := StrToInt(CropForm.BottomFld.Text);
+        end
+        else
+            Abort;
+    finally
+        CropForm.Free;
+    end;
+     }
+    Graphic := ImageScrollBox.Graphic;
+    ImageScrollBox.Graphic.width;
+    ImageScrollBox.Graphic.height;
+    FUndoGraphic.Assign(Graphic);
+    Transform := TCropTransform.Create;
+    try
+    //    Transform.OnProgress := Self.OnProgress;
+
+        Transform.Left   := Left;
+        Transform.Right  := Right;
+        Transform.Top    := Top;
+        Transform.Bottom := Bottom;
+
+        Transform.ApplyOnDest(FUndoGraphic, Graphic);
+    finally
+        Transform.Free;
+    end;
+
+    FDirty := True;
+    ImageScrollBox.Redraw(True);
+
+     //}
+
+
+end;

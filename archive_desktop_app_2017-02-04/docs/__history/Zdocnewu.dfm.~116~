@@ -1,0 +1,470 @@
+inherited Zdocnewf: TZdocnewf
+  Width = 737
+  Height = 517
+  inherited JFTitle: TJPanel
+    Width = 737
+    Height = 0
+    Caption = #1605#1593#1575#1604#1580#1577' '#1589#1608#1585#1577
+    ExplicitHeight = 0
+    inherited JTitleImg: TImage
+      Left = 705
+      Height = 0
+      ExplicitLeft = 601
+      ExplicitHeight = 1
+    end
+  end
+  object Panel2: TPanel [1]
+    Left = 0
+    Top = 0
+    Width = 737
+    Height = 517
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 1
+    ExplicitWidth = 451
+    ExplicitHeight = 304
+    object ImageScrollBox: TImageScrollBox
+      Left = 0
+      Top = 25
+      Width = 737
+      Height = 492
+      HorzScrollBar.Tracking = True
+      HorzScrollBar.Visible = False
+      VertScrollBar.Tracking = True
+      VertScrollBar.Visible = False
+      ZoomMode = zmFitWidth
+      ZoomPercent = 100.000000000000000000
+      OnZoomChange = ImageScrollBoxZoomChange
+      OnBeforeSave = ImageScrollBoxBeforeSave
+      OnRedraw = ImageScrollBoxRedraw
+      OnQuickSelect = ImageScrollBoxQuickSelect
+      OnRubberbandChange = ImageScrollBoxRubberbandChange
+      MouseHandlerOwnership = True
+      Align = alClient
+      Color = clBtnFace
+      ParentColor = False
+      TabOrder = 0
+      ExplicitWidth = 451
+      ExplicitHeight = 279
+    end
+    object Panel1: TPanel
+      Left = 0
+      Top = 0
+      Width = 737
+      Height = 25
+      Align = alTop
+      TabOrder = 1
+      ExplicitWidth = 451
+      object BandLabel: TLabel
+        Left = 520
+        Top = 5
+        Width = 3
+        Height = 13
+      end
+      object XLbl: TLabel
+        Left = 460
+        Top = 5
+        Width = 3
+        Height = 13
+        Alignment = taRightJustify
+      end
+      object YLbl: TLabel
+        Left = 477
+        Top = 5
+        Width = 3
+        Height = 13
+      end
+      object ZoomLbl: TLabel
+        Left = 200
+        Top = 5
+        Width = 44
+        Height = 16
+        Alignment = taRightJustify
+        AutoSize = False
+        Caption = '&Zoom'
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object PageLbl: TLabel
+        Left = 311
+        Top = 6
+        Width = 44
+        Height = 16
+        Alignment = taRightJustify
+        AutoSize = False
+        Caption = '&Page'
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object ZoomEdit: TEdit
+        Left = 248
+        Top = 0
+        Width = 41
+        Height = 21
+        MaxLength = 3
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+        Text = '100'
+        OnChange = ZoomEditChange
+      end
+      object ZoomUpDown: TUpDown
+        Left = 289
+        Top = 0
+        Width = 16
+        Height = 24
+        Min = 5
+        Max = 999
+        ParentShowHint = False
+        Position = 100
+        ShowHint = True
+        TabOrder = 1
+      end
+      object PageEdit: TEdit
+        Left = 359
+        Top = 2
+        Width = 49
+        Height = 21
+        MaxLength = 5
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 2
+        Text = '1'
+        OnChange = PageEditChange
+      end
+      object PageUpDown: TUpDown
+        Left = 408
+        Top = 2
+        Width = 16
+        Height = 21
+        Associate = PageEdit
+        Min = 1
+        Max = 1
+        ParentShowHint = False
+        Position = 1
+        ShowHint = True
+        TabOrder = 3
+        Wrap = True
+      end
+      object ProgressBar: TProgressBar
+        Left = 649
+        Top = 1
+        Width = 87
+        Height = 23
+        Align = alRight
+        Step = 100
+        TabOrder = 4
+        Visible = False
+        ExplicitLeft = 363
+      end
+    end
+  end
+  inherited JRActions: TAmjActionList
+    AmjActionBar.Enabled = False
+    ParentDraw = ImageScrollBox
+    Left = 322
+    Top = 177
+    object openFile: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = file_new
+      BtnShowCaption = True
+      BtnWidth = 75
+      Caption = #1605#1604#1601
+      Hint = #1605#1604#1601
+      OnHandle = openFileHandle
+    end
+    object Blur_Menu: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = file_new
+      BtnShowCaption = True
+      BtnWidth = 100
+      Caption = #1601#1604#1575#1578#1585' '#1575#1604#1589#1608#1585#1577
+      Hint = 'Blur'
+      OnHandle = Blur_MenuHandle
+    end
+    object image_menu: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = file_new
+      BtnShowCaption = True
+      BtnWidth = 100
+      Caption = #1575#1604#1589#1608#1585#1577
+      Hint = #1575#1604#1589#1608#1585#1577
+      OnHandle = image_menuHandle
+    end
+    object annotation: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = file_new
+      BtnShowCaption = True
+      BtnWidth = 100
+      Caption = 'annotation'
+      Hint = 'annotation'
+      OnHandle = annotationHandle
+    end
+    object undo: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = act_run
+      BtnShowCaption = True
+      BtnWidth = 75
+      Caption = #1578#1585#1575#1580#1593
+      Hint = #1578#1585#1575#1580#1593
+      ShortCut = 16474
+      OnHandle = undoHandle
+    end
+    object AppendtoTIFFMenu: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = act_run
+      BtnShowCaption = True
+      BtnWidth = 30
+      Caption = 'A&ppend to TIFF file ...'
+      Hint = 'A&ppend to TIFF file ...'
+      Visible = False
+      OnHandle = AppendtoTIFFMenuHandle
+    end
+    object AppendtoDCXMenu: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = act_run
+      BtnShowCaption = True
+      BtnWidth = 30
+      Caption = 'App&end to DCX file ...'
+      Hint = 'App&end to DCX file ...'
+      Visible = False
+      OnHandle = AppendtoDCXMenuHandle
+    end
+    object OpenThumbnailMenu: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = REC_ADD
+      BtnShowCaption = True
+      BtnWidth = 30
+      Caption = #1601#1578#1581' '#1605#1604#1601
+      Hint = #1601#1578#1581' '#1605#1604#1601
+      Visible = False
+      OnHandle = Open
+    end
+  end
+  inherited DQ: TDataSource
+    Left = 104
+    Top = 205
+  end
+  inherited JQ: TAmjSet
+    CommandText = 
+      'Select DOC_FILE_ANNOTATION.*'#13#10'from jedms.DOC_FILE_ANNOTATION'#13#10'wh' +
+      'ere DOC_FILE_ANNOTATION.ZFILEID =:pid'#13#10
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pid'
+        ParamType = ptUnknown
+      end>
+    BeforeOpen = JQBeforeOpen
+    AfterInsert = JQAfterInsert
+    SQL.Strings = (
+      'Select DOC_FILE_ANNOTATION.*'
+      'from jedms.DOC_FILE_ANNOTATION'
+      'where DOC_FILE_ANNOTATION.ZFILEID =:pid')
+    AmjTblName = 'DOC_FILE_ANNOTATION'
+    AmjUser = 'jedms'
+    Left = 216
+    Top = 125
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = '|.txt'
+    Left = 248
+    Top = 344
+  end
+  object fileMenu: TPopupMenu
+    Left = 456
+    Top = 160
+    object open1: TMenuItem
+      Caption = #1601#1578#1581
+      OnClick = open1Click
+    end
+    object save1: TMenuItem
+      Caption = #1581#1601#1592
+      OnClick = save1Click
+    end
+    object saveas1: TMenuItem
+      Caption = #1581#1601#1592' '#1576#1575#1587#1605
+      OnClick = saveas1Click
+    end
+  end
+  object blurMenu: TPopupMenu
+    Left = 504
+    Top = 160
+    object BlurBartlett: TMenuItem
+      Caption = 'BlurBartlett'
+      OnClick = BlurBartlettClick
+    end
+    object BlurGaussian: TMenuItem
+      Caption = 'BlurGaussian'
+      OnClick = BlurGaussianClick
+    end
+    object BlurSoftly: TMenuItem
+      Caption = 'BlurSoftly'
+      OnClick = BlurSoftlyClick
+    end
+    object BlurMore: TMenuItem
+      Caption = 'BlurMore'
+      OnClick = BlurMoreClick
+    end
+    object BlurAverage: TMenuItem
+      Caption = 'BlurAverage'
+      OnClick = BlurAverageClick
+    end
+    object Blur: TMenuItem
+      Caption = 'Blur'
+      OnClick = BlurClick
+    end
+    object Glow: TMenuItem
+      Caption = 'Glow'
+      OnClick = GlowClick
+    end
+    object IncreassBrightness: TMenuItem
+      Caption = 'IncreassBrightness'
+      OnClick = IncreassBrightnessClick
+    end
+    object DecreaseBrightness: TMenuItem
+      Caption = 'DecreaseBrightness'
+      OnClick = DecreaseBrightnessClick
+    end
+    object ConvertToGray: TMenuItem
+      Caption = 'ConvertToGray'
+      OnClick = ConvertToGrayClick
+    end
+    object IncreaseContrast: TMenuItem
+      Caption = 'IncreaseContrast'
+      OnClick = IncreaseContrastClick
+    end
+    object DecreaseContrast: TMenuItem
+      Caption = 'DecreaseContrast'
+      OnClick = DecreaseContrastClick
+    end
+    object EmbossColor: TMenuItem
+      Caption = 'EmbossColor'
+      OnClick = EmbossColorClick
+    end
+    object EmbossLight: TMenuItem
+      Caption = 'EmbossLight'
+      OnClick = EmbossLightClick
+    end
+    object EmbossMedium: TMenuItem
+      Caption = 'EmbossMedium'
+      OnClick = EmbossMediumClick
+    end
+    object EmbossDark: TMenuItem
+      Caption = 'EmbossDark'
+      OnClick = EmbossDarkClick
+    end
+    object FlipHorizontalMenu: TMenuItem
+      Caption = 'FlipHorizontalMenu'
+      OnClick = FlipHorizontalMenuClick
+    end
+    object FlipVerticalMenu: TMenuItem
+      Caption = 'FlipVerticalMenu'
+      OnClick = FlipVerticalMenuClick
+    end
+    object ShearHorzMenu: TMenuItem
+      Caption = 'ShearHorzMenu'
+      OnClick = ShearHorzMenuClick
+    end
+    object ShearVertMen: TMenuItem
+      Caption = 'ShearVertMen'
+      OnClick = ShearVertMenClick
+    end
+  end
+  object imageMenu: TPopupMenu
+    Left = 152
+    Top = 112
+    object FormatConversion: TMenuItem
+      Caption = 'FormatConversion'
+      OnClick = FormatConversionClick
+    end
+    object Resize: TMenuItem
+      Caption = 'Resize'
+      OnClick = ResizeClick
+    end
+    object Encrypt: TMenuItem
+      Caption = 'Encrypt'
+      OnClick = EncryptClick
+    end
+    object AddWatermark: TMenuItem
+      Caption = 'AddWatermark'
+      OnClick = AddWatermarkClick
+    end
+    object ActualSizeMenu: TMenuItem
+      Caption = 'ActualSizeMenu'
+      OnClick = ActualSizeMenuClick
+    end
+    object FullPageMenu: TMenuItem
+      Caption = 'FullPageMenu'
+      OnClick = FullPageMenuClick
+    end
+    object FitWidthMenu: TMenuItem
+      Caption = 'FitWidthMenu'
+      OnClick = FitWidthMenuClick
+    end
+    object FitHeightMenu: TMenuItem
+      Caption = 'FitHeightMenu'
+      OnClick = FitHeightMenuClick
+    end
+    object FitToPageMenu: TMenuItem
+      Caption = 'FitToPageMenu'
+      OnClick = FitToPageMenuClick
+    end
+  end
+  object AnnotationMenu: TPopupMenu
+    Left = 552
+    Top = 256
+    object AddNote: TMenuItem
+      Caption = 'AddNote'
+      OnClick = AddNoteClick
+    end
+    object AddRectangle: TMenuItem
+      Caption = 'AddRectangle'
+      OnClick = AddRectangleClick
+    end
+    object AddLine: TMenuItem
+      Caption = 'AddLine'
+      OnClick = AddLineClick
+    end
+    object AddText: TMenuItem
+      Caption = 'AddText'
+      OnClick = AddTextClick
+    end
+    object AddImage: TMenuItem
+      Caption = 'AddImage'
+      OnClick = AddImageClick
+    end
+    object getAnnotation: TMenuItem
+      Caption = 'getAnnotation'
+      OnClick = getAnnotationClick
+    end
+    object setAnnotation: TMenuItem
+      Caption = 'setAnnotation'
+      OnClick = setAnnotationClick
+    end
+  end
+end

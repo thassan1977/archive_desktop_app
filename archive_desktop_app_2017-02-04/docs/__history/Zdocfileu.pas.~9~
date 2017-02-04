@@ -1,0 +1,141 @@
+unit Zdocfileu;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DBActns, ActnList, DB, DBClient, Provider, ADODB, Menus,
+  StdCtrls, ExtCtrls, DBCtrls, Mask, Buttons, ImgList, GridsEh,
+  DBGridEh, JazDBGrid, DBGridEhGrouping, AmjSetU, RzPanel, AmjStandardU,
+  JPMainU, AmjLookUpU, AmjactionsU;
+
+type
+  TZdocfilef = class(TJPmain)
+    Panel2: TPanel;
+    Panel1: TPanel;
+    Panel3: TPanel;
+    AmjAction1: TAmjAction;
+    AmjAction2: TAmjAction;
+    AmjAction3: TAmjAction;
+    AmjAction4: TAmjAction;
+    GroupBox2: TGroupBox;
+    Label12: TLabel;
+    Label4: TLabel;
+    Label2: TLabel;
+    Label8: TLabel;
+    Label17: TLabel;
+    DBEdit6: TDBEdit;
+    ZPROJID: TDMZEditFind;
+    DBMemo1: TDBMemo;
+    Label3: TLabel;
+    Label10: TLabel;
+    DBEdit3: TDBEdit;
+    DBEdit1: TDBEdit;
+    DOCID: TDMZEditFind;
+    DBComboBox1: TDBComboBox;
+    DBComboBox2: TDBComboBox;
+    Label7: TLabel;
+    Label9: TLabel;
+    Label11: TLabel;
+    DBEdit2: TDBEdit;
+    DBEdit4: TDBEdit;
+    procedure JQAfterInsert(DataSet: TDataSet);
+    procedure ZPROJIDFind(Sender: TObject; ID: string);
+    procedure DOCIDFind(Sender: TObject; ID: string);
+    procedure FOLDERIDFind(Sender: TObject; ID: string);
+    private
+    { Private declar
+    procedure JRCancelcloseExecute(Sender: TObject);ations }
+  public
+    { Public declarations }
+    Procedure FInitCard(pMaster:string=''); override;
+    Procedure PreFInit; Override;
+  end;
+
+implementation
+
+uses JAppMainU;
+
+{$R *.dfm}
+
+Procedure TZdocfilef.PreFInit;
+Begin
+  inherited PreFInit;
+  width := 900;
+  Height := 650;
+  Align := alRight;
+End;
+
+Procedure TZdocfilef.FInitCard(pMaster:string='');
+begin
+  width := 900;
+  Align := alRight;
+  Jq.Close ;
+
+  IF pMaster <> 'S' THEN BEGIN
+     JQ.Params.ParamByName('pID').AsString := pMaster ;
+     JQ.Open;
+     PCaption := ' ⁄œÌ· „·› ÊÀÌﬁ…';
+
+     ZPROJID.Text:=Jq.FieldByName('ZPROJID').AsString;
+     ZPROJID.DoSearch(TRUE);
+
+     ZSTATUSID.Text:=Jq.FieldByName('ZSTATUSID').AsString;
+     ZSTATUSID.DoSearch(TRUE);
+
+     ZSRCID.Text:=Jq.FieldByName('ZSRCID').AsString;
+     ZSRCID.DoSearch(TRUE);
+
+     FOLDERID.Text:=Jq.FieldByName('FOLDERID').AsString;
+     FOLDERID.DoSearch(TRUE);
+
+
+     ZSECRETID.Text:=Jq.FieldByName('ZSECRETID').AsString;
+     ZSECRETID.DoSearch(TRUE);
+
+     ZTMPLTID.Text:=Jq.FieldByName('ZTMPLTID').AsString;
+     ZTMPLTID.DoSearch(TRUE);
+
+  END ELSE begin
+    JQ.Open;
+    JQ.insert;
+    PCaption := '≈œŒ«· „·› ÊÀÌﬁ…';
+  end;
+end;
+
+procedure TZdocfilef.ZPROJIDFind(Sender: TObject; ID: string);
+begin
+  inherited;
+  if (ZPROJID.IDValue <> '') and (Jq.FieldByName('ZPROJID').AsString <> ZPROJID.IDValue) then begin
+     Jq.EDIT;
+     Jq.FieldByName('ZPROJID').AsString := ZPROJID.IDValue;
+   end;
+end;
+
+procedure TZdocfilef.FOLDERIDFind(Sender: TObject; ID: string);
+begin
+  inherited;
+if (FOLDERID.IDValue <> '') and (Jq.FieldByName('FOLDERID').AsString <> FOLDERID.IDValue) then begin
+     Jq.EDIT;
+     Jq.FieldByName('FOLDERID').AsString := FOLDERID.IDValue;
+   end;
+end;
+
+procedure TZdocfilef.JQAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  JQ.FieldByName('ID').AsString := Japp.DB.Get_maxSeq('jedms.DOC');
+  JQ.FieldByName('VIEWCO').AsString := '0';
+  JQ.FieldByName('ISDELETED').AsString := '·«';
+  JQ.FieldByName('ISACTIVE').AsString := '·«';
+end;
+procedure TZdocfilef.DOCIDFind(Sender: TObject; ID: string);
+begin
+  inherited;
+if (DOCID.IDValue <> '') and (Jq.FieldByName('DOCID').AsString <> DOCID.IDValue) then begin
+     Jq.EDIT;
+     Jq.FieldByName('DOCID').AsString := DOCID.IDValue;
+   end;
+end;
+
+end.

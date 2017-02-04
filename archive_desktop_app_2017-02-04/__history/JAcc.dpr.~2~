@@ -1,0 +1,43 @@
+﻿program JAcc;
+uses
+  JPmasterU in '..\..\AmjPkg\Modules\JPmasterU.pas' {JPmaster: TFrame},
+  JPMainU in '..\..\AmjPkg\Modules\JPMainU.pas' {JPmain: TFrame},
+  AmjWordU in '..\..\AmjPkg\Modules\AmjWordU.pas',
+  JDests in '..\..\AmjPkg\Modules\JDests.pas',
+  JPG1U in '..\..\AmjPkg\Modules\JPG1U.pas' {JPG1F: TFrame},
+  JPG2U in '..\..\AmjPkg\Modules\JPG2U.pas' {JPG2F: TFrame},
+  RequestNewU in '..\JOffice\views\RequestNewU.pas' {BillNewF: TFrame},
+  ContractsU in 'POs\ContractsU.pas' {ContractsF: TFrame},
+  IncomeNewU in 'POs\IncomeNewU.pas' {IncomeNewF: TFrame},
+  PONewU in 'POs\PONewU.pas' {FPONewU: TFrame},
+  ZAccountsUF in 'POs\ZAccountsUF.pas' {ZAccountsF: TFrame},
+  ZitemPlanU in 'POs\ZitemPlanU.pas' {ZitemPlanF: TFrame},
+  ZACCOUNTSU in 'zcode\ZACCOUNTSU.pas' {ZACCOUNTSqf: TFrame},
+  ZITEMU in 'zcode\ZITEMU.pas' {ZITEMF: TFrame},
+  ViewAccountU in 'zcode\ViewAccountU.pas' {ViewAccountF: TFrame},
+  JAppMainU in 'JMain\JAppMainU.pas',
+  AddBillU in 'POs\AddBillU.pas' {AddBillF: TFrame},
+  AMJ_USERU in '..\JManager\manager\AMJ_USERU.pas' {AMJ_USERF: TFrame},
+  ZitemCLASSU in 'zcode\ZitemCLASSU.pas' {ZitemCLASSF: TFrame},
+  BillsU in 'POs\BillsU.pas' {BillsF: TFrame},
+  Teacheru in 'newU\Teacheru.pas' {FQTeachAcct: TFrame},
+  BondsBuySellU in 'newU\BondsBuySellU.pas' {BondsBuySellF: TFrame},
+  ChagneYearU in 'newU\ChagneYearU.pas' {FChangeYear: TFrame},
+  QBalanceReview in 'newU\QBalanceReview.pas' {FQBalReview: TFrame},
+  TeachAccts in 'newU\TeachAccts.pas' {FTeachAcct: TFrame},
+  BndUnUsedNums in 'newU\BndUnUsedNums.pas' {FUnUsedBnd: TFrame},
+  QBondsBuyU in 'newU\QBondsBuyU.pas' {QBondsBuyF: TFrame},
+  QBondsMakbodU in 'newU\QBondsMakbodU.pas' {QBondsMakbodF: TFrame},
+  QBondsPay in 'newU\QBondsPay.pas' {QBondsPayF: TFrame},
+  ZDestU in 'zcode\ZDestU.pas' {ZDestF: TFrame},
+  ZCURRNCYU in 'zcode\ZCURRNCYU.pas' {ZCURRNCYF: TFrame},
+  REportU in 'REportU.pas' {Form1},
+  ZCLASSU in 'zcode\ZCLASSU.pas' {ZCLASSF: TFrame},
+  DailyBookU in 'zcode\DailyBookU.pas' {DailyBookF: TFrame},
+  ZDAILYU in 'zcode\ZDAILYU.pas' {ZDAILYF: TFrame},
+  BondsU in 'POs\BondsU.pas' {BondsF: TFrame},
+  BondU in 'POs\BondU.pas' {BONDF: TFrame};
+
+Begin
+  Initapp;
+end.

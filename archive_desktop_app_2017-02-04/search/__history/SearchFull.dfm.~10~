@@ -1,0 +1,332 @@
+inherited FSearchFull: TFSearchFull
+  Width = 715
+  Height = 486
+  inherited JFTitle: TJPanel
+    Width = 715
+    Alignment = taLeftJustify
+    Caption = #1575#1604#1576#1581#1579' '#1575#1604#1593#1575#1605' '#1593#1606' '#1575#1604#1605#1587#1578#1606#1583#1575#1578
+    ParentBiDiMode = False
+    ExplicitWidth = 451
+    inherited JTitleImg: TImage
+      Left = 683
+      ExplicitLeft = 601
+    end
+  end
+  object Panel2: TPanel [1]
+    Left = 0
+    Top = 31
+    Width = 715
+    Height = 455
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 1
+    ExplicitWidth = 451
+    ExplicitHeight = 273
+    object Panel1: TPanel
+      Left = 0
+      Top = 0
+      Width = 715
+      Height = 455
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 0
+      ExplicitWidth = 451
+      ExplicitHeight = 273
+      object Panel3: TPanel
+        Left = 0
+        Top = 97
+        Width = 715
+        Height = 358
+        Align = alClient
+        BevelOuter = bvNone
+        TabOrder = 0
+        ExplicitWidth = 451
+        ExplicitHeight = 176
+        object JGrid1: TJazDBGrid
+          Left = 0
+          Top = 0
+          Width = 715
+          Height = 358
+          Align = alClient
+          DataSource = DQ
+          DynProps = <>
+          FooterParams.Color = clWindow
+          HorzScrollBar.VisibleMode = sbAlwaysShowEh
+          IndicatorOptions = [gioShowRowIndicatorEh]
+          EmptyDataInfo.Active = True
+          EmptyDataInfo.Text = #1604#1575' '#1610#1608#1580#1583' '#1576#1610#1575#1606#1575#1578
+          ReadOnly = True
+          TabOrder = 0
+          TitleParams.MultiTitle = True
+          VertScrollBar.SmoothStep = True
+          VertScrollBar.VisibleMode = sbAlwaysShowEh
+          OnDblClick = JGrid1DblClick
+          Columns = <
+            item
+              DynProps = <>
+              EditButtons = <>
+              FieldName = 'DOCID'
+              Footers = <>
+              Title.Caption = #1585#1605#1586' '#1575#1604#1605#1587#1578#1606#1583
+              Width = 100
+            end
+            item
+              DynProps = <>
+              EditButtons = <>
+              FieldName = 'MPARENTS'
+              Footers = <>
+              Title.Caption = #1605#1588#1585#1608#1593' '#1575#1604#1571#1585#1588#1601#1577
+              Width = 200
+            end
+            item
+              DynProps = <>
+              EditButtons = <>
+              FieldName = 'MTEXT'
+              Footers = <>
+              Title.Caption = #1575#1604#1605#1581#1578#1608#1609' '#1575#1604#1606#1589#1610
+              Width = 395
+            end>
+          object RowDetailData: TRowDetailPanelControlEh
+          end
+        end
+      end
+      object Panel4: TPanel
+        Left = 0
+        Top = 0
+        Width = 715
+        Height = 97
+        Align = alTop
+        TabOrder = 1
+        ExplicitWidth = 451
+        object GroupBox1: TGroupBox
+          Left = 1
+          Top = 1
+          Width = 713
+          Height = 95
+          Align = alClient
+          Caption = #1582#1610#1575#1585#1575#1578' '#1576#1581#1579' '#1593#1575#1605#1577
+          TabOrder = 0
+          ExplicitWidth = 449
+          object Label2: TLabel
+            Left = 634
+            Top = 33
+            Width = 94
+            Height = 13
+            Caption = #1603#1604#1605#1577' '#1571#1608' '#1580#1605#1604#1577' '#1575#1604#1576#1581#1579':'
+          end
+          object etxt: TEdit
+            Left = 312
+            Top = 30
+            Width = 316
+            Height = 21
+            TabOrder = 0
+          end
+          object BitBtn2: TBitBtn
+            Left = 416
+            Top = 57
+            Width = 212
+            Height = 25
+            Caption = #1573#1592#1607#1575#1585' '#1576#1610#1575#1606#1575#1578' '#1575#1604#1605#1587#1578#1606#1583' '#1604#1604#1587#1580#1604' '#1575#1604#1605#1581#1583#1583
+            DoubleBuffered = True
+            ParentDoubleBuffered = False
+            TabOrder = 1
+            OnClick = actnShowTemplateDataExecute
+          end
+          object BitBtn1: TBitBtn
+            Left = 175
+            Top = 28
+            Width = 131
+            Height = 25
+            Caption = #1576#1581#1579
+            DoubleBuffered = True
+            ParentDoubleBuffered = False
+            TabOrder = 2
+            OnClick = BitBtn1Click
+          end
+          object JSonMemo: TMemo
+            Left = 72
+            Top = 30
+            Width = 82
+            Height = 40
+            Lines.Strings = (
+              'JSonMemo')
+            TabOrder = 3
+            Visible = False
+            WordWrap = False
+          end
+        end
+      end
+    end
+  end
+  inherited JRActions: TAmjActionList
+    DbGrid = JGrid1
+    AmjActionBar.Enabled = False
+    ParentDraw = Owner
+    Left = 338
+    Top = 129
+    object AmjAction1: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = REC_ADD
+      BtnShowCaption = True
+      BtnWidth = 80
+      Caption = #1580#1583#1610#1583
+      Hint = #1580#1583#1610#1583
+    end
+    object AmjAction2: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Aed_Edit
+      ConfirmNeed = False
+      Imageid = REC_edit
+      BtnShowCaption = True
+      BtnWidth = 80
+      Caption = #1578#1593#1583#1610#1604
+      Hint = #1578#1593#1583#1610#1604
+      ShortCut = 112
+    end
+    object AmjAction3: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Aed_Cancel
+      ConfirmNeed = False
+      Imageid = REC_cancel
+      BtnShowCaption = True
+      BtnWidth = 80
+      Caption = #1573#1604#1594#1575#1569
+      Hint = #1573#1604#1594#1575#1569
+      ShortCut = 112
+    end
+    object AmjAction4: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Aed_Post
+      ConfirmNeed = False
+      Imageid = REC_post
+      BtnShowCaption = True
+      BtnWidth = 80
+      Caption = #1581#1601#1592
+      Hint = #1581#1601#1592
+      ShortCut = 121
+    end
+    object actnShowPicture: TAction
+      Category = 'th'
+      Caption = #1573#1592#1607#1575#1585' '#1575#1604#1589#1608#1585#1577
+      OnExecute = actnShowPictureExecute
+    end
+    object actnShowTemplateData: TAction
+      Category = 'th'
+      Caption = #1573#1592#1607#1575#1585' '#1576#1610#1575#1606#1575#1578' '#1575#1604#1605#1587#1578#1606#1583' '#1604#1604#1587#1580#1604' '#1575#1604#1605#1581#1583#1583
+      OnExecute = actnShowTemplateDataExecute
+    end
+  end
+  inherited DQ: TDataSource
+    Left = 256
+    Top = 117
+  end
+  inherited JQ: TAmjSet
+    CommandText = 
+      'select X.*, Y.PROJID, JDMS.ARCH_SEARCH.getAllProjectParents(Y.PR' +
+      'OJID) mParents FROM'#13#10'(SELECT ID, MTNAME, MTEXT, MASTERID, (case ' +
+      'when MASTERID is null then ID'#13#10'    else MasterID end) DOCID'#13#10'FRO' +
+      'M JDMS.FULLSEARCH_MASTER) X left join JDMS.JPROJ_DOCS Y on X.DOC' +
+      'ID = Y.ID'#13#10
+    AfterInsert = JQAfterInsert
+    SQL.Strings = (
+      
+        'select X.*, Y.PROJID, JDMS.ARCH_SEARCH.getAllProjectParents(Y.PR' +
+        'OJID) mParents FROM'
+      
+        '(SELECT ID, MTNAME, MTEXT, MASTERID, (case when MASTERID is null' +
+        ' then ID'
+      '    else MasterID end) DOCID'
+      
+        'FROM JDMS.FULLSEARCH_MASTER) X left join JDMS.JPROJ_DOCS Y on X.' +
+        'DOCID = Y.ID')
+    AmjUser = 'jdms'
+    Left = 208
+    Top = 125
+  end
+  object JQMetaIdSEt: TAmjSet
+    Aggregates = <>
+    CommandText = 
+      '        select metaid, min(lvl) minlvl'#13#10'        from ( '#13#10'       ' +
+      '     Select level lvl , (select max(M.ID) from jdms.T_METADATA M' +
+      ' where M.projid = p.id) Metaid'#13#10'            From jdms.jprojects ' +
+      'P'#13#10'            Start With id= :Pprojid'#13#10'            Connect By i' +
+      'd = Prior prnt'#13#10'        )'#13#10'        where metaid is not null'#13#10'   ' +
+      '     group by metaid '#13#10
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'Pprojid'
+        ParamType = ptUnknown
+      end>
+    AmjCachedUpdates = False
+    AmjProviderOpt = [poAllowCommandText, poUseQuoteChar]
+    SQL.Strings = (
+      '        select metaid, min(lvl) minlvl'
+      '        from ( '
+      
+        '            Select level lvl , (select max(M.ID) from jdms.T_MET' +
+        'ADATA M where M.projid = p.id) Metaid'
+      '            From jdms.jprojects P'
+      '            Start With id= :Pprojid'
+      '            Connect By id = Prior prnt'
+      '        )'
+      '        where metaid is not null'
+      '        group by metaid ')
+    AmjTblName = 'jprojects'
+    AmjUser = 'jdms'
+    Left = 64
+    Top = 152
+  end
+  object JQMetBLOB: TAmjSet
+    Aggregates = <>
+    CommandText = 
+      'Select T_METADATA.*'#13#10'from jdms.T_METADATA'#13#10'where T_METADATA.id =' +
+      ':pid'#13#10#13#10
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pid'
+        ParamType = ptUnknown
+      end>
+    AmjCachedUpdates = False
+    AmjProviderOpt = [poAllowCommandText, poUseQuoteChar]
+    SQL.Strings = (
+      'Select T_METADATA.*'
+      'from jdms.T_METADATA'
+      'where T_METADATA.id =:pid'
+      '')
+    AmjTblName = 'T_METADATA'
+    AmjUser = 'JDMS'
+    Left = 152
+    Top = 160
+  end
+  object JQDocMetaData: TAmjSet
+    Aggregates = <>
+    CommandText = 
+      'Select JPROJ_DOCS.*'#13#10'from jdms.JPROJ_DOCS'#13#10'where JPROJ_DOCS.id =' +
+      ':pid'#13#10#13#10
+    Params = <
+      item
+        DataType = ftString
+        Name = 'pid'
+        ParamType = ptUnknown
+      end>
+    AmjCachedUpdates = False
+    AmjProviderOpt = [poAllowCommandText, poUseQuoteChar]
+    SQL.Strings = (
+      'Select JPROJ_DOCS.*'
+      'from jdms.JPROJ_DOCS'
+      'where JPROJ_DOCS.id =:pid'
+      '')
+    AmjTblName = 'T_METADATA'
+    AmjUser = 'JDMS'
+    Left = 168
+    Top = 224
+  end
+end

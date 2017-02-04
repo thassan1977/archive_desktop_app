@@ -1,0 +1,54 @@
+procedure TMainForm.CropMenuClick(Sender: TObject);
+var
+    Transform : TCropTransform;
+    Graphic   : TDibGraphic;
+
+    CropForm  : TCropForm;
+
+    Left      : LongInt;
+    Top       : LongInt;
+    Right     : LongInt;
+    Bottom    : LongInt;
+
+begin
+    { prevent compiler warning }
+    Left      := 0;
+    Top       := 0;
+    Right     := 0;
+    Bottom    := 0;
+
+    CropForm := TCropForm.Create(nil);
+    try
+        if CropForm.ShowModal = mrOk then
+        begin
+            Left   := StrToInt(CropForm.LeftFld.Text);
+            Top    := StrToInt(CropForm.TopFld.Text);
+            Right  := StrToInt(CropForm.RightFld.Text);
+            Bottom := StrToInt(CropForm.BottomFld.Text);
+        end
+        else
+            Abort;
+    finally
+        CropForm.Free;
+    end;
+
+    Graphic := ImageScrollBox.Graphic;
+
+    FUndoGraphic.Assign(Graphic);
+    Transform := TCropTransform.Create;
+    try
+        Transform.OnProgress := Self.OnProgress;
+
+        Transform.Left   := Left;
+        Transform.Right  := Right;
+        Transform.Top    := Top;
+        Transform.Bottom := Bottom;
+
+        Transform.ApplyOnDest(FUndoGraphic, Graphic);
+    finally
+        Transform.Free;
+    end;
+
+    FDirty := True;
+    ImageScrollBox.Redraw(True);
+end;

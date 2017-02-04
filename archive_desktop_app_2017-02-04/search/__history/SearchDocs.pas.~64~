@@ -1,0 +1,361 @@
+unit SearchDocs;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DBActns, ActnList, DB, DBClient, Provider, ADODB, Menus,
+  StdCtrls, ExtCtrls, DBCtrls, Mask, Buttons, ImgList, GridsEh,
+  DBGridEh, JazDBGrid, DBGridEhGrouping, AmjSetU, RzPanel, AmjStandardU,
+  JPMainU, AmjLookUpU, AmjactionsU, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh,
+  EhLibVCL, DBAxisGridsEh;
+
+type
+  TFSearchDocs = class(TJPmain)
+    Panel2: TPanel;
+    Panel1: TPanel;
+    Panel3: TPanel;
+    AmjAction1: TAmjAction;
+    AmjAction2: TAmjAction;
+    AmjAction3: TAmjAction;
+    AmjAction4: TAmjAction;
+    JGrid1: TJazDBGrid;
+    GroupBox1: TGroupBox;
+    DMZEditFind1: TDMZEditFind;
+    Label1: TLabel;
+    ename: TEdit;
+    Label2: TLabel;
+    enote: TEdit;
+    Label3: TLabel;
+    masterBox: TGroupBox;
+    Splitter1: TSplitter;
+    JQMetBLOB: TAmjSet;
+    JQMetaIdSEt: TAmjSet;
+    AmjSet1: TAmjSet;
+    AmjSet2: TAmjSet;
+    JSonMemo: TMemo;
+    JQMetData_Dtl: TAmjSet;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    BitBtn1: TBitBtn;
+    procedure JQAfterInsert(DataSet: TDataSet);
+    procedure DMZEditFind1Find(Sender: TObject; ID: string);
+    procedure BitBtn1Click(Sender: TObject);
+    private
+    { Private declar
+    procedure JRCancelcloseExecute(Sender: TObject);ations }
+       PROJID : String;
+       m_Sql,m_MetaID, m_metaTableName : string ;
+
+       procedure freeChildControls(myControl : TControl; freeThisControl: boolean);
+       procedure ProcessJson( txt: String);
+  public
+    { Public declarations }
+    Procedure FInitCard(pMaster:string=''); override;
+    Procedure PreFInit; Override;
+
+  end;
+
+implementation
+
+uses JAppMainU, JsonDataObjects;
+
+{$R *.dfm}
+
+Procedure TFSearchDocs.PreFInit;
+Begin
+  //inherited PreFInit;
+  width := 900;
+  Height := 650;
+  Align := alRight;
+End;
+
+procedure TFSearchDocs.BitBtn1Click(Sender: TObject);
+var
+  i : integer ;
+  ColumnA : TColumnEh;
+  myControl : TControl ;
+  myFiwxedWidth : integer ;
+  Item : TComponent;
+begin
+
+  masterBox.invalidate();
+  myControl := masterBox ;
+
+  if Assigned(myControl) then
+  begin
+    for i := (myControl.ComponentCount - 1) downto 0 do
+    begin
+      Item := myControl.Components[i];
+      if assigned(item) and (Item.classType = TEdit) and ((Item as TEdit).text <> '') then
+          begin
+              m_Sql := m_Sql + ' AND  JDMS.' +m_metaTableName+'.'+ (Item as TEdit).name + ' = '''+ (Item as TEdit).text +'''';
+          end;
+    end;
+  end;
+
+  inherited;
+
+  myFiwxedWidth := 100 ;
+
+  if ename.text <> '' then
+     m_Sql := m_Sql + ' and JDMS.JPROJ_DOCS.NAME like ''%'+ename.text + '%''';
+  if enote.text <> '' then
+     m_Sql := m_Sql + ' and JDMS.JPROJ_DOCS.NOTES like ''%'+ename.text + '%''' ;
+
+
+
+  jq.close;
+  jq.sql.clear ;
+  jq.sql.text := m_Sql;
+
+  JQMetData_Dtl.close;
+  JQMetData_Dtl.params.ParamByName('pid').asString := m_MetaID ;
+  JQMetData_Dtl.open ;
+
+
+  // add JPROJ_DOCS fields ..
+   JGrid1.columns.clear ;
+
+   ColumnA := JGrid1.columns.add ;
+   ColumnA.fieldName := 'MASTERNAME' ;
+   ColumnA.Title.Caption := '«·„” ‰œ «·⁄«„|«”„' ;
+   ColumnA.Width := myFiwxedWidth ;
+
+   ColumnA := JGrid1.columns.add ;
+   ColumnA.fieldName := 'MASTERNOTES' ;
+   ColumnA.Title.Caption := '«·„” ‰œ «·⁄«„|„·«ÕŸ« ' ;
+   ColumnA.Width := myFiwxedWidth ;
+
+  while (not JQMetData_Dtl.Eof ) do
+  begin
+    ColumnA := JGrid1.columns.add ;
+    ColumnA.fieldName := JQMetData_Dtl.FieldByName('NAME').asString  ;
+    ColumnA.Title.Caption := '»Ì«‰«  «·‰„Ê–Ã|' + JQMetData_Dtl.FieldByName('NAME_AR').asString ;
+    ColumnA.Width := myFiwxedWidth ;
+    JQMetData_Dtl.next ;
+  end;
+
+
+
+  jq.open ;
+
+
+end;
+
+procedure TFSearchDocs.DMZEditFind1Find(Sender: TObject; ID: string);
+ var str :string;
+  s : TMemoryStream;
+  I : integer;
+  //    var TemplateForm: TTemplateForm;
+begin
+  inherited;
+
+  // remove old search components ...
+  freeChildControls(masterBox, false);
+
+  JQMetaIdSEt.close;
+  JQMetaIdSEt.params.paramByName('Pprojid').AsString := DMZEditFind1.idvalue ;;
+  JQMetaIdSEt.open;
+  if JQMetaIdSEt.RecordCount > 0 then
+  begin
+
+    try
+       m_MetaID := JQMetaIdSEt.FieldByName('METAID').asstring ;
+
+       JQMetBLOB.close;
+       JQMetBLOB.params.paramByName('pid').AsString := JQMetaIdSEt.FieldByName('metaid').AsString;
+       JQMetBLOB.open;
+       m_metaTableName := JQMetBLOB.fieldByName('TABLE_NAME').asstring ;
+
+       m_Sql :=  ' SELECT JDMS.JPROJ_DOCS.ORA_ROWSCN SCN, '+
+                ' JDMS.JPROJ_DOCS.ID MASTERID, '+
+                ' JDMS.JPROJ_DOCS.NAME MASTERNAME, '+
+                ' JDMS.JPROJ_DOCS.NOTES MASTERNOTES, JDMS.JPROJ_DOCS.ZSTATUSID MASTERZSTATUSID, '+
+                ' JDMS.JPROJ_DOCS.ISDELETED MASTERISDELETED, '+
+                ' JDMS.JPROJ_DOCS.ISACTIVE MASTERISACTIVE, JDMS.JPROJ_DOCS.VIEWCO MASTERVIEWCO, '+
+                ' JDMS.JPROJ_DOCS.ZSECRETID MASTERZSECRETID, JDMS.JPROJ_DOCS.FILE_CO MASTERFILE_CO, '+
+                ' JDMS.' + m_metaTableName +'.* '+
+                ' FROM JDMS.JPROJ_DOCS '+
+                ' LEFT OUTER JOIN JDMS.'+ m_metaTableName + ' ON JDMS.JPROJ_DOCS.ID  =   JDMS.'+ m_metaTableName +'.ID '+
+                ' WHERE  JDMS.JPROJ_DOCS.PROJID= ' + DMZEditFind1.idvalue ;
+
+
+
+        s := TMemoryStream (JQMetBLOB.CreateBlobStream(JQMetBLOB.FIELDBYNAME('OBJ'), bmRead));
+        if s.Size >= 0 then
+         JSonMemo.lines.LoadFromStream(s);
+        str := str + JSonMemo.Lines.text;
+      ProcessJson(str);
+    except
+
+    end;
+  end;
+end;
+
+Procedure TFSearchDocs.FInitCard(pMaster:string='');
+begin
+  width := 900;
+  Align := alRight;
+  Jq.Close ;
+
+  IF pMaster <> 'S' THEN BEGIN
+     JQ.Params.ParamByName('pID').AsString := pMaster ;
+     JQ.Open;
+     PCaption := '≈ŸÂ«— Ê  ⁄œÌ· ’·«ÕÌ« '
+
+     //DOCID.Text:=Jq.FieldByName('DOCID').AsString;
+    // DOCID.DoSearch(TRUE);
+  END ELSE begin
+    JQ.Open;
+    JQ.insert;
+    PROJID := pMASTER;
+
+    PCaption := '’·«ÕÌ… ÃœÌœ…';
+  end;
+end;
+
+
+procedure TFSearchDocs.freeChildControls(myControl : TControl; freeThisControl: boolean);
+var
+  i : integer;
+  Item : TComponent;
+begin
+
+  if Assigned(myControl) then
+  begin
+    for i := (myControl.ComponentCount - 1) downto 0 do
+    begin
+      Item := myControl.Components[i];
+
+
+      showmessage(inttostr(i) + ' class='+Item.ClassName);
+      if assigned(item) and (item.Owner = myControl) and (Item.ClassType <> TGroupBox) then
+        FreeAndNil(item);
+    end;
+
+   
+  end;
+end;
+
+
+
+procedure TFSearchDocs.JQAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  JQ.FieldByName('ID').AsString := japp.db.get_seq;
+JQ.FieldByName('projid').AsString := PROJID;
+{  JQ.FieldByName('ID').AsString := Japp.DB.Get_maxSeq('jedms.DOC');
+  JQ.FieldByName('VIEWCO').AsString := '0';
+  JQ.FieldByName('DOWNLOADCO').AsString := '0';
+  JQ.FieldByName('ISDELETED').AsString := '·«';
+  JQ.FieldByName('ISACTIVE').AsString := '·«';}
+end;
+procedure TFSearchDocs.ProcessJson( txt: String);
+  var str,TableName:string;  // text to be modified
+//  JsonForm : TTemplateForm;
+  lab : Tlabel;
+//  position_s,position_E :integer;
+  I,j,coord , myTop, myLeft, defaultHeight, itemsInRow, lblWidth, dbeditWidth,itemSpacing: integer;
+  Obj,FormObj,PropertiesObj,SubObj1,ColumnObj: TJsonObject;
+  Objbs :TJsonbaseObject;
+  SingleLabel :Tlabel;
+ // DataSet1 : Tamjset;
+  EditBox1 : TEdit;
+  DBEDIT2,DBEDIT3,DBEDIT4,DBNEW :TEDIT;
+  LABEL12,LABEL13,LABEL14,LABELNEW :TLABEL;
+///
+  DetailGrid : TjazDBGrid;
+  GridSource: TdataSource;
+  GridDataSet :Tamjset;
+  STRTEST: STRING;
+  begin
+     str := txt;
+
+     obj := TjsonObject.parse(str) as TJsonObject;
+     FormObj := obj['ctrls'].items[0];    // first item is a form always.
+
+     PropertiesObj := FormObj['Properties'];
+
+
+  myTop := 20 ;  // top of elements in first row ...
+  myLeft:= masterBox.width ;   // default left is the right corner of 'masterBox' ...
+  defaultHeight :=  21 ; // label or DBEdit default height
+  itemsInRow := 3 ; //  ⁄œœ «·⁄‰«’— »«·’› «·Ê«Õœ label+dbedit = ⁄‰’— Ê«Õœ
+  lblWidth := 60 ;  // label width
+  dbeditWidth := 150 ; // DBEdit width
+  itemSpacing := 5 ; // spacing between items ...
+
+  for I := 0 to FormObj['ctrls'].Count - 1 do
+  begin
+
+
+   SubObj1 := FormObj['ctrls'].items[I];
+   if ( SubObj1['CtrlType'] = 'singlelinetext' )or (SubObj1['CtrlType'] = 'date' )
+   OR (SubObj1['CtrlType'] = 'number' ) then
+   begin
+        if (I <> 0) and ((I mod itemsInRow)=0) then
+        begin
+             // rest left and top for the next row...
+             myTop  := myTop + itemSpacing + defaultHeight ;
+             myLeft := masterBox.width ;
+        end;
+
+        PropertiesObj := SubObj1['Properties'];
+
+{           MasterSet.AmjTblname := TableName;
+           MasterSet.AmjUser := jq.AmjUser;
+           MasterSet.CommandText := 'select * from ' + MasterSet.AmjUser;
+           MasterSet.CommandText := MasterSet.CommandText + '.' + MasterSet.AmjTblname;
+           MasterSet.commandText := MasterSet.CommandText + ' ' + 'where id = :Pid';
+}
+                // TLabel  ...
+                LABELNEW := TLabel.Create(masterBox);
+                LABELNEW.alignment := taRightJustify ;
+                LABELNEW.Parent  := masterBox;
+                LABELNEW.caption := PropertiesObj['Label'];
+                STRTEST:=  LABELNEW.caption;
+
+               if PropertiesObj['X'] <> '' then LABELNEW.left :=trunc(strtofloat(PropertiesObj['X']));
+               if PropertiesObj['Y'] <> '' then LABELNEW.top  :=trunc(strtofloat(PropertiesObj['Y']));
+
+               LABELNEW.font.color :=clblack;//clWindowText;//.font.color := StringTocolor('cl' + PropertiesObj['Color']);
+
+               myLeft := myLeft - itemSpacing - lblWidth ;
+               LABELNEW.Left := myLeft ;
+               LABELNEW.Top  := myTop ;
+               LABELNEW.autosize := false;
+               LABELNEW.width    := lblWidth ;
+
+               coord := LABELNEW.Left;
+               coord := coord + 1;
+
+               // TEdit ...
+               DBNEW := TEDIT.CREATE(masterBox);
+
+
+               DBNEW.Parent     := masterBox;
+               DBNEW.BidiMode   := bdRightToLeft;
+               DBNEW.ReadOnly   := false;
+               DBNEW.Name       := PropertiesObj['BindTo'] ;
+               DBNEW.Text       := '' ;
+               //DBNEW.DataField  := PropertiesObj['BindTo'];
+
+               myLeft := myLeft - itemSpacing - dbeditWidth ;
+               DBNEW.Left       := myLeft;
+               DBNEW.width      := dbeditWidth  ;
+               DBNEW.Top        := myTop ;//TLABELARR[HIGH(TLABELARR)].Top;
+               //DBNEW.DATASOURCE := MasterDQ;
+               DBNEW.VISIBLE    := TRUE; //}
+
+        //MasterSet.close;
+        //MasterSet.open;
+
+   end; // if () or () or () ...
+ end; // for ...
+
+ masterBox.invalidate();
+end;
+
+
+end.

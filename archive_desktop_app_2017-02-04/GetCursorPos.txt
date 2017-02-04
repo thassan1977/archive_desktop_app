@@ -1,0 +1,32 @@
+
+Category: ActiveX
+Title: Extact the cursor position and how to set the cursorpos
+Author: DAMIAN CIPOLAT
+E-mail: Damian_Cipolat@hotmail.com
+Date added: 02.06.2006
+Hits: 22676
+
+
+    //extract the cursor position.
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+pt:tpoint;
+begin
+getcursorpos(pt);
+showmessage('The cursor pos. is: x='+inttostr(pt.x)+' y='+inttostr(pt.y);
+end;
+
+//SET the cursor position.
+// with this code you can move the windows mouse cursor with code to  x,y position.
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+pt:tpoint;
+begin
+pt.x:=15;
+pt.y:=98;
+setcursorpos(pt.x,pt.y);
+showmessage('The cursor pos. is: x='+inttostr(pt.x)+' y='+inttostr(pt.y);
+end;

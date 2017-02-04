@@ -1,0 +1,818 @@
+inherited DocsfilenewF: TDocsfilenewF
+  Width = 779
+  Height = 567
+  object AmjSplitter1: TAmjSplitter [0]
+    Left = 773
+    Top = 298
+    Width = 6
+    Height = 269
+    Align = alRight
+    ExplicitLeft = 443
+    ExplicitTop = 257
+    ExplicitHeight = 305
+  end
+  inherited JFTitle: TJPanel
+    Width = 779
+    inherited JTitleImg: TImage
+      Left = 747
+      ExplicitLeft = 737
+    end
+  end
+  object ImageScrollBox: TImageScrollBox [2]
+    Left = 0
+    Top = 298
+    Width = 437
+    Height = 269
+    HorzScrollBar.Tracking = True
+    HorzScrollBar.Visible = False
+    VertScrollBar.Tracking = True
+    VertScrollBar.Visible = False
+    ZoomMode = zmFitWidth
+    ZoomPercent = 100.000000000000000000
+    MouseHandlerOwnership = True
+    Align = alClient
+    TabOrder = 1
+    ExplicitLeft = -6
+    ExplicitTop = 304
+    ExplicitWidth = 788
+  end
+  object Panel1: TPanel [3]
+    Left = 437
+    Top = 298
+    Width = 336
+    Height = 269
+    Align = alRight
+    BevelOuter = bvNone
+    TabOrder = 2
+    ExplicitLeft = 109
+    ExplicitHeight = 6
+    object JPanel1: TJPanel
+      Left = 0
+      Top = 111
+      Width = 336
+      Height = 158
+      Align = alBottom
+      TabOrder = 0
+      ExplicitTop = -152
+      object JPanel2: TJPanel
+        Left = 0
+        Top = 0
+        Width = 336
+        Height = 25
+        Align = alTop
+        Alignment = taRightJustify
+        Color = clActiveCaption
+        TabOrder = 0
+        object Image1: TImage
+          Left = 231
+          Top = 0
+          Width = 105
+          Height = 25
+          Align = alRight
+          ExplicitLeft = 555
+          ExplicitTop = -6
+        end
+      end
+      object JGrid2: TJazDBGrid
+        Left = 0
+        Top = 25
+        Width = 336
+        Height = 133
+        Align = alClient
+        DataSource = dq2
+        DynProps = <>
+        FooterParams.Color = clWindow
+        ImeMode = imDisable
+        IndicatorOptions = [gioShowRowIndicatorEh]
+        TabOrder = 2
+        Columns = <
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'FILENAME'
+            Footers = <>
+            Title.Caption = #1575#1587#1605' '#1575#1604#1605#1604#1601
+            Visible = False
+            Width = 91
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'ORDR'
+            Footers = <>
+            Title.Caption = #1575#1604#1578#1585#1578#1610#1576
+            Visible = False
+            Width = 92
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'NOTE'
+            Footers = <>
+            Title.Caption = #1605#1604#1575#1581#1592#1575#1578
+            Title.SortIndex = 1
+            Title.SortMarker = smUpEh
+            Width = 235
+          end>
+        object RowDetailData: TRowDetailPanelControlEh
+        end
+      end
+      object ProgressBar: TProgressBar
+        Left = 70
+        Top = 112
+        Width = 150
+        Height = 17
+        TabOrder = 1
+        Visible = False
+      end
+    end
+    object JazDBGrid2: TJazDBGrid
+      Left = 0
+      Top = 0
+      Width = 336
+      Height = 111
+      Align = alClient
+      DataSource = DQ
+      DynProps = <>
+      FooterParams.Color = clWindow
+      ImeMode = imDisable
+      IndicatorOptions = [gioShowRowIndicatorEh]
+      TabOrder = 1
+      TitleParams.MultiTitle = True
+      Columns = <
+        item
+          DynProps = <>
+          EditButtons = <>
+          FieldName = 'FILENAME'
+          Footers = <>
+          Title.Caption = #1575#1587#1605' '#1575#1604#1605#1604#1601
+          Width = 75
+        end
+        item
+          DynProps = <>
+          EditButtons = <>
+          FieldName = 'FILELINK'
+          Footers = <>
+          Title.Caption = #1585#1575#1576#1591' '#1575#1604#1605#1604#1601
+          Width = 75
+        end
+        item
+          DynProps = <>
+          EditButtons = <>
+          FieldName = 'FILEFORMAT'
+          Footers = <>
+          Title.Caption = #1589#1610#1594#1577' '#1575#1604#1605#1604#1601
+          Width = 75
+        end
+        item
+          DynProps = <>
+          EditButtons = <>
+          FieldName = 'NOTE'
+          Footers = <>
+          Title.Caption = #1605#1604#1575#1581#1592#1575#1578
+          Title.SortIndex = 1
+          Title.SortMarker = smDownEh
+          Width = 75
+        end>
+      object RowDetailData: TRowDetailPanelControlEh
+      end
+    end
+  end
+  object Panel2: TPanel [4]
+    Left = 0
+    Top = 31
+    Width = 779
+    Height = 226
+    Align = alTop
+    TabOrder = 3
+    ExplicitWidth = 451
+    object GroupBox2: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 976
+      Height = 224
+      Align = alLeft
+      Caption = #1576#1610#1575#1606#1575#1578' '#1575#1604#1608#1579#1610#1602#1577
+      TabOrder = 0
+      object Label12: TLabel
+        Left = 883
+        Top = 24
+        Width = 50
+        Height = 13
+        Align = alCustom
+        Caption = #1585#1602#1605' '#1575#1604#1608#1579#1610#1602#1577
+      end
+      object Label4: TLabel
+        Left = 903
+        Top = 51
+        Width = 29
+        Height = 13
+        Align = alCustom
+        Caption = #1575#1604#1575#1587#1605
+      end
+      object Label2: TLabel
+        Left = 908
+        Top = 88
+        Width = 25
+        Height = 13
+        Align = alCustom
+        Caption = #1575#1604#1581#1575#1604#1577
+      end
+      object Label8: TLabel
+        Left = 577
+        Top = 24
+        Width = 42
+        Height = 13
+        Align = alCustom
+        Caption = #1575#1604#1605#1588#1585#1608#1593
+      end
+      object Label17: TLabel
+        Left = 869
+        Top = 194
+        Width = 64
+        Height = 13
+        Align = alCustom
+        Caption = #1578#1608#1589#1610#1601' '#1575#1604#1608#1579#1610#1602#1577
+      end
+      object Label3: TLabel
+        Left = 591
+        Top = 48
+        Width = 28
+        Height = 13
+        Align = alCustom
+        Caption = #1575#1604#1578#1575#1585#1610#1582
+      end
+      object Label5: TLabel
+        Left = 587
+        Top = 88
+        Width = 32
+        Height = 13
+        Align = alCustom
+        Caption = #1575#1604#1605#1589#1583#1585
+      end
+      object Label6: TLabel
+        Left = 903
+        Top = 120
+        Width = 30
+        Height = 13
+        Align = alCustom
+        Caption = #1575#1604#1605#1580#1604#1583
+      end
+      object Label10: TLabel
+        Left = 547
+        Top = 120
+        Width = 72
+        Height = 13
+        Align = alCustom
+        Caption = #1605#1587#1578#1608#1609' '#1575#1604#1587#1585#1610#1577
+      end
+      object Label1: TLabel
+        Left = 905
+        Top = 160
+        Width = 28
+        Height = 13
+        Align = alCustom
+        Caption = #1575#1604#1602#1575#1604#1576
+      end
+      object DBEdit6: TDBEdit
+        Left = 647
+        Top = 21
+        Width = 230
+        Height = 21
+        Align = alCustom
+        DataField = 'NO'
+        DataSource = docdq
+        TabOrder = 0
+      end
+      object ZPROJID: TDMZEditFind
+        Left = 263
+        Top = 21
+        Width = 268
+        Height = 21
+        Hint = #1571#1583#1582#1604' '#1581#1585#1601' '#1571#1608' '#1603#1604#1605#1577' '#1571#1608' '#1571#1603#1579#1585' '#1579#1605' '#1575#1590#1594#1591' ENTER '#1604#1604#1576#1581#1579' .'
+        Align = alCustom
+        Color = clInfoBk
+        ParentShowHint = False
+        TabOrder = 1
+        TableName = 'jedms.ZPROJ'
+        IDField = 'ID'
+        NameField = 'NAME'
+        NoField = 'ID'
+        OnFind = ZPROJIDFind
+        IDMustBeNumber = False
+        Delimater = ' - '
+        ChildsOnly = False
+      end
+      object DBMemo1: TDBMemo
+        Left = 249
+        Top = 184
+        Width = 614
+        Height = 26
+        Align = alCustom
+        DataField = 'NOTE'
+        DataSource = docdq
+        TabOrder = 9
+      end
+      object DBEdit3: TDBEdit
+        Left = 641
+        Top = 48
+        Width = 230
+        Height = 21
+        Align = alCustom
+        DataField = 'NAME'
+        DataSource = docdq
+        TabOrder = 2
+      end
+      object ZSRCID: TDMZEditFind
+        Left = 263
+        Top = 90
+        Width = 268
+        Height = 21
+        Hint = #1571#1583#1582#1604' '#1581#1585#1601' '#1571#1608' '#1603#1604#1605#1577' '#1571#1608' '#1571#1603#1579#1585' '#1579#1605' '#1575#1590#1594#1591' ENTER '#1604#1604#1576#1581#1579' .'
+        Align = alCustom
+        Color = clInfoBk
+        ParentShowHint = False
+        TabOrder = 5
+        TableName = 'jedms.ZDEST'
+        IDField = 'ID'
+        NameField = 'NAME'
+        NoField = 'ID'
+        OnFind = ZSRCIDFind
+        IDMustBeNumber = False
+        Delimater = ' - '
+        ChildsOnly = False
+      end
+      object DBEdit1: TDBEdit
+        Left = 263
+        Top = 48
+        Width = 268
+        Height = 21
+        Align = alCustom
+        DataField = 'DAT'
+        DataSource = docdq
+        TabOrder = 3
+      end
+      object ZSECRETID: TDMZEditFind
+        Left = 263
+        Top = 117
+        Width = 268
+        Height = 21
+        Hint = #1571#1583#1582#1604' '#1581#1585#1601' '#1571#1608' '#1603#1604#1605#1577' '#1571#1608' '#1571#1603#1579#1585' '#1579#1605' '#1575#1590#1594#1591' ENTER '#1604#1604#1576#1581#1579' .'
+        Align = alCustom
+        Color = clInfoBk
+        ParentShowHint = False
+        TabOrder = 7
+        TableName = 'jedms.ZSECRET'
+        IDField = 'ID'
+        NameField = 'NAME'
+        NoField = 'ID'
+        OnFind = ZSECRETIDFind
+        IDMustBeNumber = False
+        Delimater = ' - '
+        ChildsOnly = False
+      end
+      object FOLDERID: TDMZEditFind
+        Left = 641
+        Top = 112
+        Width = 230
+        Height = 21
+        Hint = #1571#1583#1582#1604' '#1581#1585#1601' '#1571#1608' '#1603#1604#1605#1577' '#1571#1608' '#1571#1603#1579#1585' '#1579#1605' '#1575#1590#1594#1591' ENTER '#1604#1604#1576#1581#1579' .'
+        Align = alCustom
+        Color = clInfoBk
+        ParentShowHint = False
+        TabOrder = 6
+        TableName = 'jedms.FOLDERS'
+        IDField = 'ID'
+        NameField = 'NAME'
+        NoField = 'ID'
+        OnFind = FOLDERIDFind
+        IDMustBeNumber = False
+        Delimater = ' - '
+        ChildsOnly = False
+      end
+      object ZSTATUSID: TDMZEditFind
+        Left = 641
+        Top = 85
+        Width = 230
+        Height = 21
+        Hint = #1571#1583#1582#1604' '#1581#1585#1601' '#1571#1608' '#1603#1604#1605#1577' '#1571#1608' '#1571#1603#1579#1585' '#1579#1605' '#1575#1590#1594#1591' ENTER '#1604#1604#1576#1581#1579' .'
+        Align = alCustom
+        Color = clInfoBk
+        ParentShowHint = False
+        TabOrder = 4
+        TableName = 'jedms.ZSTATUS'
+        IDField = 'ID'
+        NameField = 'NAME'
+        NoField = 'ID'
+        OnFind = ZSTATUSIDFind
+        IDMustBeNumber = False
+        Delimater = ' - '
+        ChildsOnly = False
+      end
+      object ZTMPLTID: TDMZEditFind
+        Left = 641
+        Top = 157
+        Width = 230
+        Height = 21
+        Hint = #1571#1583#1582#1604' '#1581#1585#1601' '#1571#1608' '#1603#1604#1605#1577' '#1571#1608' '#1571#1603#1579#1585' '#1579#1605' '#1575#1590#1594#1591' ENTER '#1604#1604#1576#1581#1579' .'
+        Align = alCustom
+        Color = clInfoBk
+        ParentShowHint = False
+        TabOrder = 8
+        TableName = 'jedms.ZTMPLT'
+        IDField = 'ID'
+        NameField = 'NAME'
+        NoField = 'ID'
+        OnFind = ZTMPLTIDFind
+        IDMustBeNumber = False
+        Delimater = ' - '
+        ChildsOnly = False
+      end
+    end
+  end
+  object Panel3: TPanel [5]
+    Left = 0
+    Top = 257
+    Width = 779
+    Height = 41
+    Align = alTop
+    Caption = 'Panel3'
+    TabOrder = 4
+    ExplicitWidth = 451
+  end
+  inherited JRActions: TAmjActionList
+    DbGrid = JazDBGrid2
+    AmjActionBar.Enabled = False
+    ParentDraw = Panel3
+    Left = 234
+    Top = 332
+    object AmjActionVav: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Anv_nav
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      Caption = 'AmjActionVav'
+      ShortCut = 112
+    end
+    object AmjActionsep1: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_seprator
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      Caption = 'AmjActionsep1'
+      ShortCut = 112
+    end
+    object AmjActionRefresh: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = AData_Refresh
+      ConfirmNeed = False
+      Imageid = data_refresh
+      BtnShowCaption = False
+      Caption = 'AmjActionRefresh'
+      Hint = #1578#1581#1583#1610#1579' '#1575#1604#1576#1610#1575#1606#1575#1578
+      ShortCut = 116
+    end
+    object AmjActionFilter: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = AData_Filter
+      ConfirmNeed = False
+      Imageid = data_filter
+      BtnShowCaption = False
+      Caption = 'AmjActionRefresh'
+      Hint = #1573#1592#1607#1575#1585' '#1608#1573#1582#1601#1575#1569' '#1588#1585#1608#1591' '#1575#1604#1601#1604#1578#1585#1577
+      ShortCut = 118
+    end
+    object AmjActionPrint: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = AData_PrintOpt
+      ConfirmNeed = False
+      Imageid = PRNT_SETUP
+      BtnShowCaption = False
+      Caption = #1573#1593#1583#1575#1583#1575#1578' '#1575#1604#1591#1576#1575#1593#1577
+      Hint = #1573#1593#1583#1575#1583#1575#1578' '#1575#1604#1591#1576#1575#1593#1577
+      ShortCut = 120
+    end
+    object ImgScan: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = True
+      BtnWidth = 100
+      Caption = #1589#1608#1585#1577' '#1580#1583#1610#1583#1577
+      Hint = #1589#1608#1585#1577' '#1580#1583#1610#1583#1577
+      OnHandle = ImgScanHandle
+    end
+    object ImgOps: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = True
+      BtnWidth = 60
+      Caption = #1593#1605#1604#1610#1575#1578
+      Hint = #1593#1605#1604#1610#1575#1578
+      OnHandle = ImgOpsHandle
+    end
+    object ImgView: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = True
+      BtnWidth = 100
+      Caption = #1593#1585#1590
+      Hint = #1593#1585#1590
+      OnHandle = ImgViewHandle
+    end
+  end
+  inherited DQ: TDataSource
+    Left = 288
+    Top = 328
+  end
+  inherited JQ: TAmjSet
+    CommandText = 
+      'select jedms.DOC_FILES.*, ZPROJ.NAME prjname'#13#10'from jedms.DOC_FIL' +
+      'ES,jedms.ZPROJ'#13#10'where DOC_FILES.PROJID=zproj.id'#13#10'and DOC_FILES.D' +
+      'OCID=:pid'#13#10'order by DOC_FILES.id desc'#13#10
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pid'
+        ParamType = ptUnknown
+      end>
+    BeforeOpen = JQBeforeOpen
+    BeforeInsert = JQBeforeInsert
+    AfterInsert = JQAfterInsert
+    AfterScroll = JQAfterScroll
+    SQL.Strings = (
+      'select jedms.DOC_FILES.*, ZPROJ.NAME prjname'
+      'from jedms.DOC_FILES,jedms.ZPROJ'
+      'where DOC_FILES.PROJID=zproj.id'
+      'and DOC_FILES.DOCID=:pid'
+      'order by DOC_FILES.id desc')
+    AmjExcludFlds.Strings = (
+      'fdata')
+    AmjTblName = 'DOC_FILES'
+    AmjUser = 'jedms'
+    Left = 344
+    Top = 336
+  end
+  object ImageView: TPopupMenu
+    AutoHotkeys = maManual
+    Left = 32
+    Top = 424
+    object N1: TMenuItem
+      Caption = #1575#1604#1581#1580#1605' '#1575#1604#1591#1576#1610#1593#1610
+      OnClick = N1Click
+    end
+    object N2: TMenuItem
+      Caption = #1603#1575#1605#1604' '#1575#1604#1589#1601#1581#1577
+      OnClick = N2Click
+    end
+    object N3: TMenuItem
+      Caption = #1593#1585#1590' '#1575#1604#1589#1601#1581#1577
+      OnClick = N3Click
+    end
+    object N4: TMenuItem
+      Caption = #1591#1608#1604' '#1575#1604#1589#1601#1581#1577
+      OnClick = N4Click
+    end
+    object N5: TMenuItem
+      Caption = '-'
+    end
+    object N6: TMenuItem
+      Caption = #1578#1603#1576#1610#1585
+      OnClick = N6Click
+    end
+    object N7: TMenuItem
+      Caption = #1578#1589#1594#1610#1585
+      OnClick = N7Click
+    end
+    object N8: TMenuItem
+      Caption = '-'
+    end
+    object N9: TMenuItem
+      Caption = #1578#1583#1608#1610#1585
+      OnClick = N9Click
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 56
+    Top = 288
+  end
+  object dq2: TDataSource
+    DataSet = jq2
+    Left = 296
+    Top = 408
+  end
+  object jq2: TAmjSet
+    Aggregates = <>
+    CommandText = 
+      'select *'#13#10'from jfiles.DOCFILES'#13#10'where DOCID =:pid'#13#10'order by id d' +
+      'esc'#13#10
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pid'
+        ParamType = ptUnknown
+      end>
+    BeforeOpen = jq2BeforeOpen
+    AfterOpen = jq2AfterOpen
+    BeforeInsert = jq2BeforeInsert
+    AfterInsert = jq2AfterInsert
+    AfterScroll = jq2AfterScroll
+    AmjCachedUpdates = False
+    AmjProviderOpt = [poAllowCommandText, poUseQuoteChar]
+    SQL.Strings = (
+      'select *'
+      'from jfiles.DOCFILES'
+      'where DOCID =:pid'
+      'order by id desc')
+    AmjExcludFlds.Strings = (
+      'FDATA')
+    AmjTblName = 'DOCFILES'
+    AmjUser = 'jfiles'
+    Left = 352
+    Top = 408
+  end
+  object AmjActionList1: TAmjActionList
+    FilterVisible = False
+    DbGrid = JGrid2
+    DataSource = dq2
+    AmjActionBar.BtnLayout = blGlyphLeft
+    AmjActionBar.BtnShowCaption = False
+    AmjActionBar.Visible = False
+    AmjActionBar.Enabled = False
+    AmjActionBar.ToolHeight = 28
+    AmjActionBar.ShowShortCut = False
+    ParentDraw = JPanel1
+    Left = 224
+    Top = 408
+    object nav: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Anv_nav
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      ShortCut = 112
+    end
+    object AmjAction1: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = AData_Refresh
+      ConfirmNeed = False
+      Imageid = data_refresh
+      BtnShowCaption = False
+      Caption = #1578#1581#1583#1610#1579' '#1575#1604#1576#1610#1575#1606#1575#1578
+      Hint = #1578#1581#1583#1610#1579' '#1575#1604#1576#1610#1575#1606#1575#1578
+      ShortCut = 119
+    end
+  end
+  object ImageOp: TPopupMenu
+    AutoHotkeys = maManual
+    Left = 88
+    Top = 424
+    object MenuItem1: TMenuItem
+      Caption = #1581#1601#1592' '#1601#1610' '#1605#1604#1601
+      OnClick = MenuItem1Click
+    end
+    object MenuItem8: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem2: TMenuItem
+      Caption = #1581#1584#1601
+    end
+    object MenuItem5: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem6: TMenuItem
+      Caption = #1591#1576#1575#1593#1577
+      OnClick = MenuItem6Click
+    end
+  end
+  object ImgNew: TPopupMenu
+    AutoHotkeys = maManual
+    Left = 136
+    Top = 424
+    object N10: TMenuItem
+      Caption = #1575#1582#1578#1610#1575#1585' '#1605#1575#1587#1581
+      OnClick = N10Click
+    end
+    object N11: TMenuItem
+      Caption = '-'
+    end
+    object N12: TMenuItem
+      Caption = #1605#1587#1581' '#1589#1608#1585#1577
+      OnClick = N12Click
+    end
+    object d1: TMenuItem
+      Caption = #1605#1587#1581' '#1605#1580#1605#1608#1593#1577' '#1589#1608#1585
+      OnClick = d1Click
+    end
+    object N13: TMenuItem
+      Caption = '-'
+    end
+    object N14: TMenuItem
+      Caption = #1578#1581#1605#1610#1604' '#1605#1606' '#1605#1604#1601
+      OnClick = N14Click
+    end
+  end
+  object docjq: TAmjSet
+    Aggregates = <>
+    CommandText = 'Select DOC.*'#13#10'from jedms.DOC'#13#10'where DOC.id =:pid'#13#10
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pid'
+        ParamType = ptUnknown
+      end>
+    AfterInsert = docjqAfterInsert
+    AmjCachedUpdates = False
+    AmjProviderOpt = [poAllowCommandText, poUseQuoteChar]
+    SQL.Strings = (
+      'Select DOC.*'
+      'from jedms.DOC'
+      'where DOC.id =:pid')
+    AmjTblName = 'DOC'
+    AmjUser = 'jedms'
+    Left = 176
+    Top = 85
+  end
+  object docdq: TDataSource
+    DataSet = docjq
+    Left = 120
+    Top = 85
+  end
+  object docactions: TAmjActionList
+    FilterVisible = False
+    DataSource = docdq
+    AmjActionBar.BtnLayout = blGlyphLeft
+    AmjActionBar.BtnShowCaption = False
+    AmjActionBar.Visible = False
+    AmjActionBar.Enabled = False
+    AmjActionBar.ToolHeight = 28
+    AmjActionBar.ShowShortCut = False
+    ParentDraw = Owner
+    Left = 66
+    Top = 81
+    object AmjAction2: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = REC_ADD
+      BtnShowCaption = True
+      BtnWidth = 80
+      Caption = #1580#1583#1610#1583
+      Hint = #1580#1583#1610#1583
+    end
+    object AmjAction3: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Aed_Edit
+      ConfirmNeed = False
+      Imageid = REC_edit
+      BtnShowCaption = True
+      BtnWidth = 80
+      Caption = #1578#1593#1583#1610#1604
+      Hint = #1578#1593#1583#1610#1604
+      ShortCut = 112
+    end
+    object AmjAction4: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Aed_Cancel
+      ConfirmNeed = False
+      Imageid = REC_cancel
+      BtnShowCaption = True
+      BtnWidth = 80
+      Caption = #1573#1604#1594#1575#1569
+      Hint = #1573#1604#1594#1575#1569
+      ShortCut = 112
+    end
+    object AmjAction5: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Aed_Post
+      ConfirmNeed = False
+      Imageid = REC_post
+      BtnShowCaption = True
+      BtnWidth = 80
+      Caption = #1581#1601#1592
+      Hint = #1581#1601#1592
+      ShortCut = 121
+    end
+  end
+end

@@ -1,0 +1,54 @@
+unit ZFoldersU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ImgList, DBActns, ActnList, DB, DBClient, Provider, ADODB,
+  Menus, Grids, DBGrids, ExtCtrls, Buttons, StdCtrls, jazDBGrid, GridsEh,
+  DBGridEh, DBGridEhGrouping, AmjSetU, RzPanel, AmjStandardU, JPG1U, AmjactionsU,
+  ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, EhLibVCL, DBAxisGridsEh;
+
+type
+  TZFoldersF = class(TJPG1F)
+    AmjAction1: TAmjAction;
+    procedure JQAfterInsert(DataSet: TDataSet);
+    procedure JQAfterOpen(DataSet: TDataSet);
+    procedure jqprntnamesetText(Sender:TField; const text:string );
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    Procedure FInit; Override;
+  end;
+
+
+implementation
+  uses JAppMainU;
+{$R *.dfm}
+
+Procedure TZFoldersF.FInit;
+begin
+  PCaption := '„Ã„Ê⁄«  «·„Ã·œ« ';
+end;
+
+procedure TZFoldersF.JQAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+JQ.FieldByName('ID').AsString := Japp.DB.Get_Seq;
+end;
+
+procedure TZFoldersF.JQAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+jq.makefieldreadwrite('prntname',jqprntnamesetText);
+end;
+
+procedure TZFoldersF.jqprntnamesetText(Sender:TField; const Text:string);
+begin
+   if japp.LookUp_ZITEM_GROUP.dosearchov(Text,jq.FieldByName('PRNTID').AsString) then begin
+     jq.fieldbyname('PRNTID').asstring :=japp.LookUp_ZITEM_GROUP.IDValue;
+     jq.fieldbyname('prntname').asstring :=japp.LookUp_ZITEM_GROUP.NameValue;
+  end;
+end;
+end.

@@ -1,0 +1,228 @@
+inherited ZDocNewJSonf: TZDocNewJSonf
+  Width = 667
+  Height = 476
+  inherited JFTitle: TJPanel
+    Width = 667
+    Caption = #1573#1583#1582#1575#1604' '#1608#1579#1610#1602#1577
+    inherited JTitleImg: TImage
+      Left = 635
+      ExplicitLeft = 601
+    end
+  end
+  object Panel2: TPanel [1]
+    Left = 0
+    Top = 31
+    Width = 667
+    Height = 445
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 1
+    ExplicitWidth = 451
+    ExplicitHeight = 273
+    object Panel1: TPanel
+      Left = 0
+      Top = 0
+      Width = 667
+      Height = 585
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 0
+      ExplicitWidth = 451
+      object Panel3: TPanel
+        Left = -195
+        Top = 0
+        Width = 862
+        Height = 585
+        Align = alRight
+        BevelOuter = bvNone
+        TabOrder = 0
+        ExplicitLeft = -411
+        object GroupBox2: TGroupBox
+          Left = 131
+          Top = 30
+          Width = 755
+          Height = 123
+          Caption = #1576#1610#1575#1606#1575#1578' '#1575#1604#1608#1579#1610#1602#1577
+          TabOrder = 0
+          object Label12: TLabel
+            Left = 686
+            Top = 16
+            Width = 50
+            Height = 13
+            Caption = #1585#1602#1605' '#1575#1604#1608#1579#1610#1602#1577
+          end
+          object Label4: TLabel
+            Left = 684
+            Top = 43
+            Width = 56
+            Height = 13
+            Caption = #1575#1587#1605' '#1575#1604#1580#1583#1608#1604
+          end
+          object Label8: TLabel
+            Left = 386
+            Top = 16
+            Width = 42
+            Height = 13
+            Caption = #1575#1604#1605#1588#1585#1608#1593
+          end
+          object Label3: TLabel
+            Left = 336
+            Top = 40
+            Width = 92
+            Height = 13
+            Caption = #1575#1587#1605' '#1575#1604#1580#1583#1608#1604' '#1576#1575#1604#1593#1585#1576#1610#1577
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label1: TLabel
+            Left = 684
+            Top = 70
+            Width = 28
+            Height = 13
+            Caption = #1575#1604#1602#1575#1604#1576
+          end
+          object Label17: TLabel
+            Left = 686
+            Top = 98
+            Width = 64
+            Height = 13
+            Caption = #1578#1608#1589#1610#1601' '#1575#1604#1608#1579#1610#1602#1577
+          end
+          object DBEdit6: TDBEdit
+            Left = 434
+            Top = 13
+            Width = 230
+            Height = 21
+            DataField = 'ID'
+            DataSource = DQ
+            TabOrder = 0
+          end
+          object ZPROJID: TDMZEditFind
+            Left = 67
+            Top = 13
+            Width = 268
+            Height = 21
+            Hint = #1571#1583#1582#1604' '#1581#1585#1601' '#1571#1608' '#1603#1604#1605#1577' '#1571#1608' '#1571#1603#1579#1585' '#1579#1605' '#1575#1590#1594#1591' ENTER '#1604#1604#1576#1581#1579' .'
+            Color = clInfoBk
+            ParentShowHint = False
+            TabOrder = 1
+            TableName = 'jdms.JPROJECTS'
+            IDField = 'ID'
+            NameField = 'NAME'
+            NoField = 'ID'
+            OnFind = ZPROJIDFind
+            IDMustBeNumber = False
+            Delimater = ' - '
+            ChildsOnly = False
+          end
+          object DBEdit3: TDBEdit
+            Left = 434
+            Top = 40
+            Width = 230
+            Height = 21
+            DataField = 'TABLE_NAME'
+            DataSource = DQ
+            TabOrder = 2
+          end
+          object DBEdit1: TDBEdit
+            Left = 67
+            Top = 40
+            Width = 268
+            Height = 21
+            DataField = 'TABLE_NAME_AR'
+            DataSource = DQ
+            TabOrder = 3
+          end
+          object ZTMPLTID: TDMZEditFind
+            Left = 434
+            Top = 67
+            Width = 230
+            Height = 21
+            Hint = #1571#1583#1582#1604' '#1581#1585#1601' '#1571#1608' '#1603#1604#1605#1577' '#1571#1608' '#1571#1603#1579#1585' '#1579#1605' '#1575#1590#1594#1591' ENTER '#1604#1604#1576#1581#1579' .'
+            Color = clInfoBk
+            ParentShowHint = False
+            TabOrder = 4
+            TableName = 'jdms.T_METADATA'
+            IDField = 'ID'
+            NameField = 'TABLE_NAME'
+            NoField = 'ID'
+            OnFind = ZTMPLTIDFind
+            IDMustBeNumber = False
+            Delimater = ' - '
+            ChildsOnly = False
+          end
+        end
+        object JSonMemo: TMemo
+          Left = 0
+          Top = 320
+          Width = 862
+          Height = 265
+          Align = alBottom
+          Lines.Strings = (
+            'JSonMemo')
+          ScrollBars = ssBoth
+          TabOrder = 1
+        end
+        object MemoOut: TMemo
+          Left = 677
+          Top = 147
+          Width = 185
+          Height = 89
+          Lines.Strings = (
+            'MemoOut')
+          ScrollBars = ssBoth
+          TabOrder = 2
+        end
+        object MemoGen: TMemo
+          Left = 467
+          Top = 150
+          Width = 185
+          Height = 89
+          Lines.Strings = (
+            'MemoOut')
+          ScrollBars = ssBoth
+          TabOrder = 3
+        end
+      end
+    end
+  end
+  inherited JRActions: TAmjActionList
+    AmjActionBar.Enabled = False
+    ParentDraw = Owner
+    Left = 274
+    Top = 297
+  end
+  inherited DQ: TDataSource
+    Left = 224
+    Top = 293
+  end
+  inherited JQ: TAmjSet
+    CommandText = 
+      'Select T_METADATA.*'#13#10'from jdms.T_METADATA'#13#10'where T_METADATA.id =' +
+      ':pid'#13#10'and PROJID =  :pjid'#13#10
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pid'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pjid'
+        ParamType = ptUnknown
+      end>
+    SQL.Strings = (
+      'Select T_METADATA.*'
+      'from jdms.T_METADATA'
+      'where T_METADATA.id =:pid'
+      'and PROJID =  :pjid')
+    AmjTblName = 'T_METADATA'
+    AmjUser = 'jdms'
+    Left = 192
+    Top = 301
+  end
+end

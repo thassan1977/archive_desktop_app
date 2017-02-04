@@ -1,0 +1,328 @@
+unit GUIUnit;
+
+interface
+
+uses Windows, SysUtils, Classes, Graphics, Forms, Controls, Menus,
+  StdCtrls, Dialogs, Buttons, Messages, ExtCtrls, ComCtrls, StdActns,
+  ActnList, ToolWin, ImgList, ExtDlgs;
+
+type
+  TMainForm1 = class(TForm)
+    MainMenu1: TMainMenu;
+    File1: TMenuItem;
+    FileNewItem: TMenuItem;
+    FileOpenItem: TMenuItem;
+    Close1: TMenuItem;
+    Window1: TMenuItem;
+    Help1: TMenuItem;
+    N1: TMenuItem;
+    WindowCascadeItem: TMenuItem;
+    WindowTileItem: TMenuItem;
+    WindowArrangeItem: TMenuItem;
+    HelpAboutItem: TMenuItem;
+    OpenDialog: TOpenDialog;
+    FileSaveAsItem: TMenuItem;
+    Edit1: TMenuItem;
+    CutItem: TMenuItem;
+    CopyItem: TMenuItem;
+    PasteItem: TMenuItem;
+    WindowMinimizeItem: TMenuItem;
+    StatusBar: TStatusBar;
+    ActionList1: TActionList;
+    EditCut1: TEditCut;
+    EditCopy1: TEditCopy;
+    EditPaste1: TEditPaste;
+    FileNew1: TAction;
+    FileSave1: TAction;
+    FileExit1: TAction;
+    FileOpen1: TAction;
+    FileSaveAs1: TAction;
+    WindowCascade1: TWindowCascade;
+    WindowTileHorizontal1: TWindowTileHorizontal;
+    WindowArrangeAll1: TWindowArrange;
+    WindowMinimizeAll1: TWindowMinimizeAll;
+    HelpAbout1: TAction;
+    FileClose1: TWindowClose;
+    WindowTileVertical1: TWindowTileVertical;
+    WindowTileItem2: TMenuItem;
+    ToolBar2: TToolBar;
+    ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
+    ToolButton9: TToolButton;
+    ToolButton7: TToolButton;
+    ToolButton8: TToolButton;
+    ToolButton10: TToolButton;
+    ToolButton11: TToolButton;
+    ImageList1: TImageList;
+    OpenPictureDialog1: TOpenPictureDialog;
+    SavePictureDialog1: TSavePictureDialog;
+    StatusBar1: TStatusBar;
+    SavePicture: TMenuItem;
+    Exit1: TMenuItem;
+    Image: TMenuItem;
+    Histogram1: TMenuItem;
+    Brightness1: TMenuItem;
+    Contrast1: TMenuItem;
+    Invert1: TMenuItem;
+    GrayScale1: TMenuItem;
+    threshold1: TMenuItem;
+    estMessageProcess1: TMenuItem;
+    procedure FileNew1Execute(Sender: TObject);
+    procedure FileOpen1Execute(Sender: TObject);
+    procedure HelpAbout1Execute(Sender: TObject);
+    procedure FileExit1Execute(Sender: TObject);
+    procedure SavePictureClick(Sender: TObject);
+    procedure Close1Click(Sender: TObject);
+    procedure Exit1Click(Sender: TObject);
+    procedure Histogram1Click(Sender: TObject);
+    procedure Brightness1Click(Sender: TObject);
+    procedure Contrast1Click(Sender: TObject);
+    procedure Invert1Click(Sender: TObject);
+    procedure GrayScale1Click(Sender: TObject);
+    procedure threshold1Click(Sender: TObject);
+    procedure estMessageProcess1Click(Sender: TObject);
+  private
+    { Private declarations }
+    procedure CreateMDIChild(const Name: string);
+  public
+    { Public declarations }
+  end;
+
+var
+  MainForm1: TMainForm1;
+
+implementation
+
+{$R *.dfm}
+
+uses CHILDWIN, about, ImageUnit,ActiveX, HistogramUnit, BrightnessUnit,
+  ContrastUnit, ThresholdUnit, TestMessageU;
+
+procedure TMainForm1.Brightness1Click(Sender: TObject);
+begin
+if ImageForm<>nil then
+begin
+ImageForm:=TImageForm(ActiveMDIChild);
+try
+begin
+Application.CreateForm(TBrightnessForm,BrightnessForm);
+Brightnessform.SetBrightness(ImageForm.Image1);
+end;
+except
+BrightnessForm.Free;
+ShowMessage('Cannot complete the operation');
+end;
+end;
+end;
+
+procedure TMainForm1.Close1Click(Sender: TObject);
+begin
+  try
+     ActiveMDIChild.Close;
+   except
+     ShowMessage('Operation is not completed');
+   end;
+end;
+
+procedure TMainForm1.Contrast1Click(Sender: TObject);
+begin
+if ImageForm<>nil then
+begin
+ImageForm:=TImageForm(ActiveMDIChild);
+try
+begin
+Application.CreateForm(TContrastForm,ContrastForm);
+ContrastForm.SetContrast(ImageForm.Image1);
+end;
+except
+ContrastForm.Free;
+ShowMessage('Cannot complete the operation');
+end;
+end;
+end;
+
+procedure TMainForm1.CreateMDIChild(const Name: string);
+var
+  Child: TMDIChild;
+begin
+  { create a new MDI child window }
+  Child := TMDIChild.Create(Application);
+  Child.Caption := Name;
+  if FileExists(Name) then Child.Memo1.Lines.LoadFromFile(Name);
+end;
+
+procedure TMainForm1.estMessageProcess1Click(Sender: TObject);
+var testForm1 :TTestForm1;
+begin
+application.CreateForm(TTestForm1,TestForm1);
+testForm1.Showmodal;
+testForm1.Free;
+end;
+
+procedure TMainForm1.Exit1Click(Sender: TObject);
+begin
+Close;
+end;
+
+procedure TMainForm1.FileNew1Execute(Sender: TObject);
+begin
+  CreateMDIChild('NONAME' + IntToStr(MDIChildCount + 1));
+end;
+
+procedure TMainForm1.FileOpen1Execute(Sender: TObject);
+{begin
+  if OpenDialog.Execute then
+    CreateMDIChild(OpenDialog.FileName); //}
+var
+formatInfo:string;
+begin
+if OpenPictureDialog1.Execute then
+begin
+Application.CreateForm(TImageForm, ImageForm);
+ImageForm.Image1.Picture.LoadFromFile(
+OpenPictureDialog1.FileName);
+ImageForm.ClientHeight:=
+  ImageForm.Image1.Picture.Height;
+ImageForm.ClientWidth:=
+  ImageForm.Image1.Picture.Width;
+case (ImageForm.Image1.Picture.Bitmap.PixelFormat) of
+  pf1bit : formatInfo:='Binary';
+  pf8bit : formatInfo:='Gray scale';
+  pf24bit: formatInfo:='True color';
+end;
+StatusBar1.SimpleText:= OpenPictureDialog1.FileName +' '+
+  IntToStr(ImageForm.Image1.Picture.Width) + 'x'+
+    IntToStr(ImageForm.Image1.Picture.Height) + ' '+
+      formatInfo;
+end;
+end;
+
+procedure TMainForm1.GrayScale1Click(Sender: TObject);
+var
+i,j:integer;
+ptr:PByteArray;
+begin
+try
+ ImageForm:=TImageForm(ActiveMDIChild);
+// for i:=0 to (ImageForm.Image1.Height-1) do
+ for i:=0 to (ImageForm.Image1.Picture.Bitmap.Height-1  ) do
+ begin
+   ptr:=ImageForm.Image1.Picture.Bitmap.ScanLine[i];
+   //for j:=0 to (ImageForm.Image1.Width-1) do
+   for j:=0 to (ImageForm.Image1.Picture.Bitmap.Width-1) do
+   begin
+     if ImageForm.Image1.Picture.Bitmap.PixelFormat
+       =pf24bit then
+     begin
+      ptr[3*j]:=round(0.114* ptr[3*j]
+         +0.587*ptr[3*j+1] + 0.299*ptr[3*j+2]);  //}
+       ptr[3*j+1]:=ptr[3*j];
+       ptr[3*j+2]:=ptr[3*j];
+     end;
+   end;
+//   ImageForm.Image1.Refresh;
+ end;
+ ImageForm.Image1.Refresh;
+ except
+   ShowMessage('Cannot complete the operation');
+ end
+end;
+
+procedure TMainForm1.HelpAbout1Execute(Sender: TObject);
+begin
+  AboutBox.ShowModal;
+end;
+
+procedure TMainForm1.Histogram1Click(Sender: TObject);
+begin
+if ImageForm<>nil then
+begin
+  ImageForm:=TImageForm(ActiveMDIChild);
+  try
+  begin
+    Application.CreateForm(THistogramForm,HistogramForm);
+    HistogramForm.ShowHistogram(ImageForm.Image1);
+  end;
+  except
+    HistogramForm.Free;
+    ShowMessage('Cannot complete the operation');
+  end;
+end;
+end;
+
+procedure TMainForm1.threshold1Click(Sender: TObject);
+begin
+if ImageForm<>nil then
+begin
+  ImageForm:=TImageForm(ActiveMDIChild);
+  try
+  begin
+    Application.CreateForm(TThresholdForm,ThresholdForm);
+    ThresholdForm.SetThreshold(ImageForm.Image1);
+  end;
+  except
+    ThresholdForm.Free;
+    ShowMessage('Cannot complete the operation');
+  end;
+end;
+end;
+
+procedure TMainForm1.Invert1Click(Sender: TObject);
+var
+i,j:integer;
+ptr:PByteArray;
+begin
+try
+ ImageForm:=TImageForm(ActiveMDIChild);
+ for i:=0 to (ImageForm.Image1.Height-1) do
+ begin
+   ptr:=ImageForm.Image1.Picture.Bitmap.ScanLine[i];
+   for j:=0 to (ImageForm.Image1.Width-1) do
+   begin
+     if ImageForm.Image1.Picture.Bitmap.PixelFormat
+       =pf8bit then ptr[j]:=255-ptr[j];
+     if ImageForm.Image1.Picture.Bitmap.PixelFormat
+       =pf24bit then
+     begin
+       ptr[3*j]:=255-ptr[3*j];
+       ptr[3*j+1]:=255-ptr[3*j+1];
+       ptr[3*j+2]:=255-ptr[3*j+2];
+     end;
+   end;
+ //  ImageForm.Image1.Refresh; to prevent flickering move it out
+ end;
+ ImageForm.Image1.Refresh;
+ except
+   ShowMessage('Cannot complete the operation');
+ end
+end;
+
+procedure TMainForm1.SavePictureClick(Sender: TObject);
+begin
+try
+begin
+ if SavePictureDialog1.Execute then
+     TImageForm(ActiveMDIChild).Image1.Picture.SaveToFile(
+ SavePictureDialog1.FileName);
+end
+except
+     ShowMessage('Operation is not complete');
+end;
+end;
+
+procedure TMainForm1.FileExit1Execute(Sender: TObject);
+begin
+  Close;
+end;
+
+
+
+initialization
+OleInitialize(nil);
+finalization
+OleUninitialize
+end.

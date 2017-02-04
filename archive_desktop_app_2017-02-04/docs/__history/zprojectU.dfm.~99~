@@ -1,0 +1,1118 @@
+inherited zprojectF: TzprojectF
+  Width = 776
+  Height = 497
+  object Panel1: TPanel [0]
+    Left = 0
+    Top = 31
+    Width = 773
+    Height = 466
+    Align = alLeft
+    BevelOuter = bvNone
+    TabOrder = 1
+    object JPnlHead: TJPanel
+      Left = 0
+      Top = 0
+      Width = 773
+      Height = 466
+      Align = alClient
+      TabOrder = 0
+      ExplicitWidth = 721
+      ExplicitHeight = 273
+      object AmjSplitter1: TAmjSplitter
+        Left = 0
+        Top = 0
+        Width = 773
+        Height = 16
+        Cursor = crVSplit
+        Align = alTop
+        ExplicitTop = 217
+        ExplicitWidth = 721
+      end
+      object JBodyPnl: TJPanel
+        Left = 0
+        Top = 145
+        Width = 773
+        Height = 321
+        Align = alClient
+        Caption = #1608#1579#1575#1574#1602' '#1575#1604#1605#1588#1585#1608#1593
+        TabOrder = 0
+        object JMainPages: TJPages
+          AlignWithMargins = True
+          Left = 3
+          Top = 9
+          Width = 767
+          Height = 350
+          ActivePage = BillTS
+          Align = alBottom
+          BoldCurrentTab = True
+          FlatColor = 10263441
+          HotTrackStyle = htsTabBar
+          ShowCloseButton = True
+          ShowCloseButtonOnActiveTab = True
+          ShowMenuButton = True
+          TabColors.HighlightBar = 1350640
+          TabIndex = 0
+          TabOrder = 0
+          TabSequence = tsReverse
+          TabStyle = tsBackSlant
+          UseGradients = False
+          ExplicitTop = -49
+          ExplicitWidth = 715
+          FixedDimension = 19
+          object BillTS: TRzTabSheet
+            Caption = #1605#1593#1604#1608#1605#1575#1578' '#1575#1604#1605#1604#1601
+            ExplicitWidth = 713
+            object JazDBGrid3: TJazDBGrid
+              Left = 0
+              Top = 0
+              Width = 765
+              Height = 329
+              Align = alClient
+              DataSource = dq3
+              DynProps = <>
+              FooterParams.Color = clWindow
+              IndicatorOptions = [gioShowRowIndicatorEh]
+              EmptyDataInfo.Active = True
+              EmptyDataInfo.Text = #1604#1575' '#1610#1608#1580#1583' '#1576#1610#1575#1606#1575#1578
+              ReadOnly = True
+              TabOrder = 0
+              TitleParams.MultiTitle = True
+              Columns = <
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'prjname'
+                  Footers = <>
+                  Title.Caption = #1575#1587#1605' '#1575#1604#1605#1588#1585#1608#1593
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'FILENAME'
+                  Footers = <>
+                  Title.Caption = #1575#1587#1605' '#1575#1604#1605#1604#1601
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'FILELINK'
+                  Footers = <>
+                  Title.Caption = #1585#1575#1576#1591' '#1575#1604#1605#1604#1601
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'FILEFORMAT'
+                  Footers = <>
+                  Title.Caption = #1589#1610#1594#1577' '#1575#1604#1605#1604#1601
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'VIEWCO'
+                  Footers = <>
+                  Title.Caption = #1593#1583#1583' '#1605#1585#1575#1578' '#1575#1604#1605#1588#1575#1607#1583#1577
+                  Width = 60
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'DOWNLOADCO'
+                  Footers = <>
+                  Title.Caption = #1593#1583#1583' '#1605#1585#1575#1578' '#1575#1604#1578#1581#1605#1610#1604
+                  Title.SortIndex = 1
+                  Title.SortMarker = smUpEh
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'ISDELETED'
+                  Footers = <>
+                  Title.Caption = #1605#1581#1584#1608#1601#1577#1567
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'ISACTIVE'
+                  Footers = <>
+                  Title.Caption = #1601#1593#1575#1604#1577#1567
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'NOTE'
+                  Footers = <>
+                  Title.Caption = #1605#1604#1575#1581#1592#1575#1578
+                  Width = 75
+                end>
+              object RowDetailData: TRowDetailPanelControlEh
+              end
+            end
+          end
+          object PictsTS: TRzTabSheet
+            Caption = #1589#1608#1585' '#1575#1604#1608#1579#1575#1574#1602
+            ExplicitWidth = 713
+            object ImageScrollBox: TImageScrollBox
+              Left = 0
+              Top = 0
+              Width = 464
+              Height = 329
+              HorzScrollBar.Tracking = True
+              HorzScrollBar.Visible = False
+              VertScrollBar.Tracking = True
+              VertScrollBar.Visible = False
+              ZoomMode = zmFitWidth
+              ZoomPercent = 100.000000000000000000
+              MouseHandlerOwnership = True
+              Align = alClient
+              TabOrder = 0
+              ExplicitWidth = 412
+            end
+            object Panel2: TPanel
+              Left = 464
+              Top = 0
+              Width = 301
+              Height = 329
+              Align = alRight
+              BevelOuter = bvNone
+              TabOrder = 1
+              ExplicitLeft = 412
+              object JPanel2: TJPanel
+                Left = 0
+                Top = 105
+                Width = 301
+                Height = 224
+                Align = alBottom
+                TabOrder = 0
+                object JPanel3: TJPanel
+                  Left = 0
+                  Top = 0
+                  Width = 301
+                  Height = 25
+                  Align = alTop
+                  Alignment = taRightJustify
+                  Color = clActiveCaption
+                  TabOrder = 0
+                  object Image1: TImage
+                    Left = 196
+                    Top = 0
+                    Width = 105
+                    Height = 25
+                    Align = alRight
+                    ExplicitLeft = 560
+                    ExplicitTop = -2
+                    ExplicitHeight = 81
+                  end
+                end
+                object ProgressBar: TProgressBar
+                  Left = 30
+                  Top = 72
+                  Width = 150
+                  Height = 17
+                  TabOrder = 1
+                  Visible = False
+                end
+                object DBMemo1: TDBMemo
+                  Left = 0
+                  Top = 25
+                  Width = 301
+                  Height = 199
+                  Align = alClient
+                  DataField = 'NOTE'
+                  DataSource = DqDOCFILES
+                  TabOrder = 2
+                end
+              end
+              object JazDBGrid2: TJazDBGrid
+                Left = 0
+                Top = 0
+                Width = 301
+                Height = 105
+                Align = alClient
+                DataSource = DataSource1
+                DynProps = <>
+                FooterParams.Color = clWindow
+                ImeMode = imDisable
+                IndicatorOptions = [gioShowRowIndicatorEh]
+                TabOrder = 1
+                TitleParams.MultiTitle = True
+                Columns = <
+                  item
+                    DynProps = <>
+                    EditButtons = <>
+                    FieldName = 'FILENAME'
+                    Footers = <>
+                    Title.Caption = #1575#1587#1605' '#1575#1604#1605#1604#1601
+                    Width = 75
+                  end
+                  item
+                    DynProps = <>
+                    EditButtons = <>
+                    FieldName = 'FILELINK'
+                    Footers = <>
+                    Title.Caption = #1585#1575#1576#1591' '#1575#1604#1605#1604#1601
+                    Title.SortIndex = 1
+                    Title.SortMarker = smDownEh
+                    Width = 75
+                  end
+                  item
+                    DynProps = <>
+                    EditButtons = <>
+                    FieldName = 'FILEFORMAT'
+                    Footers = <>
+                    Title.Caption = #1589#1610#1594#1577' '#1575#1604#1605#1604#1601
+                    Width = 75
+                  end
+                  item
+                    DynProps = <>
+                    EditButtons = <>
+                    FieldName = 'NOTE'
+                    Footers = <>
+                    Title.Caption = #1605#1604#1575#1581#1592#1575#1578
+                    Width = 75
+                  end>
+                object RowDetailData: TRowDetailPanelControlEh
+                end
+              end
+            end
+          end
+          object SubCtrctTS: TRzTabSheet
+            Caption = #1573#1589#1583#1575#1585#1575#1578' '#1575#1604#1605#1604#1601' '#1575#1604#1581#1575#1604#1610
+            ExplicitWidth = 713
+            object JazDBGrid1: TJazDBGrid
+              Left = 0
+              Top = 0
+              Width = 765
+              Height = 329
+              Align = alClient
+              DataSource = DataSource2
+              DynProps = <>
+              FooterParams.Color = clWindow
+              IndicatorOptions = [gioShowRowIndicatorEh]
+              ReadOnly = True
+              TabOrder = 0
+              Columns = <
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'prjname'
+                  Footers = <>
+                  Title.Caption = #1575#1587#1605' '#1575#1604#1605#1588#1585#1608#1593
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'filen'
+                  Footers = <>
+                  Title.Caption = #1575#1587#1605' '#1575#1604#1581#1602#1604
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'FILENAME'
+                  Footers = <>
+                  Title.Caption = #1575#1587#1605' '#1575#1604#1605#1604#1601
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'FILELINK'
+                  Footers = <>
+                  Title.Caption = #1585#1575#1576#1591' '#1575#1604#1605#1604#1601
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'FILEFORMAT'
+                  Footers = <>
+                  Title.Alignment = taCenter
+                  Title.Caption = #1589#1610#1594#1577' '#1575#1604#1605#1604#1601
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'VIEWCO'
+                  Footers = <>
+                  Title.Caption = #1593#1583#1583' '#1605#1585#1575#1578' '#1575#1604#1605#1588#1575#1607#1583#1577
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'DOWNLOADCO'
+                  Footers = <>
+                  Title.Alignment = taCenter
+                  Title.Caption = #1593#1583#1583' '#1605#1585#1575#1578' '#1575#1604#1578#1581#1605#1610#1604
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'ISDELETED'
+                  Footers = <>
+                  Title.Alignment = taCenter
+                  Title.Caption = #1605#1581#1584#1608#1601#1577#1567
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'ISACTIVE'
+                  Footers = <>
+                  Title.Alignment = taCenter
+                  Title.Caption = #1601#1593#1575#1604#1577#1567
+                  Width = 75
+                end
+                item
+                  DynProps = <>
+                  EditButtons = <>
+                  FieldName = 'NOTE'
+                  Footers = <>
+                  Title.Alignment = taCenter
+                  Title.Caption = #1605#1604#1575#1581#1592#1575#1578
+                  Width = 75
+                end>
+              object RowDetailData: TRowDetailPanelControlEh
+              end
+            end
+          end
+        end
+      end
+      object JGrid1: TJazDBGrid
+        Left = 0
+        Top = 16
+        Width = 773
+        Height = 129
+        Align = alTop
+        DataSource = dq2
+        DynProps = <>
+        FooterParams.Color = clWindow
+        IndicatorOptions = [gioShowRowIndicatorEh]
+        EmptyDataInfo.Active = True
+        EmptyDataInfo.Text = #1604#1575' '#1610#1608#1580#1583' '#1576#1610#1575#1606#1575#1578
+        ReadOnly = True
+        TabOrder = 1
+        TitleParams.MultiTitle = True
+        Columns = <
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'prjname'
+            Footers = <>
+            Title.Caption = #1575#1587#1605' '#1575#1604#1605#1588#1585#1608#1593
+            Width = 75
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'NO'
+            Footers = <>
+            Title.Caption = #1585#1602#1605' '#1575#1604#1608#1579#1610#1602#1577
+            Width = 75
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DAT'
+            Footers = <>
+            Title.Caption = #1578#1575#1585#1610#1582' '#1575#1604#1608#1579#1610#1602#1577
+            Width = 75
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'dstname'
+            Footers = <>
+            Title.Caption = #1575#1604#1605#1589#1583#1585
+            Width = 75
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'NAME'
+            Footers = <>
+            Title.Caption = #1575#1604#1575#1587#1605
+            Width = 75
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'stsname'
+            Footers = <>
+            Title.Caption = #1581#1575#1604#1577' '#1575#1604#1608#1579#1610#1602#1577
+            Width = 75
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'ISDELETED'
+            Footers = <>
+            Title.Caption = #1605#1581#1584#1608#1601#1577#1567
+            Width = 75
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'ISACTIVE'
+            Footers = <>
+            Title.Caption = #1601#1593#1575#1604#1577#1567
+            Width = 75
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'VIEWCO'
+            Footers = <>
+            Title.Caption = #1593#1583#1583' '#1605#1585#1575#1578' '#1575#1604#1605#1588#1575#1607#1583#1577
+            Width = 75
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'tmpname'
+            Footers = <>
+            Title.Caption = #1575#1587#1605' '#1575#1604#1602#1575#1604#1576
+            Width = 75
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'secname'
+            Footers = <>
+            Title.Caption = #1605#1587#1578#1608#1609' '#1575#1604#1587#1585#1610#1577
+            Width = 75
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'NOTE'
+            Footers = <>
+            Title.Caption = #1605#1604#1575#1581#1592#1575#1578
+            Width = 75
+          end>
+        object RowDetailData: TRowDetailPanelControlEh
+        end
+      end
+    end
+  end
+  inherited JFTitle: TJPanel
+    Width = 776
+    Caption = #1608#1579#1575#1574#1602' '#1575#1604#1605#1588#1585#1608#1593
+    inherited JTitleImg: TImage
+      Left = 744
+      ExplicitLeft = 732
+    end
+  end
+  inherited JRActions: TAmjActionList
+    AmjActionBar.Enabled = False
+    ParentDraw = nil
+    Left = 626
+    Top = 92
+    object AmjAction1: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = ATree_Trees
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      Caption = 'AmjAction1'
+      ShortCut = 112
+    end
+    object AmjAction3: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Anv_nav
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      Caption = 'AmjAction2'
+      ShortCut = 112
+    end
+    object AmjAction4: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = AData_Refresh
+      ConfirmNeed = False
+      Imageid = data_refresh
+      BtnShowCaption = False
+      Caption = 'AmjAction2'
+      Hint = #1578#1581#1583#1610#1579' '#1575#1604#1576#1610#1575#1606#1575#1578
+      ShortCut = 119
+    end
+  end
+  inherited DQ: TDataSource
+    Left = 576
+    Top = 208
+  end
+  inherited JQ: TAmjSet
+    CommandText = 
+      'select jedms.FOLDERS.*,'#13#10' ID || '#39' - '#39' || name NodeName'#13#10'from jed' +
+      'ms.FOLDERS'#13#10
+    AfterScroll = JQAfterScroll
+    SQL.Strings = (
+      'select jedms.FOLDERS.*,'
+      ' ID || '#39' - '#39' || name NodeName'
+      'from jedms.FOLDERS')
+    AmjTblName = 'FOLDERS'
+    AmjUser = 'jedms'
+    Left = 608
+    Top = 256
+  end
+  object dq2: TDataSource
+    DataSet = jq2
+    Left = 168
+    Top = 104
+  end
+  object JRActions2: TAmjActionList
+    FilterVisible = False
+    DbGrid = JGrid1
+    DataSource = dq2
+    AmjActionBar.BtnLayout = blGlyphLeft
+    AmjActionBar.BtnShowCaption = False
+    AmjActionBar.Visible = False
+    AmjActionBar.Enabled = False
+    AmjActionBar.ToolHeight = 28
+    AmjActionBar.ShowShortCut = False
+    ParentDraw = Owner
+    Left = 402
+    Top = 108
+    object AmjAction5: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Anv_nav
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      Caption = 'AmjAction2'
+      ShortCut = 112
+    end
+    object AmjAction11: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = AData_Refresh
+      ConfirmNeed = False
+      Imageid = data_refresh
+      BtnShowCaption = False
+      Caption = 'AmjAction2'
+      Hint = #1578#1581#1583#1610#1579' '#1575#1604#1576#1610#1575#1606#1575#1578
+      ShortCut = 119
+    end
+    object new: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = True
+      BtnWidth = 75
+      Caption = #1580#1583#1610#1583
+      ShortCut = 112
+      OnHandle = newHandle
+    end
+    object edit: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = True
+      BtnWidth = 75
+      Caption = #1578#1593#1583#1610#1604
+      ShortCut = 112
+      OnHandle = editHandle
+    end
+    object AmjAction10: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Aed_Delete
+      ConfirmNeed = True
+      ConfirmMsg = #1607#1604' '#1578#1585#1610#1583' '#1581#1584#1601' '#1575#1604#1587#1580#1604' '#1575#1604#1605#1581#1583#1583#1567
+      Imageid = REC_del
+      BtnShowCaption = False
+      Caption = #1581#1584#1601' '#1575#1604#1587#1580#1604
+      Hint = #1581#1584#1601' '#1575#1604#1587#1580#1604
+      ShortCut = 112
+    end
+  end
+  object dq3: TDataSource
+    DataSet = jq3
+    Left = 624
+    Top = 440
+  end
+  object jq2: TAmjSet
+    Aggregates = <>
+    CommandText = 
+      'select jedms.DOC.*, ZPROJ.NAME prjname, ZDEST.NAME dstname,'#13#10'ZST' +
+      'ATUS.NAME stsname,ZTMPLT.NAME tmpname,zsecret.NAME secname'#13#10'from' +
+      ' jedms.DOC,jedms.ZPROJ,JEDMS.ZDEST,JEDMS.ZSTATUS,JEDMS.ZTMPLT,JE' +
+      'DMS.zsecret,jedms.FOLDERS'#13#10'where DOC.ZPROJID=zproj.id(+)'#13#10'and DO' +
+      'C.ZSRCID=zdest.id(+)'#13#10'and DOC.ZSTATUSID=zstatus.id(+)'#13#10'and DOC.Z' +
+      'TMPLTID=ztmplt.id(+)'#13#10'and DOC.ZSECRETID=zsecret.id(+)'#13#10'and DOC.f' +
+      'olderid=FOLDERS.id'#13#10
+    Params = <>
+    AfterScroll = jq2AfterScroll
+    AmjCachedUpdates = False
+    AmjProviderOpt = [poAllowCommandText, poUseQuoteChar]
+    SQL.Strings = (
+      'select jedms.DOC.*, ZPROJ.NAME prjname, ZDEST.NAME dstname,'
+      'ZSTATUS.NAME stsname,ZTMPLT.NAME tmpname,zsecret.NAME secname'
+      
+        'from jedms.DOC,jedms.ZPROJ,JEDMS.ZDEST,JEDMS.ZSTATUS,JEDMS.ZTMPL' +
+        'T,JEDMS.zsecret,jedms.FOLDERS'
+      'where DOC.ZPROJID=zproj.id(+)'
+      'and DOC.ZSRCID=zdest.id(+)'
+      'and DOC.ZSTATUSID=zstatus.id(+)'
+      'and DOC.ZTMPLTID=ztmplt.id(+)'
+      'and DOC.ZSECRETID=zsecret.id(+)'
+      'and DOC.folderid=FOLDERS.id')
+    AmjExcludFlds.Strings = (
+      '')
+    AmjTblName = 'DOC'
+    AmjUser = 'jedms'
+    Left = 272
+    Top = 104
+  end
+  object jq3: TAmjSet
+    Aggregates = <>
+    CommandText = 
+      'select jedms.DOC_FILES.*, ZPROJ.NAME prjname'#13#10'from jedms.DOC_FIL' +
+      'ES,jedms.ZPROJ'#13#10'where DOC_FILES.PROJID=zproj.id'#13#10'and DOC_FILES.D' +
+      'OCID=:pid'#13#10
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pid'
+        ParamType = ptUnknown
+      end>
+    BeforeOpen = jq3BeforeOpen
+    AmjCachedUpdates = False
+    AmjProviderOpt = [poAllowCommandText, poUseQuoteChar]
+    SQL.Strings = (
+      'select jedms.DOC_FILES.*, ZPROJ.NAME prjname'
+      'from jedms.DOC_FILES,jedms.ZPROJ'
+      'where DOC_FILES.PROJID=zproj.id'
+      'and DOC_FILES.DOCID=:pid')
+    AmjTblName = 'DOC_FILES'
+    AmjUser = 'jedms'
+    Left = 632
+    Top = 504
+  end
+  object JRActions3: TAmjActionList
+    FilterVisible = False
+    DbGrid = JazDBGrid3
+    DataSource = dq3
+    AmjActionBar.BtnLayout = blGlyphLeft
+    AmjActionBar.BtnShowCaption = False
+    AmjActionBar.Visible = False
+    AmjActionBar.Enabled = False
+    AmjActionBar.ToolHeight = 28
+    AmjActionBar.ShowShortCut = False
+    ParentDraw = BillTS
+    Left = 610
+    Top = 372
+    object AmjAction8: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Anv_nav
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      Caption = 'AmjAction2'
+      ShortCut = 112
+    end
+    object AmjAction6: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = AData_Refresh
+      ConfirmNeed = False
+      Imageid = data_refresh
+      BtnShowCaption = False
+      Caption = 'AmjAction2'
+      Hint = #1578#1581#1583#1610#1579' '#1575#1604#1576#1610#1575#1606#1575#1578
+      ShortCut = 119
+    end
+    object newf: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = True
+      BtnWidth = 75
+      Caption = #1580#1583#1610#1583
+      ShortCut = 112
+    end
+    object editf: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = True
+      BtnWidth = 75
+      Caption = #1578#1593#1583#1610#1604
+      ShortCut = 112
+    end
+    object AmjAction2: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Aed_Delete
+      ConfirmNeed = True
+      ConfirmMsg = #1607#1604' '#1578#1585#1610#1583' '#1581#1584#1601' '#1575#1604#1587#1580#1604' '#1575#1604#1605#1581#1583#1583#1567
+      Imageid = REC_del
+      BtnShowCaption = False
+      Caption = #1581#1584#1601' '#1575#1604#1587#1580#1604
+      Hint = #1581#1584#1601' '#1575#1604#1587#1580#1604
+      ShortCut = 112
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = docjq
+    Left = 512
+    Top = 352
+  end
+  object docjq: TAmjSet
+    Aggregates = <>
+    CommandText = 
+      'select jedms.DOC_FILES.*, ZPROJ.NAME prjname'#13#10'from jedms.DOC_FIL' +
+      'ES,jedms.ZPROJ'#13#10'where DOC_FILES.PROJID=zproj.id'#13#10'and DOC_FILES.D' +
+      'OCID=:pid'#13#10
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pid'
+        ParamType = ptUnknown
+      end>
+    BeforeOpen = docjqBeforeOpen
+    AmjCachedUpdates = False
+    AmjProviderOpt = [poAllowCommandText, poUseQuoteChar]
+    SQL.Strings = (
+      'select jedms.DOC_FILES.*, ZPROJ.NAME prjname'
+      'from jedms.DOC_FILES,jedms.ZPROJ'
+      'where DOC_FILES.PROJID=zproj.id'
+      'and DOC_FILES.DOCID=:pid')
+    AmjTblName = 'DOC_FILES'
+    AmjUser = 'jedms'
+    Left = 536
+    Top = 448
+  end
+  object AmjActionList1: TAmjActionList
+    FilterVisible = False
+    DbGrid = JazDBGrid2
+    DataSource = DataSource1
+    AmjActionBar.BtnLayout = blGlyphLeft
+    AmjActionBar.BtnShowCaption = False
+    AmjActionBar.Visible = False
+    AmjActionBar.Enabled = False
+    AmjActionBar.ToolHeight = 28
+    AmjActionBar.ShowShortCut = False
+    ParentDraw = PictsTS
+    Left = 538
+    Top = 500
+    object AmjAction7: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Anv_nav
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      Caption = 'AmjActionVav'
+      ShortCut = 112
+    end
+    object AmjAction9: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_seprator
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      Caption = 'AmjActionsep1'
+      ShortCut = 112
+    end
+    object AmjAction12: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = AData_Refresh
+      ConfirmNeed = False
+      Imageid = data_refresh
+      BtnShowCaption = False
+      Caption = 'AmjActionRefresh'
+      Hint = #1578#1581#1583#1610#1579' '#1575#1604#1576#1610#1575#1606#1575#1578
+      ShortCut = 116
+    end
+    object ImageNewact: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = True
+      BtnWidth = 60
+      Caption = #1580#1583#1610#1583
+      Hint = #1580#1583#1610#1583
+      OnHandle = ImageNewactHandle
+    end
+    object ImageOpAct: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = True
+      BtnWidth = 60
+      Caption = #1593#1605#1604#1610#1575#1578
+      Hint = #1593#1605#1604#1610#1575#1578
+      OnHandle = ImageOpActHandle
+    end
+    object ImageViewAct: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_Custom
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = True
+      BtnWidth = 60
+      Caption = #1593#1585#1590
+      Hint = #1593#1585#1590
+      OnHandle = ImageViewActHandle
+    end
+  end
+  object DqDOCFILES: TDataSource
+    DataSet = qDOCFILES
+    Left = 592
+    Top = 776
+  end
+  object qDOCFILES: TAmjSet
+    Aggregates = <>
+    CommandText = 'select *'#13#10'from jfiles.DOCFILES'#13#10'where DOCID =:pid'#13#10#13#10
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pid'
+        ParamType = ptUnknown
+      end>
+    BeforeOpen = qDOCFILESBeforeOpen
+    AfterOpen = qDOCFILESAfterOpen
+    AfterInsert = qDOCFILESAfterInsert
+    AfterScroll = qDOCFILESAfterScroll
+    AmjCachedUpdates = False
+    AmjProviderOpt = [poAllowCommandText, poUseQuoteChar]
+    SQL.Strings = (
+      'select *'
+      'from jfiles.DOCFILES'
+      'where DOCID =:pid'
+      '')
+    AmjExcludFlds.Strings = (
+      'FDATA')
+    AmjTblName = 'DOCFILES'
+    AmjUser = 'jfiles'
+    Left = 664
+    Top = 768
+  end
+  object AmjActionList2: TAmjActionList
+    FilterVisible = False
+    DataSource = DqDOCFILES
+    AmjActionBar.BtnLayout = blGlyphLeft
+    AmjActionBar.BtnShowCaption = False
+    AmjActionBar.Visible = False
+    AmjActionBar.Enabled = False
+    AmjActionBar.ToolHeight = 28
+    AmjActionBar.ShowShortCut = False
+    ParentDraw = JPanel2
+    Left = 506
+    Top = 772
+    object AmjAction14: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Anv_nav
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      ShortCut = 112
+    end
+    object AmjAction26: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = AData_Refresh
+      ConfirmNeed = False
+      Imageid = data_refresh
+      BtnShowCaption = False
+      Caption = #1578#1581#1583#1610#1579' '#1575#1604#1576#1610#1575#1606#1575#1578
+      Hint = #1578#1581#1583#1610#1579' '#1575#1604#1576#1610#1575#1606#1575#1578
+      ShortCut = 119
+    end
+  end
+  object ImageNew: TPopupMenu
+    AutoHotkeys = maManual
+    Left = 136
+    Top = 344
+    object N5: TMenuItem
+      Caption = #1575#1582#1578#1610#1575#1585' '#1605#1575#1587#1581
+      OnClick = N5Click
+    end
+    object N6: TMenuItem
+      Caption = '-'
+    end
+    object N7: TMenuItem
+      Caption = #1605#1587#1581' '#1589#1608#1585#1577
+      OnClick = N7Click
+    end
+    object N8: TMenuItem
+      Caption = #1605#1587#1581' '#1605#1580#1605#1608#1593#1577' '#1589#1608#1585
+      OnClick = N8Click
+    end
+    object N9: TMenuItem
+      Caption = #1578#1581#1605#1610#1604' '#1605#1606' '#1605#1604#1601
+      OnClick = N9Click
+    end
+  end
+  object ImageView: TPopupMenu
+    AutoHotkeys = maManual
+    Left = 192
+    Top = 376
+    object N1: TMenuItem
+      Caption = #1575#1604#1581#1580#1605' '#1575#1604#1591#1576#1610#1593#1610
+      OnClick = N1Click
+    end
+    object N2: TMenuItem
+      Caption = #1603#1575#1605#1604' '#1575#1604#1589#1601#1581#1577
+      OnClick = N2Click
+    end
+    object N3: TMenuItem
+      Caption = #1593#1585#1590' '#1575#1604#1589#1601#1581#1577
+      OnClick = N3Click
+    end
+    object N4: TMenuItem
+      Caption = #1591#1608#1604' '#1575#1604#1589#1601#1581#1577
+      OnClick = N4Click
+    end
+    object N14: TMenuItem
+      Caption = '-'
+    end
+    object d1: TMenuItem
+      Caption = #1578#1603#1576#1610#1585
+      OnClick = d1Click
+    end
+    object N15: TMenuItem
+      Caption = #1578#1589#1594#1610#1585
+      OnClick = N15Click
+    end
+  end
+  object ImageOp: TPopupMenu
+    AutoHotkeys = maManual
+    Left = 88
+    Top = 352
+    object N10: TMenuItem
+      Caption = #1581#1601#1592' '#1601#1610' '#1605#1604#1601
+      OnClick = N10Click
+    end
+    object N11: TMenuItem
+      Caption = #1581#1584#1601
+    end
+    object N12: TMenuItem
+      Caption = #1591#1576#1575#1593#1577
+      OnClick = N12Click
+    end
+    object N13: TMenuItem
+      Caption = #1578#1583#1608#1610#1585
+      OnClick = N13Click
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 110
+    Top = 455
+  end
+  object DataSource2: TDataSource
+    DataSet = AmjSet1
+    Left = 401
+    Top = 336
+  end
+  object AmjSet1: TAmjSet
+    Aggregates = <>
+    CommandText = 
+      'select jedms.DOC_FILES_VERSION.*, ZPROJ.NAME prjname, ZFIELD.NAM' +
+      'E filen'#13#10'from jedms.DOC_FILES_VERSION,jedms.ZPROJ,JEDMS.ZFIELD'#13#10 +
+      'where DOC_FILES_VERSION.PROJID=zproj.id(+)'#13#10'and DOC_FILES_VERSIO' +
+      'N.FILEID=ZFIELD.id(+)'#13#10'and DOC_FILES_VERSION.DOCID=:pid'#13#10
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pid'
+        ParamType = ptUnknown
+      end>
+    BeforeOpen = AmjSet1BeforeOpen
+    AmjCachedUpdates = False
+    AmjProviderOpt = [poAllowCommandText, poUseQuoteChar]
+    SQL.Strings = (
+      
+        'select jedms.DOC_FILES_VERSION.*, ZPROJ.NAME prjname, ZFIELD.NAM' +
+        'E filen'
+      'from jedms.DOC_FILES_VERSION,jedms.ZPROJ,JEDMS.ZFIELD'
+      'where DOC_FILES_VERSION.PROJID=zproj.id(+)'
+      'and DOC_FILES_VERSION.FILEID=ZFIELD.id(+)'
+      'and DOC_FILES_VERSION.DOCID=:pid')
+    AmjExcludFlds.Strings = (
+      '')
+    AmjTblName = 'DOC_FILES_VERSION'
+    AmjUser = 'jedms'
+    Left = 400
+    Top = 408
+  end
+  object AmjActionList3: TAmjActionList
+    FilterVisible = False
+    DbGrid = JazDBGrid1
+    DataSource = DataSource2
+    AmjActionBar.BtnLayout = blGlyphLeft
+    AmjActionBar.BtnShowCaption = False
+    AmjActionBar.Visible = False
+    AmjActionBar.Enabled = False
+    AmjActionBar.ToolHeight = 28
+    AmjActionBar.ShowShortCut = False
+    ParentDraw = SubCtrctTS
+    Left = 386
+    Top = 468
+    object AmjAction13: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = Anv_nav
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      Caption = 'AmjActionVav'
+      ShortCut = 112
+    end
+    object AmjAction15: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = act_seprator
+      ConfirmNeed = False
+      Imageid = btn_nores
+      BtnShowCaption = False
+      Caption = 'AmjActionsep1'
+      ShortCut = 112
+    end
+    object AmjAction16: TAmjAction
+      Category = 'amwajSTD'
+      PrivOption = soParent
+      ActType = AData_Refresh
+      ConfirmNeed = False
+      Imageid = data_refresh
+      BtnShowCaption = False
+      Caption = 'AmjActionRefresh'
+      Hint = #1578#1581#1583#1610#1579' '#1575#1604#1576#1610#1575#1606#1575#1578
+      ShortCut = 116
+    end
+  end
+end

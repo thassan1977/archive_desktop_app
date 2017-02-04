@@ -1,0 +1,8 @@
+declare  P_RESULT SYS_REFCURSOR;
+       P_metadid jdms.T_METADATA.id%TYPE;
+       P_minlvl integer;
+begin
+jdms.ARCH_FRM_GEN.getMetaDataID('1', P_RESULT );
+fetch  P_RESULT into P_metadid, P_minlvl;
+DBMS_OUTPUT.PUT_LINE(P_metadid);
+end;

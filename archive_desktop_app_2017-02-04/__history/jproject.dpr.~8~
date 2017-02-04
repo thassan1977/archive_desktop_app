@@ -1,0 +1,18 @@
+﻿program jproject;
+uses
+  JPmasterU in '..\..\AmjPkg\Modules\JPmasterU.pas' {JPmaster: TFrame},
+  JPMainU in '..\..\AmjPkg\Modules\JPMainU.pas' {JPmain: TFrame},
+  AmjWordU in '..\..\AmjPkg\Modules\AmjWordU.pas',
+  JDests in '..\..\AmjPkg\Modules\JDests.pas',
+  JPG1U in '..\..\AmjPkg\Modules\JPG1U.pas' {JPG1F: TFrame},
+  JPG2U in '..\..\AmjPkg\Modules\JPG2U.pas' {JPG2F: TFrame},
+  JAppMainU in 'JMain\JAppMainU.pas',
+  AMJ_USERU in '..\JManager\manager\AMJ_USERU.pas' {AMJ_USERF: TFrame},
+  zprojectU in 'docs\zprojectU.pas' {zprojectF: TFrame},
+  Zdocfileu in 'docs\Zdocfileu.pas' {Zdocfilef: TFrame},
+  Zdocnewu in 'docs\Zdocnewu.pas' {Zdocnewf: TFrame},
+  docsFileNewU in 'docs\docsFileNewU.pas' {Ctrcts_DocsF: TFrame};
+
+Begin
+  Initapp;
+end.

@@ -1,0 +1,620 @@
+unit SearchFull;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DBActns, ActnList, DB, DBClient, Provider, ADODB, Menus,
+  StdCtrls, ExtCtrls, DBCtrls, Mask, Buttons, ImgList, GridsEh,
+  DBGridEh, JazDBGrid, DBGridEhGrouping, AmjSetU, RzPanel, AmjStandardU,
+  JPMainU, AmjLookUpU, AmjactionsU, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh,
+  EhLibVCL, DBAxisGridsEh, DemoForm, TemplateUnit;
+
+type
+  TFSearchFull = class(TJPmain)
+    Panel2: TPanel;
+    Panel1: TPanel;
+    Panel3: TPanel;
+    AmjAction1: TAmjAction;
+    AmjAction2: TAmjAction;
+    AmjAction3: TAmjAction;
+    AmjAction4: TAmjAction;
+    JGrid1: TJazDBGrid;
+    GroupBox1: TGroupBox;
+    etxt: TEdit;
+    Label2: TLabel;
+    Panel4: TPanel;
+    actnShowPicture: TAction;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    actnShowTemplateData: TAction;
+    JSonMemo: TMemo;
+    JQMetaIdSEt: TAmjSet;
+    JQMetBLOB: TAmjSet;
+    procedure JQAfterInsert(DataSet: TDataSet);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure JQYesNoGetText(Sender: TField; var Text: string;
+      DisplayText: Boolean);
+    procedure actnShowPictureExecute(Sender: TObject);
+    procedure JGrid1DblClick(Sender: TObject);
+    procedure actnShowTemplateDataExecute(Sender: TObject);
+    private
+    { Private declar
+    procedure JRCancelcloseExecute(Sender: TObject);ations }
+       PROJID : String;
+       m_Sql,m_MetaID, m_metaTableName : string ;
+
+       EditImageForm : TEditImageForm ;
+
+       procedure buildJgridColumns;
+       procedure freeChildControls(myControl : TControl; freeThisControl: boolean);
+       procedure ProcessJson( JsonForm :TTemplateForm; txt: String);
+       procedure ProcessJsonNm( JsonForm :TTemplateForm;txt: String);
+    public
+    { Public declarations }
+    Procedure FInitCard(pMaster:string=''); override;
+    Procedure PreFInit; Override;
+
+  end;
+
+implementation
+
+uses JAppMainU, JsonDataObjects;
+
+{$R *.dfm}
+
+Procedure TFSearchFull.PreFInit;
+Begin
+  //inherited PreFInit;
+  width := 900;
+  Height := 650;
+  Align := alRight;
+End;
+
+procedure TFSearchFull.buildJgridColumns;
+var
+  ColumnA : TColumnEh;
+  myFiwxedWidth : integer ;
+Begin
+
+  // add JGrid fields ..
+
+  myFiwxedWidth := 100 ;
+
+   JGrid1.columns.clear ;
+
+   ColumnA := JGrid1.columns.add ;
+   ColumnA.fieldName := 'MPARENTS' ;
+   ColumnA.Title.Caption := '„‘—Ê⁄ «·√—‘›…' ;
+   ColumnA.Width := 2 * myFiwxedWidth ;
+
+   ColumnA := JGrid1.columns.add ;
+   ColumnA.fieldName := 'DOC_NAME' ;
+   ColumnA.Title.Caption := '«·„” ‰œ «·⁄«„|«”„' ;
+   ColumnA.Width := myFiwxedWidth ;
+
+   ColumnA := JGrid1.columns.add ;
+   ColumnA.fieldName := 'DOC_NOTES' ;
+   ColumnA.Title.Caption := '«·„” ‰œ «·⁄«„|„·«ÕŸ« ' ;
+   ColumnA.Width := myFiwxedWidth ;
+
+   ColumnA := JGrid1.columns.add ;
+   ColumnA.fieldName := 'NAME' ;
+   ColumnA.Title.Caption := '«·„·› √Ê «·„Ã·œ|«”„' ;
+   ColumnA.Width := myFiwxedWidth ;
+
+   ColumnA := JGrid1.columns.add ;
+   ColumnA.fieldName := 'PATH' ;
+   ColumnA.Title.Caption := '«·„·› √Ê «·„Ã·œ|«·„”«—' ;
+   ColumnA.Width := 2 * myFiwxedWidth ;
+
+   ColumnA := JGrid1.columns.add ;
+   ColumnA.fieldName := 'FILE_MIME' ;
+   ColumnA.Title.Caption := '«·„·› √Ê «·„Ã·œ|‰Ê⁄' ;
+   ColumnA.Width := 60 ;//round(myFiwxedWidth/2) ;
+
+
+   ColumnA := JGrid1.columns.add ;
+   ColumnA.fieldName := 'FILE_EXT' ;
+   ColumnA.Title.Caption := '«·„·› √Ê «·„Ã·œ|·«Õﬁ…' ;
+   ColumnA.Width := round(myFiwxedWidth/2) ;
+
+   ColumnA := JGrid1.columns.add ;
+   ColumnA.fieldName := 'ISFOLDER' ;
+   ColumnA.Title.Caption := '«·„·› √Ê «·„Ã·œ|Â· ÂÊ „Ã·œø' ;
+   ColumnA.Width := round(myFiwxedWidth/2) ;
+
+   ColumnA := JGrid1.columns.add ;
+   ColumnA.fieldName := 'FILE_OR_LOB' ;
+   ColumnA.Title.Caption := '«·„·› √Ê «·„Ã·œ|„Œ“‰ ›Ì ﬁ«⁄œ… «·»Ì«‰ ø' ;
+   ColumnA.Width := round(myFiwxedWidth/2) ;
+
+
+End;
+
+procedure TFSearchFull.actnShowPictureExecute(Sender: TObject);
+begin
+  inherited;
+  if JQ.isEmpty then
+       exit;
+
+  if JQ.FieldByName('ISFOLDER').asInteger <= 0 then
+  begin
+      try
+          EditImageForm := TEditImageForm.create(self);
+          if JQ.FieldByName('FILE_OR_LOB').asInteger >= 1  then
+          begin
+               EditImageForm.FormEditPict(JQ.FieldByName('ID').AsString,JQ.FieldByName('DOCID').AsString);
+          end
+          else
+          begin
+               EditImageForm.LoadLocalFile(JQ.FieldByName('PATH').AsString);
+          end;
+          EditImageForm.showmodal;
+      finally
+         freeandNil(EditImageForm)
+
+
+
+      end;
+
+
+  end
+  else
+     showmessage('Â–« «·”Ã· Ì„À· „Ã·œ... «·—Ã«¡ «Œ Ì«— „·› ’Ê—… ·› ÕÂ...');
+
+
+end;
+
+procedure TFSearchFull.actnShowTemplateDataExecute(Sender: TObject);
+ var str :string;
+  s : TMemoryStream;
+  I : integer;
+  JsonForm :TTemplateForm;
+  //    var TemplateForm: TTemplateForm;
+begin
+      inherited;
+  JQMetaIdSEt.close;
+  JQMetaIdSEt.params.paramByName('Pprojid').AsString := jq.FieldByName('PROJID').AsString;
+  JQMetaIdSEt.open;
+  if JQMetaIdSEt.RecordCount > 0 then
+  begin
+    try
+      JQMetBLOB.close;
+      JQMetBLOB.params.paramByName('pid').AsString := JQMetaIdSEt.FieldByName('metaid').AsString;
+      JQMetBLOB.open;
+
+      s := TMemoryStream (JQMetBLOB.CreateBlobStream(JQMetBLOB.FIELDBYNAME('OBJ'), bmRead));
+      if s.Size >= 0 then begin
+       JSonMemo.lines.LoadFromStream(s);
+    for I := 0 to JSonMemo.Lines.Count - 1 do
+    str := str + JSonMemo.Lines.Strings[I];
+    //   ImageScrollBox.LoadFromStream(s, jq1.FieldByName('FILEFORMAT').AsString, 1); //
+  //SetString(str, PAnsiChar(s.Memory), s.Size);
+  //  process(txt);
+  jsonform := TTemplateForm.create(self,str);
+  ProcessJson(jsonform,str);
+  with jsonform do
+  begin
+    MasterSet.params.parambyName('pid').ASString :=  JQ.FieldByName('DOCID').ASString;
+    MasterSet.close;
+    MasterSet.readOnly := true ;
+    MasterSet.open;
+
+    jqDOCS.params.paramByName('pid').AsString := JQ.FieldByName('DOCID').AsString;
+    jqDOCS.close;
+    jqDOCS.readOnly := true ;
+    jqDOCS.open;
+
+  end;//}
+  ProcessJsonNm( JsonForm,str);/// it is like afteropen hehehhe
+  JsonForm.showmodal;
+  Jsonform.free;
+
+      end
+    finally
+
+    end;
+  end;
+
+
+end;
+
+procedure TFSearchFull.BitBtn1Click(Sender: TObject);
+var
+  whereString : string ;
+begin
+
+  whereString := '';
+
+m_Sql :=  ' Select X.*, Y.PROJID, JDMS.ARCH_SEARCH.getAllProjectParents(Y.PROJID) mParents FROM '+
+          ' (SELECT ID, MTNAME, MTEXT, MASTERID, (case when MASTERID is null then ID '+
+          '  else MasterID end) DOCID '+
+          ' FROM JDMS.FULLSEARCH_MASTER) X left join JDMS.JPROJ_DOCS Y on X.DOCID = Y.ID '+
+          ' WHERE 1>0 ';
+
+
+  if etxt.text <> '' then
+     whereString := whereString + ' and X.MTEXT like ''%'+etxt.text + '%''';
+
+
+  jq.close;
+  jq.sql.clear ;
+  jq.sql.text := m_Sql + whereString  ;
+
+
+  jq.open ;
+
+
+end;
+
+Procedure TFSearchFull.FInitCard(pMaster:string='');
+begin
+  width := 900;
+  Align := alRight;
+  Jq.Close ;
+
+  IF pMaster <> 'S' THEN BEGIN
+     JQ.Params.ParamByName('pID').AsString := pMaster ;
+     JQ.Open;
+     PCaption := '≈ŸÂ«— Ê  ⁄œÌ· ’·«ÕÌ« '
+
+     //DOCID.Text:=Jq.FieldByName('DOCID').AsString;
+    // DOCID.DoSearch(TRUE);
+  END ELSE begin
+    JQ.Open;
+    JQ.insert;
+    PROJID := pMASTER;
+
+    PCaption := '’·«ÕÌ… ÃœÌœ…';
+  end;
+end;
+
+
+procedure TFSearchFull.freeChildControls(myControl : TControl; freeThisControl: boolean);
+var
+  i : integer;
+  Item : TComponent;
+begin
+
+  if Assigned(myControl) then
+  begin
+    for i := (myControl.ComponentCount - 1) downto 0 do
+    begin
+      Item := myControl.Components[i];
+
+
+
+      if assigned(item) and (item.Owner = myControl) and (Item.ClassType <> TGroupBox) then
+        FreeAndNil(item);
+    end;
+
+
+  end;
+end;
+
+
+
+procedure TFSearchFull.JGrid1DblClick(Sender: TObject);
+begin
+  inherited;
+  actnShowPictureExecute(nil);
+end;
+
+procedure TFSearchFull.JQAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  JQ.FieldByName('ID').AsString := japp.db.get_seq;
+  JQ.FieldByName('projid').AsString := PROJID;
+{  JQ.FieldByName('ID').AsString := Japp.DB.Get_maxSeq('jedms.DOC');
+  JQ.FieldByName('VIEWCO').AsString := '0';
+  JQ.FieldByName('DOWNLOADCO').AsString := '0';
+  JQ.FieldByName('ISDELETED').AsString := '·«';
+  JQ.FieldByName('ISACTIVE').AsString := '·«';}
+end;
+procedure TFSearchFull.JQYesNoGetText(Sender: TField; var Text: string;
+  DisplayText: Boolean);
+begin
+  inherited;
+  text := '';
+  if (sender.isNull) then
+       text := '€Ì— „⁄—Ê›'
+  else begin
+      if sender.asInteger  = 0 then
+          text := '·«'
+      else if sender.asInteger  = 1 then
+          text := '‰⁄„' ;
+  end;
+
+
+end;
+
+procedure TFSearchFull.ProcessJson( JsonForm :TTemplateForm; txt: String);
+  var str,TableName:string;  // text to be modified
+//  JsonForm : TTemplateForm;
+  lab : Tlabel;
+//  position_s,position_E :integer;
+  I,j,coord , myTop, myLeft, defaultHeight, itemsInRow, lblWidth, dbeditWidth,itemSpacing: integer;
+  Obj,FormObj,PropertiesObj,SubObj1,ColumnObj: TJsonObject;
+  Objbs :TJsonbaseObject;
+  SingleLabel :Tlabel;
+ // DataSet1 : Tamjset;
+  EditBox1 : TEdit;
+  DBEDIT2,DBEDIT3,DBEDIT4,DBNEW :TEDIT;
+  LABEL12,LABEL13,LABEL14,LABELNEW :TLABEL;
+///
+  DetailGrid : TjazDBGrid;
+  GridSource: TdataSource;
+  GridDataSet :Tamjset;
+  STRTEST: STRING;
+begin
+     str := txt;
+
+     obj := TjsonObject.parse(str) as TJsonObject;
+     FormObj := obj['ctrls'].items[0];    // first item is a form always.
+
+     PropertiesObj := FormObj['Properties'];
+     JsonForm.caption := PropertiesObj['Caption'];
+     TableName :=  PropertiesObj['TableName'];
+     with jsonform do
+     begin
+         detailgrid.visible := false;
+         panel3.visible := false;
+         panel2.visible := false;
+         label1.font.color := cllime;
+         label1.font.height := 30;
+         Label1.caption := PropertiesObj['Label'];
+         Label1.top := 0;
+         Label1.left := 0;
+         label1.width := JsonForm.width;
+         label1.height := 30;
+         label1.color := clskyblue;
+      end;
+
+
+  myTop := 20 ;  // top of elements in first row ...
+  myLeft:= JsonForm.masterBox.width ;   // default left is the right corner of 'masterBox' ...
+  defaultHeight :=  21 ; // label or DBEdit default height
+  itemsInRow := 3 ; //  ⁄œœ «·⁄‰«’— »«·’› «·Ê«Õœ label+dbedit = ⁄‰’— Ê«Õœ
+  lblWidth := 60 ;  // label width
+  dbeditWidth := 150 ; // DBEdit width
+  itemSpacing := 5 ; // spacing between items ...
+
+  for I := 0 to FormObj['ctrls'].Count - 1 do
+  begin
+
+
+   SubObj1 := FormObj['ctrls'].items[I];
+   if ( SubObj1['CtrlType'] = 'singlelinetext' )or (SubObj1['CtrlType'] = 'date' )
+   OR (SubObj1['CtrlType'] = 'number' ) then
+   begin
+        if (I <> 0) and ((I mod itemsInRow)=0) then
+        begin
+             // rest left and top for the next row...
+             myTop  := myTop + itemSpacing + defaultHeight ;
+             myLeft := JsonForm.masterBox.width ;
+        end;
+
+        PropertiesObj := SubObj1['Properties'];
+        with JsonForm do
+        begin
+           MasterSet.AmjTblname := TableName;
+           MasterSet.AmjUser := jq.AmjUser;
+           MasterSet.CommandText := 'select * from ' + MasterSet.AmjUser;
+           MasterSet.CommandText := MasterSet.CommandText + '.' + MasterSet.AmjTblname;
+           MasterSet.commandText := MasterSet.CommandText + ' ' + 'where id = :Pid';
+           case I of
+           0:
+            begin
+                // TLabel  ...
+                LABELNEW := TLabel.Create(Self);
+                SETLENGTH(TLABELARR,LENGTH(TLABELARR) + 1);
+                TLABELARR[HIGH(TLABELARR)]         := LABELNEW;
+                LABELNEW.alignment := taRightJustify ;
+                LABELNEW.Parent  := masterBox;
+                LABELNEW.caption := PropertiesObj['Label'];
+                STRTEST:=  LABELNEW.caption;
+
+               if PropertiesObj['X'] <> '' then LABELNEW.left :=trunc(strtofloat(PropertiesObj['X']));
+               if PropertiesObj['Y'] <> '' then LABELNEW.top  :=trunc(strtofloat(PropertiesObj['Y']));
+
+               LABELNEW.font.color :=clblack;//clWindowText;//.font.color := StringTocolor('cl' + PropertiesObj['Color']);
+
+               myLeft := myLeft - itemSpacing - lblWidth ;
+               LABELNEW.Left := myLeft ;
+               LABELNEW.Top  := myTop ;
+               LABELNEW.autosize := false;
+               LABELNEW.width    := lblWidth ;
+
+               coord := LABELNEW.Left;
+               coord := coord + 1;
+
+               // TDBEdit ...
+               DBNEW := TDBEDIT.CREATE(SELF);
+               SETLENGTH(DBEDITARR,LENGTH(DBEDITARR)+1);
+               DBEDITARR[HIGH(DBEDITARR)] := DBNEW;
+
+               DBNEW.Parent     := masterBox;
+               DBNEW.BidiMode   := bdRightToLeft;
+               DBNEW.ReadOnly   := false;
+               DBNEW.DataField  := PropertiesObj['BindTo'];
+
+               myLeft := myLeft - itemSpacing - dbeditWidth ;
+               DBNEW.Left       := myLeft;
+               DBNEW.width      := dbeditWidth  ;
+               DBNEW.Top        := myTop ;//TLABELARR[HIGH(TLABELARR)].Top;
+               DBNEW.DATASOURCE := MasterDQ;
+               DBNEW.VISIBLE    := TRUE; //}
+            end;
+          ELSE
+            begin
+               LABELNEW := TLabel.Create(Self);
+               SETLENGTH(TLABELARR,LENGTH(TLABELARR) + 1);
+               TLABELARR[HIGH(TLABELARR)] := LABELNEW;
+
+               LABELNEW.Parent     := masterBox;
+               LABELNEW.alignment := taRightJustify ;
+               LABELNEW.caption    := PropertiesObj['Label'];
+               LABELNEW.font.color := clblack;
+               LABELNEW.autosize   := false;
+
+               myLeft := myLeft - itemSpacing - lblWidth ;
+               LABELNEW.Left       := myLeft;
+               LABELNEW.Top        := myTop ;
+               LABELNEW.Width      := lblWidth ;
+               STRTEST:=  LABELNEW.caption;
+
+
+               DBNEW := TDBEDIT.CREATE(SELF);
+               SETLENGTH(DBEDITARR,LENGTH(DBEDITARR)+1);
+               DBEDITARR[HIGH(DBEDITARR)] := DBNEW;
+
+               DBNEW.Parent     := masterBox;
+               DBNEW.BidiMode   := bdRightToLeft;
+               DBNEW.ReadOnly   := false;
+               DBNEW.DataField  := PropertiesObj['BindTo'];
+
+               myLeft := myLeft - itemSpacing - dbeditWidth ;
+               DBNEW.Left       := myLeft;
+               DBNEW.Top        := myTop;
+               DBNEW.Width      := dbeditWidth;
+               DBNEW.DATASOURCE := MasterDQ;
+               DBNEW.VISIBLE    := TRUE;
+            end;
+
+
+        end; //with JsonForm do
+        MasterSet.close;
+        MasterSet.open;
+
+   end;
+ end;
+
+ JsonForm.masterBox.invalidate();
+
+if  SubObj1['CtrlType'] =
+   'grid' then
+   begin
+   PropertiesObj := SubObj1['Properties'];
+
+//}
+  with JsonForm do
+  begin
+//   DetailGrid.align := alclient;
+ {  DetailGrid.Left := trunc(strtofloat(PropertiesObj['X']));
+   DetailGrid.Top := trunc(strtofloat(PropertiesObj['Y']));
+   DetailGrid.Width := trunc(strtofloat(PropertiesObj['Width']));
+   DetailGrid.height := trunc(strtofloat(PropertiesObj['Height']));//}
+   DetailSet.AmjTblname := PropertiesObj['BindTo'];
+   DetailSet.AmjUser := jq.AmjUser;
+   DetailSet.CommandText := 'select * from ' + DetailSet.AmjUser;
+   DetailSet.CommandText := DetailSet.CommandText + '.' + DetailSet.AmjTblname;
+   DetailSet.CommandText := DetailSet.CommandText + ' where MASTERID = :pid';
+   MasterSet.AfterScroll := AmjSet1.AfterScroll ;
+
+{   for j :=0 to Detailgrid.Columns.Count-1 do  Detailgrid.Columns.Items[j].visible:=false;
+ {  for j := 0 to SubObj1['DataColumns'].Count - 1 do
+   begin
+   ColumnObj := SubObj1['DataColumns'].items[j];
+   NameAndWidthColumn(Detailgrid,PropertiesObj['BindTo'],PropertiesObj['Label'],75)
+   end; //}
+//   panel1.align := altop;
+   detailgrid.visible := true;
+     panel3.visible := true;
+     panel2.visible := true;
+  // panel2.align := altop;
+      //panel2.height := 0;
+     //panel2.width := 0;
+  // panel3.align := altop;
+     // panel3.height := 0;
+    // panel3.width := 0;
+  // detailgrid.align := alclient;
+    // detailgrid.height := 0;
+   //  detailgrid.width := 0;
+   //  mastergrid.align := alclient;
+        end;
+      end;
+    end;
+
+
+end;
+
+  procedure TFSearchFull.ProcessJsonNm( JsonForm :TTemplateForm;txt: String);
+  var str,TableName:string;  // text to be modified
+//  JsonForm : TTemplateForm;
+  lab : Tlabel;
+//  position_s,position_E :integer;
+  I : integer;
+  Obj,FormObj,PropertiesObj,SubObj1,SubObj2: TJsonObject;
+  Objbs :TJsonbaseObject;
+  SingleLabel :Tlabel;
+ // DataSet1 : Tamjset;
+  {EditBox1 : TEdit;
+  DetailGrid : TjazDBGrid;
+  GridSource: TdataSource;
+  GridDataSet :Tamjset;  //}
+  begin
+  str := txt;
+  ////// using JsonDataObject.pas
+ obj := TjsonObject.parse(str) as TJsonObject;
+ FormObj := obj['ctrls'].items[0];    // first item is a form always.
+ PropertiesObj :=FormObj['Properties'];
+{ //}
+   TableName :=  PropertiesObj['TableName'];
+ {  //}
+  //////////////// end opf creating label
+  /// creating new data set
+  for I := 0 to FormObj['ctrls'].Count - 1 do
+  begin
+  SubObj1 := FormObj['ctrls'].items[I];
+ /// MemoOut.lines.add(SubObj1['CtrlType']);
+   if ( SubObj1['CtrlType'] = 'singlelinetext' )or (SubObj1['CtrlType'] = 'date' ) then
+   begin
+   PropertiesObj := SubObj1['Properties'];
+
+  with JsonForm do
+  begin
+ { ;//}
+//   NameAndWidthColumn(mastergrid,PropertiesObj['BindTo'],PropertiesObj['Label'],75)
+
+
+  { EditBox1 := TEdit.Create(Self);
+   EditBox1.Parent := JsonForm;
+   EditBox1.BidiMode := bdRightToLeft;
+   EditBox1.ReadOnly := True;
+//   EditBox1.text := MasterSet.FieldByname(PropertiesObj['BindTo']).AsString;
+   EditBox1.Left :=  SingleLabel.Left + 10 + SingleLabel.width;
+   EditBox1.Top :=  SingleLabel.Top;//}
+   end;
+    end;
+
+{if  SubObj1['CtrlType'] =
+   'grid' then
+   begin
+   PropertiesObj := SubObj1['Properties'];
+  with JsonForm do
+      begin
+   DetailGrid.align := alclient;
+   DetailSet.AmjTblname := PropertiesObj['BindTo'];
+   DetailSet.AmjUser := jq.AmjUser;
+   DetailSet.CommandText := 'select * from ' + DetailSet.AmjUser;
+   DetailSet.CommandText := DetailSet.CommandText + '.' + DetailSet.AmjTblname;
+   DetailSet.CommandText := DetailSet.CommandText + ' where MASTERID = :pid';
+   MasterSet.AfterScroll := AmjSet1.AfterScroll ;
+   panel1.align := altop;
+   detailgrid.visible := true;
+   panel3.visible := true;
+   panel2.visible := true;
+   panel2.align := altop;
+   panel3.align := altop;
+   detailgrid.align := alclient;
+   mastergrid.align := alclient;
+      end;
+   end;//}
+
+  end;
+
+end;
+
+
+end.

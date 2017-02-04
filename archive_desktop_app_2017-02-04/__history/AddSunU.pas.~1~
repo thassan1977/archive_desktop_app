@@ -1,0 +1,28 @@
+unit AddSunU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, DBClient, AmjSetU, StdCtrls, Mask, DBCtrlsEh;
+
+type
+  TAddSunForm = class(TForm)
+    Label1: TLabel;
+    DBEditEh1: TDBEditEh;
+    DataSource1: TDataSource;
+    AmjSet1: TAmjSet;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  AddSunForm: TAddSunForm;
+
+implementation
+
+{$R *.dfm}
+
+end.

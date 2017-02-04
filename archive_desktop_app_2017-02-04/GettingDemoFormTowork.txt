@@ -1,0 +1,78 @@
+The Folowing adjusments were made in order to get the free image editor form 
+DemoForm to work:
+
+the standalone application Demo32.exe works just fine whereas the demo 
+project DemoD2007 was not working due to units issues!
+the issues and the solutions are :
+
+ 1 - in unit EnProWin, in type declaration:
+the line:  TJPEGQuality = EnJpgGr.TJPEGQuality;    ///modified
+was replaced by:  TJPEGQuality = EnMisc.TJPEGQuality;    ///modified
+because TJPEGQuality is property of EnMisc and not of EnJpgGr.
+
+ 2- in unit Enprowin, in procedure TEnProWinFrame.SetConfigStr( value : String )
+we replac declared string varaiables with new ansistring variables:
+var  list, item,ansiValue : String;
+var  list, item,ansiValue : ansiString; //modified
+and in the next code (ipmlimentation) also:
+
+   ansiValue := ansistring(Value);
+//  while value <> '' do begin     //modified
+//   list := EnStrGetNextToken( value, ';' );    //modified
+  while ansiValue <> '' do begin
+    list := EnStrGetNextToken( ansiValue, ';' );
+
+ 3- in unit EnProWin, in procedure TEnProWinFrame.ImageScrollBoxBeforeSave( const Sender: TImageScrollBox; const Graphic: TDibGraphic );
+we had to stop this line from execution
+  //  TTiffGraphic(Graphic).RowsPerStrip := Graphic.Height;//} //modified
+this need to be seen once again!
+
+ 4- in unit EnProwin,procedure CalcPosPercent
+( imgWinFrame : TEnProWinFrame; var pos : String; selection : Integer; var leftPct, topPct, widthPct, heightPct : Double );
+the string variables were replaced by ansistring variables:
+var
+  s, t : ansiString;//modified
+//    s, t :String;
+  i : Integer;
+  scrnAdjStr : ansiString;// //modified
+  //scrnAdjStr : String;
+
+ 5 -in unit EnProwin,procedure TEnProWinFrame.DrawOverlayOnScreen
+the string variables were replaced by ansistring variables:
+//  list : String; //modified
+  list : ansiString;
+
+ 6 -in unit EnProwin,procedure TEnProWinFrame.ImageSelection( Offset : Integer );
+the string variables were replaced by ansistring variables:
+//  s : String;  //modified
+    s : ansiString;
+
+ 7 -in unit EnProwin,procedure TEnProWinFrame.ImageAdjustment( Adj : String );
+the input string argument adj was casted to a ansistring:
+var  adj_ansi:ansiString;
+ adj_ansi :=adj;  //modified
+
+
+ 8- in unit EnProLib;
+function  EnStrGetNextToken( var S : String; delimiter : String ) : String;
+was replaced by:
+function  EnStrGetNextToken( var S : AnsiString; delimiter : AnsiString ) : AnsiString;//modified
+
+ 9- in unit EnOCRTraining;procedure TEnOCRTrainingForm.MaskEditChange(Sender: TObject);
+the string variables were replaced by ansistring variables:
+//  input : String; //modified
+  str : String;  //modified
+  input,text_ansi : ansiString;
+so the code modified as:
+  retVal := EnPicture( text_ansi, input, FALSE, errPos );
+//  retVal := EnPicture( MaskEdit.Text, input, FALSE, errPos );
+
+ 10- then jorject was compiled successfully. the form demoform was called inside
+finit of unit ImgIdt. then it was called from jraction by EnvisionFormHandl
+ when running the application it worked fine until closing the form 
+DemoForm..a repeatedly error message was showed...it was cause by:
+calling: Application.OnIdle := Self.OnIdle;
+in  procedure TEditImageForm.FormCreate
+application was originally the mainform which was demoform but now it is not!
+the solution was inserting a new component: ApplicationEvents to handle DemoForm
+being in idle mode!

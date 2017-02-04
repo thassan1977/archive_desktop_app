@@ -1,0 +1,246 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{6F6CE2EB-BEF1-4BF6-9205-8D420A111046}</ProjectGuid>
+			<MainSource>jdocProNew.dpr</MainSource>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<ProjectVersion>12.0</ProjectVersion>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UsePackage>vclx;vcl;rtl;vcldb;QR5Run_RAD6;bdertl;RaizeComponentsVcl;RaizeComponentsVclDb;dbrtl;vclactnband;vcldbx;dsnap;dsnapcon;TeeUI;TeeDB;Tee;adortl;vclib;ibxpress;IndyCore;IndySystem;IndyProtocols;VclSmp;vclie;websnap;webdsnap;xmlrtl;inet;inetdbbde;inetdbxpress;soaprtl;dbexpress;DbxCommonDriver;DataSnapIndy10ServerTransport;DataSnapProviderClient;DataSnapServer;DbxClientDriver;DBXInterBaseDriver;DBXMySQLDriver;dbxcds;DBXSybaseASEDriver;DBXSybaseASADriver;DBXOracleDriver;DBXMSSQLDriver;DBXInformixDriver;DBXDb2Driver;EhLib120;EhLibADODataDrivers120;EhLibBDEDataDrivers120;dclExcelExportPack12</DCC_UsePackage>
+			<DCC_DcuOutput>..\..\DCU\</DCC_DcuOutput>
+			<DCC_DependencyCheckOutputName>jdocProNew.exe</DCC_DependencyCheckOutputName>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_Platform>x86</DCC_Platform>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="jdocProNew.dpr">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="JMain\JAppMainU.pas"/>
+			<DCCReference Include="..\JManager\manager\AMJ_USERU.pas">
+				<Form>AMJ_USERF</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="search\SearchFolders.pas">
+				<Form>FSearchFolders</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="docs\docsFileNewU.pas">
+				<Form>DocsfilenewF</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="docs\FrmtForm.pas">
+				<Form>FormatConversionForm</Form>
+			</DCCReference>
+			<DCCReference Include="docs\ReszForm.pas">
+				<Form>ResizeForm</Form>
+			</DCCReference>
+			<DCCReference Include="docs\EnAnEdit.pas"/>
+			<DCCReference Include="docs\EnImgScr.pas"/>
+			<DCCReference Include="docs\mailBoxU.pas">
+				<Form>mailBoxf</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="docs\Zdocu.pas">
+				<Form>Zdocf</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="Encode\ZProjectsU.pas">
+				<Form>ZProjectsF</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="Encode\ZFoldersU.pas">
+				<Form>ZFoldersF</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="docs\ZDocNewJSonu.pas">
+				<Form>ZDocNewJSonf</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="D:\Delphi_Comps\D2009\lkJSON-1.07\uLkJSON.pas"/>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\nblib\EnBarcode.pas"/>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\nblib\EnProLib.pas"/>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\nblib\NbLib.pas"/>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\nblib\TestForm.pas">
+				<Form>TestMainForm</Form>
+			</DCCReference>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\nblib\EnProWin.pas">
+				<Form>EnProWinFrame</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\nblib\EnOCR.pas"/>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\nblib\EnOCRTraining.pas">
+				<Form>EnOCRTrainingForm</Form>
+			</DCCReference>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\example\about.pas">
+				<Form>AboutBox</Form>
+			</DCCReference>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\example\CropForm.pas"/>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\example\cursors.pas"/>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\example\OcrForm.pas">
+				<Form>OcrResultForm</Form>
+			</DCCReference>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\example\POptForm.pas">
+				<Form>PrintOptionForm</Form>
+			</DCCReference>
+			<DCCReference Include="D:\Delphi_Comps\D2009\env303\example\UrlJmp.pas"/>
+			<DCCReference Include="docs\ImagEditor.pas">
+				<Form>FImagEditor</Form>
+			</DCCReference>
+			<DCCReference Include="docs\ImgIdt.pas">
+				<Form>ImgIdtf</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="D:\ExtraUnits\JsonDataObjects-master\Source\JsonDataObjects.pas"/>
+			<DCCReference Include="docs\EnAnnota.pas"/>
+			<DCCReference Include="docs\ZFoldernewu.pas">
+				<Form>ZFoldernewf</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="docs\Zdocnewu.pas">
+				<Form>Zdocnewf</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="TemplateUnit.pas">
+				<Form>TemplateForm</Form>
+			</DCCReference>
+			<DCCReference Include="AddSunU.pas">
+				<Form>AddSunForm</Form>
+			</DCCReference>
+			<DCCReference Include="docs\zprojectdocsU.pas">
+				<Form>zprojectdocsf</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="docs\DemoForm.pas">
+				<Form>EditImageForm</Form>
+			</DCCReference>
+			<DCCReference Include="..\GUI\HistogramUnit.pas">
+				<Form>HistogramForm</Form>
+			</DCCReference>
+			<DCCReference Include="Units\ZPrivsU.pas">
+				<Form>ZPrivsf</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="docs\ZPRIVSnEW.pas">
+				<Form>ZPRIVSnEW2</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="search\SearchDocs.pas">
+				<Form>FSearchDocs</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="search\SearchFull.pas">
+				<Form>FSearchFull</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="docs\tempdocsU.pas">
+				<Form>tempdocsf</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\..\AmjPkg\Modules\JPG1U.pas">
+				<Form>JPG1F</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\..\AmjPkg\Modules\JPMainU.pas">
+				<Form>JPmain</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="..\..\AmjPkg\Modules\JPmasterU.pas">
+				<Form>JPmaster</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="docs\AddFolderForm.pas">
+				<Form>FAddFolder</Form>
+			</DCCReference>
+			<None Include="..\JAuditBuilder\AA DEL_DCU.BAT"/>
+			<None Include="..\JAuditBuilder\JAuditbuilder.dpr"/>
+			<None Include="..\JAuditBuilder\JAuditbuilder.dproj"/>
+			<None Include="..\JAuditBuilder\JAuditbuilder.dproj.local"/>
+			<None Include="..\JAuditBuilder\JAuditbuilder.identcache"/>
+			<None Include="..\JAuditBuilder\New Microsoft Publisher Document.pub"/>
+			<None Include="..\JAuditBuilder\New Text Document.txt"/>
+			<None Include="..\JAuditBuilder\ProjectGroup1.groupproj"/>
+			<None Include="..\JAuditBuilder\ProjectGroup1.groupproj.local"/>
+			<None Include="..\JAuditBuilder\__history"/>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>VCLApplication</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Source>
+						<Source Name="MainSource">jdocProNew.dpr</Source>
+					</Source>
+					<Parameters>
+						<Parameters Name="UseLauncher">False</Parameters>
+						<Parameters Name="LoadAllSymbols">True</Parameters>
+						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+					</Parameters>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">10241</VersionInfo>
+						<VersionInfo Name="CodePage">1256</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+				</Delphi.Personality>
+				<ModelSupport>False</ModelSupport>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>

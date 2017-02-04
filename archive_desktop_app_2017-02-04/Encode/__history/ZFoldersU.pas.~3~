@@ -1,0 +1,67 @@
+unit ZFoldersU;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ImgList, DBActns, ActnList, DB, DBClient, Provider, ADODB,
+  Menus, Grids, DBGrids, ExtCtrls, Buttons, StdCtrls, jazDBGrid, GridsEh,
+  DBGridEh, DBGridEhGrouping, AmjSetU, RzPanel, AmjStandardU, JPG1U, AmjactionsU,
+  ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, EhLibVCL, DBAxisGridsEh;
+
+type
+  TZFoldersF = class(TJPG1F)
+    AmjAction1: TAmjAction;
+    procedure JQAfterInsert(DataSet: TDataSet);
+    procedure JQAfterOpen(DataSet: TDataSet);
+    procedure jqprntnamesetText(Sender:TField; const text:string );
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+   // Procedure FInit; Override;
+   Procedure FInitCard(pMaster:string=''); override;
+  end;
+
+
+implementation
+  uses JAppMainU;
+{$R *.dfm}
+
+Procedure TZFoldersF.FInitCard(pMaster:string='');
+begin
+  PCaption := '„Ã„Ê⁄«  «·„Ã·œ« ';
+  JqAutoActivate := true;
+  jq.Close ;
+  IF pMaster <> '' THEN BEGIN
+     jq.Params.ParamByName('pID').AsString := pMaster ;
+  END ELSE begin
+    jq.Open;
+    jq.insert;
+    PCaption := '„Ã·œ ÃœÌœ';
+end;
+end;
+
+procedure TZFoldersF.JQAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+jq.fieldByName('id').AsString := japp.db.get_seq;
+//jq.FieldByName('PROJID').AsString := zproject.idvalue; //
+//jq.FieldByName('name').AsString := zproject.namevalue + '-' +jq.fieldByName('id').AsString;
+jq.FieldByName('PRNTID').AsInteger := 0;// parent id zero by default;
+end;
+
+procedure TZFoldersF.JQAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+jq.makefieldreadwrite('prntname',jqprntnamesetText);
+end;
+
+procedure TZFoldersF.jqprntnamesetText(Sender:TField; const Text:string);
+begin
+   if japp.LookUp_ZITEM_GROUP.dosearchov(Text,jq.FieldByName('PRNTID').AsString) then begin
+     jq.fieldbyname('PRNTID').asstring :=japp.LookUp_ZITEM_GROUP.IDValue;
+     jq.fieldbyname('prntname').asstring :=japp.LookUp_ZITEM_GROUP.NameValue;
+  end;
+end;
+end.
